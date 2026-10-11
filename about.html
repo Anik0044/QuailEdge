@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuailEdge | About</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #050505;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(76, 175, 80, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(76, 175, 80, 0.04) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: radial-gradient(circle at center, transparent 0%, #050505 85%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* ================= NAVBAR ================= */
+        nav {
+            position: sticky;
+            top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            background: rgba(5, 5, 5, 0.85);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            white-space: nowrap;
+        }
+
+        .logo span { color: #4caf50; text-shadow: 0 0 20px rgba(76, 175, 80, 0.8); }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .nav-links a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover, .nav-links a.active { color: #4caf50; }
+
+        /* ================= PAGE TITLE ================= */
+        .page-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.8rem;
+            text-align: center;
+            margin: 70px auto 15px;
+            background: linear-gradient(135deg, #ffffff 0%, #4caf50 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            padding: 0 20px;
+        }
+
+        .page-subtitle {
+            text-align: center;
+            color: #888;
+            max-width: 800px;
+            margin: 0 auto 60px;
+            padding: 0 20px;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* ================= HERO ABOUT (Text + Image) ================= */
+        .hero-about {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            align-items: center;
+            gap: 50px;
+            padding: 0 60px 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .hero-about-text h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .hero-about-text h2 span { color: #4caf50; }
+
+        .hero-about-text p {
+            font-size: 0.95rem;
+            color: #999;
+            line-height: 1.8;
+            margin-bottom: 18px;
+        }
+
+        .hero-about-text p strong { color: #4caf50; font-weight: 600; }
+
+        .hero-about-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            box-shadow: 0 20px 60px rgba(76, 175, 80, 0.15);
+            transition: all 0.4s ease;
+        }
+
+        .hero-about-image:hover {
+            border-color: rgba(76, 175, 80, 0.6);
+            box-shadow: 0 25px 80px rgba(76, 175, 80, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .hero-about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 20px;
+        }
+
+        /* ================= SECTION ================= */
+        .section {
+            flex: 1;
+            padding: 0 60px 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .section-heading {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #ffffff 0%, #4caf50 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-sub {
+            text-align: center;
+            color: #888;
+            max-width: 750px;
+            margin: 0 auto 50px;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* ================= PROBLEM / SOLUTION GRID ================= */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 25px;
+            margin-bottom: 20px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 28px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 3px;
+            background: linear-gradient(90deg, #4caf50, #00bcd4);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .card:hover::before { transform: scaleX(1); }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(76, 175, 80, 0.4);
+            box-shadow: 0 20px 50px rgba(76, 175, 80, 0.12);
+        }
+
+        .card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.15rem;
+            color: #4caf50;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            font-size: 0.88rem;
+            color: #999;
+            line-height: 1.7;
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        /* Problem Card (Red) */
+        .card.problem::before { background: linear-gradient(90deg, #ff5252, #ff1744); }
+        .card.problem:hover { border-color: rgba(255, 82, 82, 0.4); box-shadow: 0 20px 50px rgba(255, 82, 82, 0.12); }
+        .card.problem h3 { color: #ff5252; }
+
+        /* Solution Card (Green) */
+        .card.solution::before { background: linear-gradient(90deg, #4caf50, #00bcd4); }
+
+        /* ================= HOW IT WORKS ================= */
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .step {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 30px 22px;
+            text-align: center;
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        .step:hover {
+            transform: translateY(-8px);
+            border-color: rgba(76, 175, 80, 0.5);
+            box-shadow: 0 20px 50px rgba(76, 175, 80, 0.15);
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4caf50, #00bcd4);
+            color: #fff;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 18px;
+            box-shadow: 0 0 25px rgba(76, 175, 80, 0.5);
+        }
+
+        .step h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.05rem;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .step p {
+            font-size: 0.85rem;
+            color: #888;
+            line-height: 1.6;
+        }
+
+        /* ================= ANIMATED INFOGRAPHIC ================= */
+        .infographic-section {
+            padding: 60px 60px 100px;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            position: relative;
+        }
+
+        .section-heading-center {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #ffffff 0%, #4caf50 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle-center {
+            text-align: center;
+            color: #888;
+            max-width: 750px;
+            margin: 0 auto 60px;
+            font-size: 0.98rem;
+            line-height: 1.7;
+        }
+
+        .floating-wrapper {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1500px;
+        }
+
+        .glow-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .glow-orb-1 {
+            width: 400px;
+            height: 400px;
+            background: rgba(76, 175, 80, 0.35);
+            top: 10%;
+            left: 5%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .glow-orb-2 {
+            width: 350px;
+            height: 350px;
+            background: rgba(0, 188, 212, 0.25);
+            bottom: 10%;
+            right: 5%;
+            animation: float 10s ease-in-out infinite reverse;
+        }
+
+        .infographic-container {
+            position: relative;
+            z-index: 1;
+            max-width: 1100px;
+            width: 100%;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 2px solid rgba(76, 175, 80, 0.3);
+            box-shadow: 
+                0 0 60px rgba(76, 175, 80, 0.2),
+                0 30px 80px rgba(0, 0, 0, 0.6);
+            animation: 
+                fadeInScale 1.2s ease 0.3s both,
+                gentleFloat 6s ease-in-out 1.5s infinite;
+            transition: all 0.6s ease;
+        }
+
+        .infographic-container:hover {
+            border-color: rgba(76, 175, 80, 0.8);
+            box-shadow: 
+                0 0 100px rgba(76, 175, 80, 0.5),
+                0 40px 100px rgba(0, 0, 0, 0.7);
+            transform: translateY(-10px) scale(1.02);
+        }
+
+        .infographic-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        .infographic-container:hover img { transform: scale(1.03); }
+
+        .scan-line {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #4caf50, transparent);
+            box-shadow: 0 0 20px rgba(76, 175, 80, 0.8);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .infographic-container:hover .scan-line {
+            animation: scan 2s ease-in-out infinite;
+        }
+
+        /* ================= MISSION & VISION ================= */
+        .mv-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 25px;
+            margin-bottom: 80px;
+        }
+
+        .mv-card {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.06), rgba(0, 188, 212, 0.03));
+            border: 1px solid rgba(76, 175, 80, 0.2);
+            border-radius: 20px;
+            padding: 40px 32px;
+            text-align: center;
+            transition: all 0.4s ease;
+        }
+
+        .mv-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(76, 175, 80, 0.5);
+            box-shadow: 0 25px 60px rgba(76, 175, 80, 0.15);
+        }
+
+        .mv-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .mv-card h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            color: #4caf50;
+            margin-bottom: 15px;
+        }
+
+        .mv-card p {
+            color: #aaa;
+            font-size: 0.92rem;
+            line-height: 1.8;
+        }
+
+        /* ================= IMPACT NUMBERS ================= */
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .impact-item {
+            text-align: center;
+            padding: 30px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            transition: all 0.4s ease;
+        }
+
+        .impact-item:hover {
+            transform: translateY(-5px);
+            border-color: rgba(76, 175, 80, 0.4);
+            background: rgba(76, 175, 80, 0.05);
+        }
+
+        .impact-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #4caf50;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .impact-label {
+            font-size: 0.8rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ================= FOOTER ================= */
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.6);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        footer span { color: #4caf50; font-weight: 600; }
+
+        /* ================= ANIMATIONS ================= */
+        @keyframes float {
+            0% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-30px) scale(1.1); }
+            100% { transform: translateY(0px) scale(1); }
+        }
+
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.9) translateY(40px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        @keyframes gentleFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        @keyframes scan {
+            0% { top: 0; opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 992px) {
+            .hero-about { grid-template-columns: 1fr; padding: 0 30px 60px; }
+            .hero-about-image { order: -1; }
+            .infographic-section { padding: 40px 20px 80px; }
+            .section-heading-center { font-size: 1.8rem; }
+        }
+
+        @media (max-width: 768px) {
+            nav { flex-direction: column; padding: 15px; gap: 12px; }
+            .nav-links { gap: 12px; justify-content: center; }
+            .nav-links a { font-size: 0.78rem; }
+            .page-title { font-size: 1.9rem; margin-top: 40px; }
+            .section { padding: 0 20px 60px; }
+            .hero-about { padding: 0 20px 60px; }
+            .section-heading { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="logo">Quail<span>Edge</span> 🌿</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html" class="active">About</a></li>
+            <li><a href="weekly_update.html">Weekly</a></li>
+            <li><a href="hardware.html">Hardware</a></li>
+            <li><a href="software.html">Software</a></li>
+            <li><a href="prototype.html">Prototype</a></li>
+            <li><a href="component_cost.html">Cost</a></li>
+            <li><a href="team.html">Team</a></li>
+        </ul>
+    </nav>
+
+    <!-- PAGE TITLE -->
+    <h1 class="page-title">About QuailEdge</h1>
+    <p class="page-subtitle">An Edge-AI and IoT-Driven Closed-Loop Precision Micro-Poultry Ecosystem for Organic Japanese Quail (Coturnix japonica) Farming in Dense Urban Environments.</p>
+
+    <!-- HERO ABOUT (Text + Image) -->
+    <section class="hero-about">
+        <div class="hero-about-text">
+            <h2>Reimagining <span>Urban Poultry Farming</span> with Intelligence</h2>
+            <p>
+                QuailEdge is a smart, closed-loop ecosystem designed to make organic Japanese Quail 
+                <strong>(Coturnix japonica)</strong> farming possible — even inside the smallest urban apartments. 
+                By combining <strong>Edge-AI</strong> and <strong>IoT</strong> technologies, we've created a self-sustaining 
+                micro-poultry system that manages climate, feeding, cleaning, and egg collection automatically.
+            </p>
+            <p>
+                Traditional poultry farming demands space, time, and constant attention. Our system eliminates 
+                all three barriers. The birds live in a natural habitat with plants, soil, and proper airflow — 
+                while sensors, actuators, and an on-board AI handle everything else.
+            </p>
+            <p>
+                Whether you're a busy professional, a health-conscious family, or an urban farmer at heart — 
+                <strong>QuailEdge lets you raise your own organic quails without the mess, smell, or hassle.</strong>
+            </p>
+        </div>
+
+        <div class="hero-about-image">
+            <img src="image/about-quail.jpg" alt="QuailEdge Smart Ecosystem">
+        </div>
+    </section>
+
+    <!-- PROBLEM SECTION -->
+    <section class="section">
+        <h2 class="section-heading">The Problem We Solve</h2>
+        <p class="section-sub">Urban families want fresh, organic eggs — but traditional poultry farming is impossible in dense cities. Here's why:</p>
+
+        <div class="grid-3">
+            <div class="card problem">
+                <span class="card-icon">📏</span>
+                <h3>No Space</h3>
+                <p>Apartments don't have yards. Traditional coops need significant square footage that urban homes simply cannot provide.</p>
+            </div>
+            <div class="card problem">
+                <span class="card-icon">💨</span>
+                <h3>Bad Odor</h3>
+                <p>Bird droppings produce ammonia and strong smells. In a closed apartment, this becomes unbearable within days.</p>
+            </div>
+            <div class="card problem">
+                <span class="card-icon">⏰</span>
+                <h3>Time-Consuming</h3>
+                <p>Feeding, watering, cleaning, and egg collection require daily manual effort that busy professionals don't have.</p>
+            </div>
+            <div class="card problem">
+                <span class="card-icon">🌡️</span>
+                <h3>Climate Sensitivity</h3>
+                <p>Quails need specific temperature and humidity ranges. Without proper control, they get stressed and stop laying eggs.</p>
+            </div>
+            <div class="card problem">
+                <span class="card-icon">🐛</span>
+                <h3>Disease Risk</h3>
+                <p>Poor air quality and dirty environments cause respiratory diseases, reducing flock health and productivity.</p>
+            </div>
+            <div class="card problem">
+                <span class="card-icon">🥚</span>
+                <h3>Egg Loss</h3>
+                <p>Eggs laid on bedding get dirty, cracked, or lost. Searching through soil for eggs is frustrating and unhygienic.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOLUTION SECTION -->
+    <section class="section">
+        <h2 class="section-heading">Our Solution</h2>
+        <p class="section-sub">QuailEdge solves every one of these problems through intelligent automation and Edge-AI.</p>
+
+        <div class="grid-3">
+            <div class="card solution">
+                <span class="card-icon">🏠</span>
+                <h3>Compact Design</h3>
+                <p>A vertical, apartment-friendly enclosure that fits in a corner — just like a small piece of furniture.</p>
+            </div>
+            <div class="card solution">
+                <span class="card-icon">🌿</span>
+                <h3>Natural Habitat</h3>
+                <p>Plants, soil, logs, and natural airflow create a stress-free environment that keeps quails healthy and happy.</p>
+            </div>
+            <div class="card solution">
+                <span class="card-icon">🌬️</span>
+                <h3>Carbon-Filtered Air</h3>
+                <p>MQ-135 sensor detects ammonia. Exhaust fan with carbon filter automatically removes odor — keeping your home fresh.</p>
+            </div>
+            <div class="card solution">
+                <span class="card-icon">🤖</span>
+                <h3>Full Automation</h3>
+                <p>Feeding, watering, cleaning, and egg collection are all automated. You only interact with the system once a day.</p>
+            </div>
+            <div class="card solution">
+                <span class="card-icon">🧠</span>
+                <h3>Edge-AI Control</h3>
+                <p>ESP32 runs AI logic on-device — no cloud dependency. It makes split-second decisions based on real-time sensor data.</p>
+            </div>
+            <div class="card solution">
+                <span class="card-icon">📱</span>
+                <h3>Remote Monitoring</h3>
+                <p>Wi-Fi connectivity lets you monitor temperature, humidity, feed level, and water status from your phone — anywhere.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="section">
+        <h2 class="section-heading">How It Works</h2>
+        <p class="section-sub">From sensor reading to automatic action — all in milliseconds.</p>
+
+        <div class="steps-container">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Sense</h3>
+                <p>DHT22, MQ-135, water level sensor, and load cell continuously monitor the environment.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Analyze</h3>
+                <p>ESP32's Edge-AI compares readings against optimal thresholds for quail health.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Act</h3>
+                <p>Fans, pumps, servos, and conveyor belts activate automatically to maintain ideal conditions.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <h3>Notify</h3>
+                <p>Data is sent via Wi-Fi to your phone — with alerts for feed refill, water top-up, or unusual conditions.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ANIMATED INFOGRAPHIC -->
+    <section class="infographic-section">
+        <h2 class="section-heading-center">The Complete Ecosystem</h2>
+        <p class="section-subtitle-center">
+            A visual breakdown of every layer, sensor, and automated system working together inside QuailEdge.
+        </p>
+
+        <div class="floating-wrapper">
+            <div class="glow-orb glow-orb-1"></div>
+            <div class="glow-orb glow-orb-2"></div>
+
+            <div class="infographic-container">
+                <div class="scan-line"></div>
+                <img src="image/prototype.jpg" alt="QuailEdge Complete Ecosystem Diagram">
+            </div>
+        </div>
+    </section>
+
+    <!-- IMPACT NUMBERS -->
+    <section class="section">
+        <h2 class="section-heading">Expected Impact</h2>
+        <p class="section-sub">What our system delivers to urban households.</p>
+
+        <div class="impact-grid">
+            <div class="impact-item">
+                <span class="impact-number">3-5</span>
+                <span class="impact-label">Quails per Unit</span>
+            </div>
+            <div class="impact-item">
+                <span class="impact-number">~250</span>
+                <span class="impact-label">Eggs per Year</span>
+            </div>
+            <div class="impact-item">
+                <span class="impact-number">95%</span>
+                <span class="impact-label">Less Manual Work</span>
+            </div>
+            <div class="impact-item">
+                <span class="impact-number">100%</span>
+                <span class="impact-label">Odor-Free</span>
+            </div>
+            <div class="impact-item">
+                <span class="impact-number">24/7</span>
+                <span class="impact-label">Monitoring</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- MISSION & VISION -->
+    <section class="section">
+        <div class="mv-grid">
+            <div class="mv-card">
+                <span class="icon">🎯</span>
+                <h2>Our Mission</h2>
+                <p>
+                    To democratize organic poultry farming in urban environments by building affordable, 
+                    intelligent, and sustainable micro-ecosystems — empowering anyone to produce fresh, 
+                    chemical-free eggs right from their own home.
+                </p>
+            </div>
+            <div class="mv-card">
+                <span class="icon">🔭</span>
+                <h2>Our Vision</h2>
+                <p>
+                    A future where every urban household can grow its own food — where technology and 
+                    nature coexist, and where food security is not a luxury but a daily reality for 
+                    families in every city.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 <span>QuailEdge</span>. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

@@ -93,7 +93,7 @@
         .nav-links {
             list-style: none;
             display: flex;
-            gap: 25px;
+            gap: 22px;
             flex-wrap: wrap;
             justify-content: flex-end;
         }
@@ -101,7 +101,7 @@
         .nav-links a {
             color: #aaa;
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             font-weight: 500;
             transition: color 0.3s ease;
             white-space: nowrap;
@@ -343,10 +343,13 @@
         }
 
         /* ================= RESPONSIVE ================= */
-        @media (max-width: 992px) {
+        @media (max-width: 1100px) {
             nav { padding: 15px 20px; }
-            .nav-links { gap: 15px; }
-            .nav-links a { font-size: 0.8rem; }
+            .nav-links { gap: 12px; }
+            .nav-links a { font-size: 0.76rem; }
+        }
+
+        @media (max-width: 992px) {
             .hero {
                 grid-template-columns: 1fr;
                 padding: 140px 30px 60px;
@@ -369,8 +372,9 @@
             .nav-links {
                 flex-wrap: wrap;
                 justify-content: center;
-                gap: 12px;
+                gap: 10px;
             }
+            .nav-links a { font-size: 0.72rem; }
         }
     </style>
 </head>
@@ -386,6 +390,7 @@
             <li><a href="hardware.html">Hardware</a></li>
             <li><a href="software.html">Software</a></li>
             <li><a href="prototype.html">Prototype</a></li>
+            <li><a href="literature_review.html">Literature</a></li>
             <li><a href="component_cost.html">Cost</a></li>
             <li><a href="team.html">Team</a></li>
         </ul>

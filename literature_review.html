@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuailEdge | Literature Review</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #050505;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(76, 175, 80, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(76, 175, 80, 0.04) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: radial-gradient(circle at center, transparent 0%, #050505 85%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* ================= NAVBAR ================= */
+        nav {
+            position: sticky;
+            top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            background: rgba(5, 5, 5, 0.85);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            white-space: nowrap;
+        }
+
+        .logo span { color: #4caf50; text-shadow: 0 0 20px rgba(76, 175, 80, 0.8); }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .nav-links a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 0.86rem;
+            font-weight: 500;
+            transition: color 0.3s;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover, .nav-links a.active { color: #4caf50; }
+
+        /* ================= PAGE TITLE ================= */
+        .page-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.8rem;
+            text-align: center;
+            margin: 70px auto 15px;
+            background: linear-gradient(135deg, #ffffff 0%, #4caf50 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            padding: 0 20px;
+        }
+
+        .page-subtitle {
+            text-align: center;
+            color: #888;
+            max-width: 850px;
+            margin: 0 auto 60px;
+            padding: 0 20px;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .section {
+            flex: 1;
+            padding: 0 60px 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* ================= SUMMARY BOX ================= */
+        .summary-box {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.08), rgba(0, 188, 212, 0.04));
+            border: 1px solid rgba(76, 175, 80, 0.2);
+            border-radius: 18px;
+            padding: 35px 40px;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .summary-box p {
+            color: #bbb;
+            font-size: 0.95rem;
+            line-height: 1.9;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .summary-box p strong { color: #4caf50; }
+
+        /* ================= MEMBER SECTION ================= */
+        .member-section {
+            margin-bottom: 70px;
+        }
+
+        .member-header {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            flex-wrap: wrap;
+        }
+
+        .member-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.2), rgba(0, 188, 212, 0.15));
+            border: 2px solid rgba(76, 175, 80, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #4caf50;
+            flex-shrink: 0;
+            box-shadow: 0 0 25px rgba(76, 175, 80, 0.3);
+        }
+
+        .member-info h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .member-info p {
+            color: #4caf50;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .member-info .role {
+            color: #888;
+            font-weight: 400;
+        }
+
+        /* ================= PAPER GRID ================= */
+        .paper-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 22px;
+        }
+
+        .paper-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 25px 22px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .paper-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 3px;
+            background: linear-gradient(90deg, #4caf50, #00bcd4);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .paper-card:hover::before { transform: scaleX(1); }
+
+        .paper-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(76, 175, 80, 0.4);
+            box-shadow: 0 20px 50px rgba(76, 175, 80, 0.15);
+            background: rgba(76, 175, 80, 0.04);
+        }
+
+        .paper-number {
+            position: absolute;
+            top: 18px;
+            right: 20px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.8rem;
+            color: rgba(76, 175, 80, 0.5);
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .paper-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.05rem;
+            color: #fff;
+            margin-bottom: 12px;
+            line-height: 1.4;
+            padding-right: 40px;
+        }
+
+        .paper-desc {
+            font-size: 0.83rem;
+            color: #999;
+            line-height: 1.7;
+            flex-grow: 1;
+            margin-bottom: 16px;
+        }
+
+        .paper-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 18px;
+        }
+
+        .paper-tag {
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 4px 10px;
+            border-radius: 12px;
+            background: rgba(76, 175, 80, 0.1);
+            border: 1px solid rgba(76, 175, 80, 0.25);
+            color: #4caf50;
+        }
+
+        .paper-actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .paper-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 9px 18px;
+            background: rgba(76, 175, 80, 0.1);
+            border: 1px solid rgba(76, 175, 80, 0.4);
+            border-radius: 25px;
+            color: #4caf50;
+            text-decoration: none;
+            font-size: 0.78rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-family: 'Space Grotesk', sans-serif;
+            flex: 1;
+            min-width: 100px;
+        }
+
+        .paper-btn:hover {
+            background: #4caf50;
+            color: #fff;
+            box-shadow: 0 0 20px rgba(76, 175, 80, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .paper-btn.download {
+            background: rgba(0, 188, 212, 0.1);
+            border-color: rgba(0, 188, 212, 0.4);
+            color: #00bcd4;
+        }
+
+        .paper-btn.download:hover {
+            background: #00bcd4;
+            color: #fff;
+            box-shadow: 0 0 20px rgba(0, 188, 212, 0.5);
+        }
+
+        /* ================= FOOTER ================= */
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.6);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        footer span { color: #4caf50; font-weight: 600; }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 992px) {
+            nav { padding: 15px 20px; }
+            .nav-links { gap: 12px; }
+            .nav-links a { font-size: 0.78rem; }
+        }
+
+        @media (max-width: 768px) {
+            nav { flex-direction: column; padding: 15px; gap: 10px; }
+            .nav-links { gap: 10px; justify-content: center; }
+            .nav-links a { font-size: 0.72rem; }
+            .page-title { font-size: 1.9rem; margin-top: 40px; }
+            .section { padding: 0 20px 60px; }
+            .summary-box { padding: 25px 20px; }
+            .member-header { gap: 12px; }
+            .member-info h2 { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="logo">Quail<span>Edge</span> 🌿</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="weekly_update.html">Weekly</a></li>
+            <li><a href="hardware.html">Hardware</a></li>
+            <li><a href="software.html">Software</a></li>
+            <li><a href="prototype.html">Prototype</a></li>
+            <li><a href="literature_review.html" class="active">Literature</a></li>
+            <li><a href="component_cost.html">Cost</a></li>
+            <li><a href="team.html">Team</a></li>
+        </ul>
+    </nav>
+
+    <!-- PAGE TITLE -->
+    <h1 class="page-title">Literature Review</h1>
+    <p class="page-subtitle">A comprehensive collection of 25 research papers across 5 core domains — authored by our team of 5 members, all directly contributing to the QuailEdge ecosystem.</p>
+
+    <section class="section">
+
+        <!-- SUMMARY BOX -->
+        <div class="summary-box">
+            <p>
+                Our team reviewed over <strong>100+ external papers</strong> and produced <strong>25 original review papers</strong> — 
+                <strong>5 papers per team member</strong> — each exploring a specific research area relevant to QuailEdge. 
+                All papers are available for viewing and download.
+            </p>
+        </div>
+
+        <!-- ===================== MEMBER 1: ANIK HOSSAIN ===================== -->
+        <div class="member-section">
+            <div class="member-header">
+                <div class="member-avatar">AH</div>
+                <div class="member-info">
+                    <h2>Anik Hossain</h2>
+                    <p>L1 - 2130378 <span class="role">• Edge-AI & System Architecture</span></p>
+                </div>
+            </div>
+
+            <div class="paper-grid">
+
+                <div class="paper-card">
+                    <span class="paper-number">01</span>
+                    <h3 class="paper-title">Edge-AI Architectures for Smart Agriculture</h3>
+                    <p class="paper-desc">Systematic review of on-device AI processing for agricultural IoT, comparing ESP32, Raspberry Pi, and Jetson Nano for real-time sensor fusion.</p>
+                    <div class="paper-tags">
+                        <span class="paper-tag">Edge-AI</span>
+                        <span class="paper-tag">IoT</span>
+                    </div>
+                    <div class="paper-actions">
+                        <a href="papers/anik-1.pdf" target="_blank" class="paper-btn">📖 View</a>
+                        <a href="papers/anik-1.pdf" download class="paper-btn download">⬇ Save</a>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <span class="paper-number">02</span>
+                    <h3 class="paper-title">TinyML for Microcontroller-Based Environmental Monitoring</h3>
+                    <p class="paper-desc">Exploration of TensorFlow Lite Micro and Edge Impulse for deploying ML models on ESP32 for real-time climate prediction.</p>
+                    <div class="paper-tags">
+                        <span class="paper-tag">TinyML</span>
+                        <span class="paper-tag">Embedded</span>
+                    </div>
+                    <div class="paper-actions">
+                        <a href="papers/anik-2.pdf" target="_blank" class="paper-btn">📖 View</a>
+                        <a href="papers/anik-2.pdf" download class="paper-btn download">⬇ Save</a>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <span class="paper-number">03</span>
+                    <h3 class="paper-title">Real-Time Sensor Fusion on Low-Power Embedded Systems</h3>
+                    <p class="paper-desc">Techniques for combining data from multiple sensors (DHT22, MQ-135, load cell) into a unified state estimation for decision-making.</p>
+                    <div class="paper-tags">
+                        <span class="paper-tag">Sensor Fusion</span>
+                        <span class="paper-tag">Real-Time</span>
+                    </div>
+                    <div class="paper-actions">
+                        <a href="papers/anik-3.pdf" target="_blank" class="paper-btn">📖 View</a>
+                        <a href="papers/anik-3.pdf" download class="paper-btn download">⬇ Save</a>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <span class="paper-number">04</span>
+                    <h3 class="paper-title">Comparative Analysis of ESP32 vs Raspberry Pi for Edge Computing</h3>
+                    <p class="paper-desc">Cost, power, latency, and computational power analysis of ESP32 vs Raspberry Pi for smart agriculture use cases.</p>
+                    <div class="paper-tags">
+                        <span class="paper-tag">ESP32</span>
+                        <span class="paper-tag">Comparison</span>
+                    </div>
+                    <div class="paper-actions">
+                        <a href="papers/anik-4.pdf" target="_blank" class="paper-btn">📖 View</a>
+                        <a href="papers/anik-4.pdf" download class="paper-btn download">⬇ Save</a>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <span class="paper-number">05</span>
+                    <h3 class="paper-title">Federated Learning for Privacy-Preserving Smart Farming</h3>
+                    <p class="paper-desc">Survey of federated learning approaches where multiple farms train shared models without exposing raw sensor data.</p>
+                    <div class="paper-tags">
+                        <span class="paper-tag">Federated AI</span>
+                        <span class="paper-tag">Privacy</span>
+                    </div>
+                    <div class="paper-actions">
+                        <a href="papers/anik-5.pdf" target="_blank" class="paper-btn">📖 View</a>
+                        <a href="papers/anik-5.pdf" download class="paper-btn download">⬇ Save</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ===================== MEMBER 2: MARIYAM BINTE AL KADER ===================== -->
+        <div class="member-section">
+            <div class="member-header">
+                <div class="member-avatar">MK</div>
+                <div class="member-info">
+                    <h2>Mariyam Binte Al Kader</h2>
+                    <p>L2 - 2222447 <span class="role">• IoT & Communication Protocols</span></p>
+                </div>
+            </div>
+
+            <div class="paper-grid">
+
+                <div class="paper-card">
+                    <span class="paper-number">01</span>
+                    <h3 class="paper-title">IoT-Based Environmental Monitoring Systems</h3>
+                    <p class="paper-desc">Comprehensive analysis of sensor networks, data acquisition, and real-time monitoring for confined environments.</p>
+                    <div class="paper-tags">
+                        <span class="paper-tag">IoT</span>
+                        <span class="paper-tag">Sensors</span>
+                    </div>
+                    <div class="paper-actions">
+                        <a href="papers/mariyam-1.pdf" target="_blank" class="paper-btn">📖 View</a>
+                        <a href="papers/mariyam-1.pdf" download class="paper-btn download">⬇ Save</a>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <span class="paper-number">02</span>
+                    <h3 class="paper-title">MQTT vs HTTP: Communication Protocols for IoT Devices</h3>
+                    <p class="paper-desc">Latency, bandwidth, and reliability comparison between MQTT and HTTP for real-time IoT deployments in smart farms.</p>
+                    <div class="paper-tags">
+                        <span class="paper-tag">MQTT</span>
+                        <span class="paper-tag">Protocols</span>
+                    </div>
+                    <div class="paper-actions">
+                        <a href="papers/mariyam-2.pdf" target="_blank" class="paper-btn">📖 View</a>
+                        <a href="papers/mariyam-2.pdf" download class="paper-btn download">⬇ Save</a>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <span class="paper-number">03</span>
+                    <h3 class="paper-title">Cloud vs Edge Data Pipelines for Real-Time Applications</h3>
+                    <p class="paper-desc">Trade-offs between cloud and edge computing for time-sensitive agricultural systems — including latency, cost, and reliability.</p>
+                    <div class="paper-tags">
+                        <span class="paper-tag">Cloud</span>
+                        <span class="paper-tag">Edge</span>
+                    </div>
+                    <div class="paper-actions">
+                        <a href="papers/mariyam-3.pdf" target="_blank" class="paper-btn">📖 View</a>
+                        <a href="papers/mariyam-3.pdf" download class="paper-btn download">⬇ Save</a>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <span class="paper-number">04</span>
+                    <h3 class="paper-title">Wi-Fi Security in Consumer IoT Devices</h3>
+                    <p class="paper-desc">Review of encryption, authentication, and vulnerability mitigation strategies for Wi-Fi-enabled IoT devices.</p>
+                    <div class="paper-tags">
+                        <span class="paper-tag">Security</span>
+                        <span class="paper-tag">Wi-Fi</span>
+                    </div>
+                    <div class="paper-actions">
+                        <a href="papers/mariyam-4.pdf" target="_blank" class="paper-btn">📖 View</a>
+                        <a href="papers/mariyam-4.pdf" download class="paper-btn download">⬇ Save</a>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <span class="paper-number">05</span>
+                    <h3 class="paper-title">Low-Power Wireless Sensor Networks for Smart Agriculture</h3>
+                    <p class="paper-desc">Energy-efficient communication strategies (LoRa, Zigbee, BLE) for battery-powered agricultural sensor nodes.</p>
+                    <div class="paper-tags">
+                        <span class="paper-tag">LoRa</span>
+                        <span class="paper-tag">WSN</span>
+                    </div>
+                    <div class="paper-actions">
+                        <a href="papers/mariyam-5.pdf" target="_blank" class="paper-btn">📖 View</a>
+                        <a href="papers/mariyam-5.pdf" download class="paper-btn download">⬇ Save</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ===================== MEMBER 3: CHAITY SAHA ===================== -->
+        <div class="member-section">
+            <div class="member-header">
+                <div class="member-avatar">CS</div>
+                <div class="member-info">
+                    <h2>Chaity Saha</h2>
+                    <p>M1 - 2010025 <span class="role">• Urban Farming & Sustainability</span></p>
+                </div>
+            </div>
+
+            <div class="paper-grid">
+
+                <div class="paper-card">
+                    <span class="paper-number">01</span>
+                    <h3 class="paper-title">Urban Micro-Farming: A Sustainability Perspective</h3>
+                    <p class="paper-desc">Review of urban agriculture models, food security challenges, and technology-enabled micro-farming.</p>
+                    <div class="paper-tags">
+                        <span class="paper-tag">Urban Farming</span>
+                        <span class="paper-tag">Sustainability</span>
+                    </div>
+                    <div class="paper-actions">
+                        <a href="papers/chaity-1.pdf" target="_blank" class="paper-btn">📖 View</a>
+                        <a href="papers/chaity-1.pdf" download class="paper-btn download">⬇ Save</a>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <span class="paper-number">02</span>
+                    <h3 class="paper-title">Food Security Challenges in Dense Urban Environments</h3>
+                    <p class="paper-desc">Analysis of urban food supply chains, vulnerabilities, and the role of local production in building resilience.</p>
+                    <div class="paper-tags">
+                        <span class="paper-tag">Food Security</span>
+                        <span class="paper-tag">Cities</span>
+                    </div>
+                    <div class="paper-actions">
+                        <a href="papers/chaity-2.pdf" target="_blank" class="paper-btn">📖 View</a>
+                        <a href="papers/chaity-2.pdf" download class="paper-btn download">⬇ Save</a>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <span class="paper-number">03</span>
+                    <h3 class="paper-title">Vertical Farming: Technology and Economics</h3>
+                    <p class="paper-desc">Technology stack, energy consumption, and economic viability of vertical farming systems in cities.</p>
+                    <div class="paper-tags">
+                        <span class="paper-tag">Vertical</span>
+                        <span class="paper-tag">Economics</span>
+                    </div>
+                    <div class="paper-actions">
+                        <a href="papers/chaity-3.pdf" target="_blank" class="paper-btn">📖 View</a>
+                        <a href="papers/chaity-3.pdf" download class="paper-btn download">⬇ Save</a>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <span class="paper-number">04</span>
+                    <h3 class="paper-title">Carbon Footprint of Local Food Production vs Imports</h3>
+                    <p class="paper-desc">Comparative study of carbon emissions from locally-grown vs imported food in urban areas.</p>
+                    <div class="paper-tags">
+                        <span class="paper-tag">Carbon</span>
+                        <span class="paper-tag">Environment</span>
+                    </div>
+                    <div class="paper-actions">
+                        <a href="papers/chaity-4.pdf" target="_blank" class="paper-btn">📖 View</a>
+                        <a href="papers/chaity-4.pdf" download class="paper-btn download">⬇ Save</a>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <span class="paper-number">05</span>
+                    <h3 class="paper-title">Smart Cities and Urban Agriculture Integration</h3>
+                    <p class="paper-desc">How smart city infrastructure can integrate agriculture into urban planning and policy frameworks.</p>
+                    <div class="paper-tags">
+                        <span class="paper-tag">Smart Cities</span>
+                        <span class="paper-tag">Policy</span>
+                    </div>
+                    <div class="paper-actions">
+                        <a href="papers/chaity-5.pdf" target="_blank" class="paper-btn">📖 View</a>
+                        <a href="papers/chaity-5.pdf" download class="paper-btn download">⬇ Save</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ===================== MEMBER 4: AL-RAFI ===================== -->
+        <div class="member-section">
+            <div class="member-header">
+                <div class="member-avatar">AR</div>
+                <div class="member-info">
+                    <h2>AL-RAFI</h2>
+                    <p>M2 - 2231464 <span class="role">• Poultry Biology & Welfare</span></p>
+                </div>
+            </div>
+
+            <div class="paper-grid">
+
+                <div class="paper-card">
+                    <span class="paper-number">01</span>
+                    <h3 class="paper-title">Japanese Quail (Coturnix japonica) Biology & Housing</h3>
+                    <p class="paper-desc">Comprehensive biological study — optimal temperature, humidity, lighting, nutrition, and welfare requirements.</p>
+                    <div class="paper-tags">
+                        <span class="paper-tag">Quail</span>
+                        <span class="paper-tag">Biology</span>
+                    </div>
+                    <div class="paper-actions">
+                        <a href="papers/rafi-1.pdf" target="_blank" class="paper-btn">📖 View</a>
+                        <a href="papers/rafi-1.pdf" download class="paper-btn download">⬇ Save</a>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <span class="paper-number">02</span>
+                    <h3 class="paper-title">Optimal Temperature and Humidity for Quail Egg Production</h3>
+                    <p class="paper-desc">Empirical study of climate parameters affecting egg-laying rate, egg quality, and bird health.</p>
+                    <div class="paper-tags">
+                        <span class="paper-tag">Climate</span>
+                        <span class="paper-tag">Eggs</span>
+                    </div>
+                    <div class="paper-actions">
+                        <a href="papers/rafi-2.pdf" target="_blank" class="paper-btn">📖 View</a>
+                        <a href="papers/rafi-2.pdf" download class="paper-btn download">⬇ Save</a>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <span class="paper-number">03</span>
+                    <h3 class="paper-title">Lighting Cycles and Their Effect on Poultry Laying</h3>
+                    <p class="paper-desc">Review of photoperiod effects (15L:9D) on quail reproduction, egg production, and behavior.</p>
+                    <div class="paper-tags">
+                        <span class="paper-tag">Lighting</span>
+                        <span class="paper-tag">Circadian</span>
+                    </div>
+                    <div class="paper-actions">
+                        <a href="papers/rafi-3.pdf" target="_blank" class="paper-btn">📖 View</a>
+                        <a href="papers/rafi-3.pdf" download class="paper-btn download">⬇ Save</a>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <span class="paper-number">04</span>
+                    <h3 class="paper-title">Poultry Disease Prevention in Confined Environments</h3>
+                    <p class="paper-desc">Common respiratory and bacterial diseases in indoor poultry — prevention through air quality and hygiene.</p>
+                    <div class="paper-tags">
+                        <span class="paper-tag">Health</span>
+                        <span class="paper-tag">Disease</span>
+                    </div>
+                    <div class="paper-actions">
+                        <a href="papers/rafi-4.pdf" target="_blank" class="paper-btn">📖 View</a>
+                        <a href="papers/rafi-4.pdf" download class="paper-btn download">⬇ Save</a>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <span class="paper-number">05</span>
+                    <h3 class="paper-title">Nutritional Requirements of Japanese Quail</h3>
+                    <p class="paper-desc">Protein, calcium, and micronutrient requirements across the quail life cycle — from chick to layer.</p>
+                    <div class="paper-tags">
+                        <span class="paper-tag">Nutrition</span>
+                        <span class="paper-tag">Feed</span>
+                    </div>
+                    <div class="paper-actions">
+                        <a href="papers/rafi-5.pdf" target="_blank" class="paper-btn">📖 View</a>
+                        <a href="papers/rafi-5.pdf" download class="paper-btn download">⬇ Save</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ===================== MEMBER 5: JEROME ANINDA GOMES ===================== -->
+        <div class="member-section">
+            <div class="member-header">
+                <div class="member-avatar">JG</div>
+                <div class="member-info">
+                    <h2>Jerome Aninda Gomes</h2>
+                    <p>M3 - 2211125 <span class="role">• Automation & Mechanical Systems</span></p>
+                </div>
+            </div>
+
+            <div class="paper-grid">
+
+                <div class="paper-card">
+                    <span class="paper-number">01</span>
+                    <h3 class="paper-title">Automation in Poultry: Feeding & Cleaning Systems</h3>
+                    <p class="paper-desc">Survey of automated feeding and conveyor-based waste removal systems used in modern precision poultry.</p>
+                    <div class="paper-tags">
+                        <span class="paper-tag">Automation</span>
+                        <span class="paper-tag">Poultry</span>
+                    </div>
+                    <div class="paper-actions">
+                        <a href="papers/jerome-1.pdf" target="_blank" class="paper-btn">📖 View</a>
+                        <a href="papers/jerome-1.pdf" download class="paper-btn download">⬇ Save</a>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <span class="paper-number">02</span>
+                    <h3 class="paper-title">Servo-Controlled Feed Dispensing Mechanisms</h3>
+                    <p class="paper-desc">Design and control of servo motor-based precision feed dispensers for small-scale poultry systems.</p>
+                    <div class="paper-tags">
+                        <span class="paper-tag">Servo</span>
+                        <span class="paper-tag">Control</span>
+                    </div>
+                    <div class="paper-actions">
+                        <a href="papers/jerome-2.pdf" target="_blank" class="paper-btn">📖 View</a>
+                        <a href="papers/jerome-2.pdf" download class="paper-btn download">⬇ Save</a>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <span class="paper-number">03</span>
+                    <h3 class="paper-title">Conveyor Belt Systems for Waste Management</h3>
+                    <p class="paper-desc">Motorized conveyor and scraper design for automated waste collection in confined poultry environments.</p>
+                    <div class="paper-tags">
+                        <span class="paper-tag">Conveyor</span>
+                        <span class="paper-tag">Waste</span>
+                    </div>
+                    <div class="paper-actions">
+                        <a href="papers/jerome-3.pdf" target="_blank" class="paper-btn">📖 View</a>
+                        <a href="papers/jerome-3.pdf" download class="paper-btn download">⬇ Save</a>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <span class="paper-number">04</span>
+                    <h3 class="paper-title">Water Recycling in Small-Scale Poultry Systems</h3>
+                    <p class="paper-desc">Design of closed-loop water systems using mist cooling, rinse water reuse, and filtration.</p>
+                    <div class="paper-tags">
+                        <span class="paper-tag">Water</span>
+                        <span class="paper-tag">Recycling</span>
+                    </div>
+                    <div class="paper-actions">
+                        <a href="papers/jerome-4.pdf" target="_blank" class="paper-btn">📖 View</a>
+                        <a href="papers/jerome-4.pdf" download class="paper-btn download">⬇ Save</a>
+                    </div>
+                </div>
+
+                <div class="paper-card">
+                    <span class="paper-number">05</span>
+                    <h3 class="paper-title">Load Cell Applications in Precision Feeding</h3>
+                    <p class="paper-desc">HX711 + load cell integration for measuring feed weight, consumption rate, and automated refill triggering.</p>
+                    <div class="paper-tags">
+                        <span class="paper-tag">Load Cell</span>
+                        <span class="paper-tag">HX711</span>
+                    </div>
+                    <div class="paper-actions">
+                        <a href="papers/jerome-5.pdf" target="_blank" class="paper-btn">📖 View</a>
+                        <a href="papers/jerome-5.pdf" download class="paper-btn download">⬇ Save</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 <span>QuailEdge</span>. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
