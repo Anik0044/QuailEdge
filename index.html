@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuailEdge | Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ================= RESET & GLOBAL ================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #050505;
+            color: #ffffff;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* ================= CYBER GRID BACKGROUND ================= */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(76, 175, 80, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(76, 175, 80, 0.04) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, transparent 0%, #050505 85%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* ================= NAVBAR ================= */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            background: rgba(5, 5, 5, 0.75);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            z-index: 1000;
+            animation: slideDown 0.8s ease;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            white-space: nowrap;
+        }
+
+        .logo span {
+            color: #4caf50;
+            text-shadow: 0 0 20px rgba(76, 175, 80, 0.8);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .nav-links a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #4caf50;
+        }
+
+        /* ================= HERO SECTION ================= */
+        .hero {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            align-items: center;
+            gap: 50px;
+            padding: 160px 80px 100px;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            min-height: 100vh;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(76, 175, 80, 0.1);
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            border-radius: 20px;
+            color: #4caf50;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            margin-bottom: 25px;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, #ffffff 0%, #4caf50 60%, #00bcd4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .hero-subtitle {
+            font-size: 1rem;
+            color: #999;
+            margin-bottom: 40px;
+            line-height: 1.7;
+            max-width: 95%;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 20px;
+            animation: fadeInUp 1s ease 0.8s both;
+            flex-wrap: wrap;
+        }
+
+        .hero-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 38px;
+            background: #4caf50;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 25px rgba(76, 175, 80, 0.4);
+            border: none;
+            cursor: pointer;
+        }
+
+        .hero-btn:hover {
+            background: #388e3c;
+            transform: translateY(-3px);
+            box-shadow: 0 0 40px rgba(76, 175, 80, 0.7);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 38px;
+            background: transparent;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-secondary:hover {
+            border-color: #4caf50;
+            color: #4caf50;
+            background: rgba(76, 175, 80, 0.05);
+        }
+
+        /* ================= HUD VISUAL ================= */
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            height: 500px;
+        }
+
+        .hud-container {
+            position: relative;
+            width: 380px;
+            height: 380px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .ring {
+            position: absolute;
+            border-radius: 50%;
+        }
+
+        .ring-1 {
+            width: 100%;
+            height: 100%;
+            border: 2px solid rgba(76, 175, 80, 0.15);
+            border-top: 2px solid #4caf50;
+            border-right: 2px solid transparent;
+            animation: spin 8s linear infinite;
+        }
+
+        .ring-2 {
+            width: 78%;
+            height: 78%;
+            border: 2px solid rgba(0, 188, 212, 0.15);
+            border-bottom: 2px solid #00bcd4;
+            border-left: 2px solid transparent;
+            animation: spinReverse 6s linear infinite;
+        }
+
+        .ring-3 {
+            width: 55%;
+            height: 55%;
+            border: 2px dashed rgba(255, 255, 255, 0.15);
+            animation: spin 12s linear infinite;
+        }
+
+        .core {
+            width: 130px;
+            height: 130px;
+            background: radial-gradient(circle, rgba(76, 175, 80, 0.8) 0%, rgba(76, 175, 80, 0.05) 70%);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 60px rgba(76, 175, 80, 0.6);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        .core-inner {
+            width: 85px;
+            height: 85px;
+            background: #050505;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: #4caf50;
+            text-align: center;
+            line-height: 1.2;
+            border: 2px solid #4caf50;
+            box-shadow: inset 0 0 20px rgba(76, 175, 80, 0.5);
+        }
+
+        .node {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #00bcd4;
+            border-radius: 50%;
+            box-shadow: 0 0 15px #00bcd4;
+        }
+
+        .node-1 { top: 0; left: 50%; margin-left: -4px; animation: floatTop 3s ease-in-out infinite; }
+        .node-2 { bottom: 0; left: 50%; margin-left: -4px; animation: floatBottom 3s ease-in-out infinite; }
+        .node-3 { top: 50%; left: 0; margin-top: -4px; animation: floatLeft 3s ease-in-out infinite; }
+        .node-4 { top: 50%; right: 0; margin-top: -4px; animation: floatRight 3s ease-in-out infinite; }
+
+        /* ================= FOOTER ================= */
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.6);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: auto;
+        }
+
+        footer span { color: #4caf50; font-weight: 600; }
+
+        /* ================= ANIMATIONS ================= */
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        @keyframes spinReverse { 100% { transform: rotate(-360deg); } }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.85; }
+            50% { transform: scale(1.05); opacity: 1; }
+        }
+        @keyframes floatTop { 0%, 100% { top: 0; } 50% { top: -15px; } }
+        @keyframes floatBottom { 0%, 100% { bottom: 0; } 50% { bottom: -15px; } }
+        @keyframes floatLeft { 0%, 100% { left: 0; } 50% { left: -15px; } }
+        @keyframes floatRight { 0%, 100% { right: 0; } 50% { right: -15px; } }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 992px) {
+            nav { padding: 15px 20px; }
+            .nav-links { gap: 15px; }
+            .nav-links a { font-size: 0.8rem; }
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 140px 30px 60px;
+                text-align: center;
+            }
+            .hero-content { align-items: center; text-align: center; }
+            .hero-subtitle { max-width: 100%; }
+            .hero-visual { height: 350px; order: -1; }
+            .hud-container { width: 280px; height: 280px; }
+            .hero-title { font-size: 2rem; }
+            .cta-group { justify-content: center; }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                padding: 15px;
+                gap: 12px;
+            }
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="logo">Quail<span>Edge</span> 🌿</div>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="weekly_update.html">Weekly</a></li>
+            <li><a href="hardware.html">Hardware</a></li>
+            <li><a href="software.html">Software</a></li>
+            <li><a href="prototype.html">Prototype</a></li>
+            <li><a href="component_cost.html">Cost</a></li>
+            <li><a href="team.html">Team</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="hero">
+        <div class="hero-content">
+            <div class="badge">🚀 NEXT-GEN URBAN FARMING</div>
+            <h1 class="hero-title">An Edge-AI and IoT-Driven Precision Micro-Poultry Ecosystem</h1>
+            <p class="hero-subtitle">
+                For Organic Japanese Quail (Coturnix japonica) Farming in Dense Urban Environments.
+                Integrating smart climate control, automated cleaning, and real-time monitoring.
+            </p>
+            <div class="cta-group">
+                <a href="prototype.html" class="hero-btn">Explore Prototype <span>→</span></a>
+                <a href="about.html" class="btn-secondary">Learn More</a>
+            </div>
+        </div>
+
+        <div class="hero-visual">
+            <div class="hud-container">
+                <div class="ring ring-1"></div>
+                <div class="ring ring-2"></div>
+                <div class="ring ring-3"></div>
+                <div class="node node-1"></div>
+                <div class="node node-2"></div>
+                <div class="node node-3"></div>
+                <div class="node node-4"></div>
+                <div class="core">
+                    <div class="core-inner">EDGE<br>AI</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 <span>QuailEdge</span>. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

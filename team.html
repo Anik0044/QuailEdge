@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuailEdge | Team</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ================= BASE STYLES ================= */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #050505;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(76, 175, 80, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(76, 175, 80, 0.04) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: radial-gradient(circle at center, transparent 0%, #050505 85%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* ================= NAVBAR ================= */
+        nav {
+            position: sticky;
+            top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            background: rgba(5, 5, 5, 0.85);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .logo span {
+            color: #4caf50;
+            text-shadow: 0 0 20px rgba(76, 175, 80, 0.8);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #4caf50;
+        }
+
+        /* ================= PAGE TITLE ================= */
+        .page-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.8rem;
+            text-align: center;
+            margin: 70px auto 15px;
+            background: linear-gradient(135deg, #ffffff 0%, #4caf50 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            padding: 0 20px;
+        }
+
+        .page-subtitle {
+            text-align: center;
+            color: #888;
+            max-width: 700px;
+            margin: 0 auto 50px;
+            padding: 0 20px;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* ================= SECTION ================= */
+        .section {
+            flex: 1;
+            padding: 0 60px 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* ================= TEAM GRID ================= */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .member-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            padding: 30px 22px;
+            text-align: center;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .member-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #4caf50, #00bcd4);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .member-card:hover::before { transform: scaleX(1); }
+
+        .member-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(76, 175, 80, 0.4);
+            box-shadow: 0 20px 50px rgba(76, 175, 80, 0.15);
+            background: rgba(76, 175, 80, 0.04);
+        }
+
+        .member-avatar {
+            width: 110px;
+            height: 110px;
+            margin: 0 auto 18px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.2), rgba(0, 188, 212, 0.15));
+            border: 2px solid rgba(76, 175, 80, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #4caf50;
+            transition: all 0.4s ease;
+            overflow: hidden;
+        }
+
+        .member-card:hover .member-avatar {
+            border-color: #4caf50;
+            box-shadow: 0 0 30px rgba(76, 175, 80, 0.5);
+            transform: scale(1.05);
+        }
+
+        .member-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .member-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 6px;
+        }
+
+        .member-id {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.8rem;
+            color: #4caf50;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .member-role {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 5px 14px;
+            border-radius: 20px;
+            background: rgba(76, 175, 80, 0.12);
+            color: #4caf50;
+            border: 1px solid rgba(76, 175, 80, 0.25);
+            margin-bottom: 14px;
+        }
+
+        .member-desc {
+            font-size: 0.85rem;
+            color: #888;
+            line-height: 1.6;
+            margin-bottom: 18px;
+        }
+
+        .member-socials {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .member-socials a {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.72rem;
+            font-family: 'Space Grotesk', sans-serif;
+            padding: 5px 14px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.03);
+            text-decoration: none;
+            color: #aaa;
+            transition: all 0.3s ease;
+        }
+
+        .member-socials a:hover {
+            border-color: #4caf50;
+            color: #4caf50;
+            background: rgba(76, 175, 80, 0.08);
+        }
+
+        .member-socials .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        .dot.li { background: #0A66C2; }
+        .dot.gh { background: #888; }
+        .dot.rg { background: #00CCBB; }
+
+        /* ================= FOOTER ================= */
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.6);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        footer span { color: #4caf50; font-weight: 600; }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                padding: 15px;
+                gap: 12px;
+            }
+            .nav-links { gap: 12px; justify-content: center; }
+            .nav-links a { font-size: 0.78rem; }
+            .page-title { font-size: 1.9rem; margin-top: 40px; }
+            .section { padding: 0 20px 60px; }
+            .team-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="logo">Quail<span>Edge</span> 🌿</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="hardware.html">Hardware</a></li>
+            <li><a href="software.html">Software</a></li>
+            <li><a href="team.html" class="active">Team</a></li>
+        </ul>
+    </nav>
+
+    <!-- PAGE TITLE -->
+    <h1 class="page-title">Who Builds QuailEdge</h1>
+    <p class="page-subtitle">Our team of five dedicated members working together to build a sustainable urban quail farming ecosystem using Edge-AI and IoT technologies.</p>
+
+    <!-- TEAM SECTION -->
+    <section class="section">
+        <div class="team-grid">
+
+            <!-- Member 1 -->
+            <div class="member-card">
+                <div class="member-avatar">AH</div>
+                <h3 class="member-name">Anik Hossain</h3>
+                <p class="member-id">ID: 2130378</p>
+                <span class="member-role">Team Lead</span>
+                <p class="member-desc">Leading the project with focus on Edge-AI integration and system architecture.</p>
+                <div class="member-socials">
+                    <a href="#"><span class="dot li"></span>LinkedIn</a>
+                    <a href="#"><span class="dot gh"></span>GitHub</a>
+                </div>
+            </div>
+
+            <!-- Member 2 -->
+            <div class="member-card">
+                <div class="member-avatar">MK</div>
+                <h3 class="member-name">Mariyam Binte Al Kader</h3>
+                <p class="member-id">ID: 2222447</p>
+                <span class="member-role">Software Lead</span>
+                <p class="member-desc">Developing the IoT dashboard and sensor data processing pipeline.</p>
+                <div class="member-socials">
+                    <a href="#"><span class="dot li"></span>LinkedIn</a>
+                    <a href="#"><span class="dot gh"></span>GitHub</a>
+                </div>
+            </div>
+
+            <!-- Member 3 -->
+            <div class="member-card">
+                <div class="member-avatar">CS</div>
+                <h3 class="member-name">Chaity Saha</h3>
+                <p class="member-id">ID: 2010025</p>
+                <span class="member-role">Hardware Lead</span>
+                <p class="member-desc">Designing the physical enclosure and sensor mounting system.</p>
+                <div class="member-socials">
+                    <a href="#"><span class="dot li"></span>LinkedIn</a>
+                    <a href="#"><span class="dot gh"></span>GitHub</a>
+                </div>
+            </div>
+
+            <!-- Member 4 -->
+            <div class="member-card">
+                <div class="member-avatar">AR</div>
+                <h3 class="member-name">AL-RAFI</h3>
+                <p class="member-id">ID: 2231464</p>
+                <span class="member-role">Research Lead</span>
+                <p class="member-desc">Conducting literature review and pre-survey data analysis.</p>
+                <div class="member-socials">
+                    <a href="#"><span class="dot li"></span>LinkedIn</a>
+                    <a href="#"><span class="dot rg"></span>ResearchGate</a>
+                </div>
+            </div>
+
+            <!-- Member 5 -->
+            <div class="member-card">
+                <div class="member-avatar">JG</div>
+                <h3 class="member-name">Jerome Aninda Gomes</h3>
+                <p class="member-id">ID: 2211125</p>
+                <span class="member-role">Documentation Lead</span>
+                <p class="member-desc">Preparing the draft paper and maintaining project documentation.</p>
+                <div class="member-socials">
+                    <a href="#"><span class="dot li"></span>LinkedIn</a>
+                    <a href="#"><span class="dot gh"></span>GitHub</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 <span>QuailEdge</span>. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

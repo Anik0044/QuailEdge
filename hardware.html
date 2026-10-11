@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuailEdge | Hardware</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #050505;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(76, 175, 80, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(76, 175, 80, 0.04) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: radial-gradient(circle at center, transparent 0%, #050505 85%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            background: rgba(5, 5, 5, 0.85);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            white-space: nowrap;
+        }
+
+        .logo span { color: #4caf50; text-shadow: 0 0 20px rgba(76, 175, 80, 0.8); }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .nav-links a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover, .nav-links a.active { color: #4caf50; }
+
+        .page-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.8rem;
+            text-align: center;
+            margin: 70px auto 15px;
+            background: linear-gradient(135deg, #ffffff 0%, #4caf50 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            padding: 0 20px;
+        }
+
+        .page-subtitle {
+            text-align: center;
+            color: #888;
+            max-width: 700px;
+            margin: 0 auto 60px;
+            padding: 0 20px;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .section {
+            flex: 1;
+            padding: 0 60px 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .grid-3, .grid-2 {
+            display: grid;
+            gap: 25px;
+        }
+        .grid-3 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+        .grid-2 { grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); }
+
+        .component-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .component-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 3px;
+            background: linear-gradient(90deg, #4caf50, #00bcd4);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .component-card:hover::before { transform: scaleX(1); }
+
+        .component-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(76, 175, 80, 0.4);
+            box-shadow: 0 20px 50px rgba(76, 175, 80, 0.15);
+            background: rgba(76, 175, 80, 0.04);
+        }
+
+        .component-img {
+            width: 100%;
+            height: 180px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 18px;
+            overflow: hidden;
+        }
+
+        .component-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 12px;
+            transition: transform 0.4s ease;
+        }
+
+        .component-card:hover .component-img img { transform: scale(1.08); }
+
+        .component-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .component-desc {
+            font-size: 0.85rem;
+            color: #888;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .hero-summary {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.08), rgba(0, 188, 212, 0.05));
+            border: 1px solid rgba(76, 175, 80, 0.2);
+            border-radius: 18px;
+            padding: 30px;
+            margin-bottom: 50px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            text-align: center;
+        }
+
+        .summary-item { flex: 1; min-width: 150px; }
+
+        .summary-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #4caf50;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .summary-label {
+            font-size: 0.8rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.6);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        footer span { color: #4caf50; font-weight: 600; }
+
+        @media (max-width: 768px) {
+            nav { flex-direction: column; padding: 15px; gap: 12px; }
+            .nav-links { gap: 12px; justify-content: center; }
+            .nav-links a { font-size: 0.78rem; }
+            .page-title { font-size: 1.9rem; margin-top: 40px; }
+            .section { padding: 0 20px 60px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Quail<span>Edge</span> 🌿</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="weekly_update.html">Weekly</a></li>
+            <li><a href="hardware.html" class="active">Hardware</a></li>
+            <li><a href="software.html">Software</a></li>
+            <li><a href="prototype.html">Prototype</a></li>
+            <li><a href="component_cost.html">Cost</a></li>
+            <li><a href="team.html">Team</a></li>
+        </ul>
+    </nav>
+
+    <h1 class="page-title">Hardware Components</h1>
+    <p class="page-subtitle">The core electronic components and mechanical parts powering the QuailEdge ecosystem.</p>
+
+    <section class="section">
+        <div class="hero-summary">
+            <div class="summary-item"><span class="summary-number">15+</span><span class="summary-label">Components</span></div>
+            <div class="summary-item"><span class="summary-number">5V / 12V</span><span class="summary-label">Dual Power</span></div>
+            <div class="summary-item"><span class="summary-number">24/7</span><span class="summary-label">Operation</span></div>
+            <div class="summary-item"><span class="summary-number">Edge-AI</span><span class="summary-label">On-Board</span></div>
+        </div>
+
+        <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.6rem; margin-bottom: 25px; color: #fff;">⚡ Electronic Components</h2>
+        <div class="grid-3">
+
+            <div class="component-card">
+                <div class="component-img">
+                    <img src="image/esp32.jpg" alt="ESP32">
+                </div>
+                <h3 class="component-name">ESP32 WROOM32</h3>
+                <p class="component-desc">Dual-core microcontroller with Wi-Fi & Bluetooth for Edge-AI processing.</p>
+            </div>
+
+            <div class="component-card">
+                <div class="component-img">
+                    <img src="image/dht22.jpg" alt="DHT22">
+                </div>
+                <h3 class="component-name">DHT22 Sensor</h3>
+                <p class="component-desc">Digital temperature & humidity sensor for climate control.</p>
+            </div>
+
+            <div class="component-card">
+                <div class="component-img">
+                    <img src="image/mq135.jpg" alt="MQ-135">
+                </div>
+                <h3 class="component-name">MQ-135 Gas Sensor</h3>
+                <p class="component-desc">Air quality monitoring — detects NH3, NOx, smoke, CO2.</p>
+            </div>
+
+            <div class="component-card">
+                <div class="component-img">
+                    <img src="image/fan.jpg" alt="Cooling Fan">
+                </div>
+                <h3 class="component-name">12V Cooling Fan</h3>
+                <p class="component-desc">80×80×25mm brushless fan for ventilation with carbon filter.</p>
+            </div>
+
+            <div class="component-card">
+                <div class="component-img">
+                    <img src="image/loadcell.jpg" alt="Load Cell">
+                </div>
+                <h3 class="component-name">5kg Load Cell + HX711</h3>
+                <p class="component-desc">Precision weight sensor for monitoring feed consumption.</p>
+            </div>
+
+            <div class="component-card">
+                <div class="component-img">
+                    <img src="image/conveyor.jpg" alt="Conveyor Belt">
+                </div>
+                <h3 class="component-name">12V Conveyor Belt</h3>
+                <p class="component-desc">DC 12V motorized belt (50×10cm) for automatic waste cleaning.</p>
+            </div>
+
+            <div class="component-card">
+                <div class="component-img">
+                    <img src="image/water_sensor.jpg" alt="Water Level Sensor">
+                </div>
+                <h3 class="component-name">Water Level Sensor</h3>
+                <p class="component-desc">Analog depth detection for water reservoir monitoring.</p>
+            </div>
+
+            <div class="component-card">
+                <div class="component-img">
+                    <img src="image/flow_sensor.jpg" alt="Water Flow Sensor">
+                </div>
+                <h3 class="component-name">Water Flow Sensor</h3>
+                <p class="component-desc">YFS402C G3/8 — 0.3-10L/min flow measurement for pump.</p>
+            </div>
+
+            <div class="component-card">
+                <div class="component-img">
+                    <img src="image/water_pump.jpg" alt="Water Pump">
+                </div>
+                <h3 class="component-name">12V Submersible Pump</h3>
+                <p class="component-desc">700 L/h flow rate for mist cooling and cleaning system.</p>
+            </div>
+
+        </div>
+
+        <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.6rem; margin: 60px 0 25px; color: #fff;">🔧 Mechanical Parts</h2>
+        <div class="grid-2">
+
+            <div class="component-card">
+                <div class="component-img">
+                    <img src="image/eco-system.jpg" alt="Enclosure Frame">
+                </div>
+                <h3 class="component-name">Aluminum Frame + Tempered Glass</h3>
+                <p class="component-desc">5mm polished tempered glass front panel with sealed aluminum angle frame.</p>
+            </div>
+
+            <div class="component-card">
+                <div class="component-img">
+                    <img src="image/prototype.jpg" alt="Sloped Mesh Floor">
+                </div>
+                <h3 class="component-name">Sloped Mesh Floor</h3>
+                <p class="component-desc">Smooth welded mesh with 7-8mm openings at 5-7° angle for egg roll-out.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 <span>QuailEdge</span>. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
