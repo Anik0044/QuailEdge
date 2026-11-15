@@ -168,6 +168,14 @@
             color: #4caf50;
             flex-shrink: 0;
             box-shadow: 0 0 25px rgba(76, 175, 80, 0.3);
+            overflow: hidden; /* ছবি বাইরে বের হওয়া রোধ করে */
+        }
+
+        /* নতুন যোগ করা হলো: ছবি ফিট করার জন্য */
+        .member-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .member-info h2 {
@@ -386,31 +394,61 @@
         <!-- ===================== MEMBER 1: ANIK HOSSAIN ===================== -->
         <div class="member-section">
             <div class="member-header">
-                <div class="member-avatar">AH</div>
+                <!-- এখানে Anik এর ছবি বসানো হয়েছে -->
+                <div class="member-avatar"><img src="image/anik.jpg" alt="Anik"></div>
                 <div class="member-info">
                     <h2>Anik Hossain</h2>
-                    <p>L1 - 2130378 <span class="role">• Edge-AI & System Architecture</span></p>
+                    <p>L1 - 2130378 <span class="role">• Edge-AI & System Architecture / Housing</span></p>
                 </div>
             </div>
 
             <div class="paper-grid">
 
+                <!-- Paper 1 -->
                 <div class="paper-card">
                     <span class="paper-number">01</span>
+                    <h3 class="paper-title">Housing and Dietary Effects on Production Performance of Japanese Quail</h3>
+                    <p class="paper-desc">This study assessed the impact of diets and housing arrangements on Japanese quail's egg production, egg index, and quality.</p>
+                    <div class="paper-tags">
+                        <span class="paper-tag">Housing</span>
+                        <span class="paper-tag">Dietary</span>
+                    </div>
+                    <div class="paper-actions">
+                        <a href="image/paper1.pdf" target="_blank" class="paper-btn">📄 PDF</a>
+                    </div>
+                </div>
+
+                <!-- Paper 2 -->
+                <div class="paper-card">
+                    <span class="paper-number">02</span>
+                    <h3 class="paper-title">Productive Performance & Surface Temperatures of Japanese Quail</h3>
+                    <p class="paper-desc">Evaluates the effects of different environment conditions (air velocity and temperature) on productive performance and surface temperatures of Japanese quail.</p>
+                    <div class="paper-tags">
+                        <span class="paper-tag">Temperature</span>
+                        <span class="paper-tag">Environment</span>
+                    </div>
+                    <div class="paper-actions">
+                        <a href="image/paper2.pdf" target="_blank" class="paper-btn">📄 PDF</a>
+                    </div>
+                </div>
+
+                <!-- Paper 3 -->
+                <div class="paper-card">
+                    <span class="paper-number">03</span>
                     <h3 class="paper-title">Edge-AI Architectures for Smart Agriculture</h3>
-                    <p class="paper-desc">Systematic review of on-device AI processing for agricultural IoT, comparing ESP32, Raspberry Pi, and Jetson Nano for real-time sensor fusion.</p>
+                    <p class="paper-desc">Systematic review of on-device AI processing for agricultural IoT, comparing ESP32, Raspberry Pi, and Jetson Nano.</p>
                     <div class="paper-tags">
                         <span class="paper-tag">Edge-AI</span>
                         <span class="paper-tag">IoT</span>
                     </div>
                     <div class="paper-actions">
-                        <a href="papers/anik-1.pdf" target="_blank" class="paper-btn">📖 View</a>
-                        <a href="papers/anik-1.pdf" download class="paper-btn download">⬇ Save</a>
+                        <a href="image/paper3.pdf" target="_blank" class="paper-btn">📄 PDF</a>
                     </div>
                 </div>
 
+                <!-- Paper 4 -->
                 <div class="paper-card">
-                    <span class="paper-number">02</span>
+                    <span class="paper-number">04</span>
                     <h3 class="paper-title">TinyML for Microcontroller-Based Environmental Monitoring</h3>
                     <p class="paper-desc">Exploration of TensorFlow Lite Micro and Edge Impulse for deploying ML models on ESP32 for real-time climate prediction.</p>
                     <div class="paper-tags">
@@ -418,13 +456,13 @@
                         <span class="paper-tag">Embedded</span>
                     </div>
                     <div class="paper-actions">
-                        <a href="papers/anik-2.pdf" target="_blank" class="paper-btn">📖 View</a>
-                        <a href="papers/anik-2.pdf" download class="paper-btn download">⬇ Save</a>
+                        <a href="image/paper4.pdf" target="_blank" class="paper-btn">📄 PDF</a>
                     </div>
                 </div>
 
+                <!-- Paper 5 -->
                 <div class="paper-card">
-                    <span class="paper-number">03</span>
+                    <span class="paper-number">05</span>
                     <h3 class="paper-title">Real-Time Sensor Fusion on Low-Power Embedded Systems</h3>
                     <p class="paper-desc">Techniques for combining data from multiple sensors (DHT22, MQ-135, load cell) into a unified state estimation for decision-making.</p>
                     <div class="paper-tags">
@@ -432,36 +470,7 @@
                         <span class="paper-tag">Real-Time</span>
                     </div>
                     <div class="paper-actions">
-                        <a href="papers/anik-3.pdf" target="_blank" class="paper-btn">📖 View</a>
-                        <a href="papers/anik-3.pdf" download class="paper-btn download">⬇ Save</a>
-                    </div>
-                </div>
-
-                <div class="paper-card">
-                    <span class="paper-number">04</span>
-                    <h3 class="paper-title">Comparative Analysis of ESP32 vs Raspberry Pi for Edge Computing</h3>
-                    <p class="paper-desc">Cost, power, latency, and computational power analysis of ESP32 vs Raspberry Pi for smart agriculture use cases.</p>
-                    <div class="paper-tags">
-                        <span class="paper-tag">ESP32</span>
-                        <span class="paper-tag">Comparison</span>
-                    </div>
-                    <div class="paper-actions">
-                        <a href="papers/anik-4.pdf" target="_blank" class="paper-btn">📖 View</a>
-                        <a href="papers/anik-4.pdf" download class="paper-btn download">⬇ Save</a>
-                    </div>
-                </div>
-
-                <div class="paper-card">
-                    <span class="paper-number">05</span>
-                    <h3 class="paper-title">Federated Learning for Privacy-Preserving Smart Farming</h3>
-                    <p class="paper-desc">Survey of federated learning approaches where multiple farms train shared models without exposing raw sensor data.</p>
-                    <div class="paper-tags">
-                        <span class="paper-tag">Federated AI</span>
-                        <span class="paper-tag">Privacy</span>
-                    </div>
-                    <div class="paper-actions">
-                        <a href="papers/anik-5.pdf" target="_blank" class="paper-btn">📖 View</a>
-                        <a href="papers/anik-5.pdf" download class="paper-btn download">⬇ Save</a>
+                        <a href="image/paper5.pdf" target="_blank" class="paper-btn">📄 PDF</a>
                     </div>
                 </div>
 
@@ -471,7 +480,8 @@
         <!-- ===================== MEMBER 2: MARIYAM BINTE AL KADER ===================== -->
         <div class="member-section">
             <div class="member-header">
-                <div class="member-avatar">MK</div>
+                <!-- এখানে Mariyam এর ছবি বসানো হয়েছে -->
+                <div class="member-avatar"><img src="image/mariyum.jpg" alt="Mariyam"></div>
                 <div class="member-info">
                     <h2>Mariyam Binte Al Kader</h2>
                     <p>L2 - 2222447 <span class="role">• IoT & Communication Protocols</span></p>
@@ -556,7 +566,8 @@
         <!-- ===================== MEMBER 3: CHAITY SAHA ===================== -->
         <div class="member-section">
             <div class="member-header">
-                <div class="member-avatar">CS</div>
+                <!-- এখানে Chaity এর ছবি বসানো হয়েছে -->
+                <div class="member-avatar"><img src="image/chaity.jpg" alt="Chaity"></div>
                 <div class="member-info">
                     <h2>Chaity Saha</h2>
                     <p>M1 - 2010025 <span class="role">• Urban Farming & Sustainability</span></p>
@@ -641,7 +652,8 @@
         <!-- ===================== MEMBER 4: AL-RAFI ===================== -->
         <div class="member-section">
             <div class="member-header">
-                <div class="member-avatar">AR</div>
+                <!-- এখানে Rafi এর ছবি বসানো হয়েছে -->
+                <div class="member-avatar"><img src="image/rafi.jpg" alt="Rafi"></div>
                 <div class="member-info">
                     <h2>AL-RAFI</h2>
                     <p>M2 - 2231464 <span class="role">• Poultry Biology & Welfare</span></p>
@@ -726,7 +738,8 @@
         <!-- ===================== MEMBER 5: JEROME ANINDA GOMES ===================== -->
         <div class="member-section">
             <div class="member-header">
-                <div class="member-avatar">JG</div>
+                <!-- এখানে Jerome এর ছবি বসানো হয়েছে -->
+                <div class="member-avatar"><img src="image/Jerome.jpg" alt="Jerome"></div>
                 <div class="member-info">
                     <h2>Jerome Aninda Gomes</h2>
                     <p>M3 - 2211125 <span class="role">• Automation & Mechanical Systems</span></p>

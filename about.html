@@ -192,25 +192,10 @@
             line-height: 1.7;
         }
 
-        /* ================= PROBLEM / SOLUTION GRID ================= */
-        .grid-2 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 25px;
-            margin-bottom: 20px;
-        }
-
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
-
-        .grid-4 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-        }
+        /* ================= GRIDS ================= */
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 25px; margin-bottom: 20px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
 
         .card {
             background: rgba(255, 255, 255, 0.03);
@@ -268,6 +253,12 @@
 
         /* Solution Card (Green) */
         .card.solution::before { background: linear-gradient(90deg, #4caf50, #00bcd4); }
+
+        /* ================= NEW: TECH FEATURES ================= */
+        .card.tech { border-color: rgba(0, 188, 212, 0.2); }
+        .card.tech h3 { color: #00bcd4; }
+        .card.tech::before { background: linear-gradient(90deg, #00bcd4, #4caf50); }
+        .card.tech:hover { border-color: rgba(0, 188, 212, 0.5); box-shadow: 0 20px 50px rgba(0, 188, 212, 0.15); }
 
         /* ================= HOW IT WORKS ================= */
         .steps-container {
@@ -394,30 +385,18 @@
             border-radius: 24px;
             overflow: hidden;
             border: 2px solid rgba(76, 175, 80, 0.3);
-            box-shadow: 
-                0 0 60px rgba(76, 175, 80, 0.2),
-                0 30px 80px rgba(0, 0, 0, 0.6);
-            animation: 
-                fadeInScale 1.2s ease 0.3s both,
-                gentleFloat 6s ease-in-out 1.5s infinite;
+            box-shadow: 0 0 60px rgba(76, 175, 80, 0.2), 0 30px 80px rgba(0, 0, 0, 0.6);
+            animation: fadeInScale 1.2s ease 0.3s both, gentleFloat 6s ease-in-out 1.5s infinite;
             transition: all 0.6s ease;
         }
 
         .infographic-container:hover {
             border-color: rgba(76, 175, 80, 0.8);
-            box-shadow: 
-                0 0 100px rgba(76, 175, 80, 0.5),
-                0 40px 100px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 0 100px rgba(76, 175, 80, 0.5), 0 40px 100px rgba(0, 0, 0, 0.7);
             transform: translateY(-10px) scale(1.02);
         }
 
-        .infographic-container img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.6s ease;
-        }
-
+        .infographic-container img { width: 100%; height: auto; display: block; transition: transform 0.6s ease; }
         .infographic-container:hover img { transform: scale(1.03); }
 
         .scan-line {
@@ -431,9 +410,7 @@
             pointer-events: none;
         }
 
-        .infographic-container:hover .scan-line {
-            animation: scan 2s ease-in-out infinite;
-        }
+        .infographic-container:hover .scan-line { animation: scan 2s ease-in-out infinite; }
 
         /* ================= MISSION & VISION ================= */
         .mv-grid {
@@ -458,24 +435,9 @@
             box-shadow: 0 25px 60px rgba(76, 175, 80, 0.15);
         }
 
-        .mv-card .icon {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            display: block;
-        }
-
-        .mv-card h2 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.5rem;
-            color: #4caf50;
-            margin-bottom: 15px;
-        }
-
-        .mv-card p {
-            color: #aaa;
-            font-size: 0.92rem;
-            line-height: 1.8;
-        }
+        .mv-card .icon { font-size: 2.5rem; margin-bottom: 20px; display: block; }
+        .mv-card h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; color: #4caf50; margin-bottom: 15px; }
+        .mv-card p { color: #aaa; font-size: 0.92rem; line-height: 1.8; }
 
         /* ================= IMPACT NUMBERS ================= */
         .impact-grid {
@@ -696,6 +658,30 @@
         </div>
     </section>
 
+    <!-- NEW: NEXT-GEN TECH FEATURES (যা নতুন যোগ করা হলো) -->
+    <section class="section">
+        <h2 class="section-heading">Next-Gen Features</h2>
+        <p class="section-sub">Beyond automation — we built intelligence and localization into the core system.</p>
+
+        <div class="grid-3">
+            <div class="card tech">
+                <span class="card-icon">🗣️</span>
+                <h3>Bangla Voice Assistant</h3>
+                <p>A fully localized Android app that talks to you in Bangla. Ask about temperature, food, or water, and it replies instantly in natural Bangla.</p>
+            </div>
+            <div class="card tech">
+                <span class="card-icon">🕊️</span>
+                <h3>Stress-Free Bird Welfare</h3>
+                <p>Research proves quails don't fear electronic components. Our natural habitat design ensures they live happily without human interference.</p>
+            </div>
+            <div class="card tech">
+                <span class="card-icon">🔄</span>
+                <h3>Closed-Loop System</h3>
+                <p>Water used for mist cooling is recycled. Waste is collected automatically. It's a self-sustaining micro-ecosystem.</p>
+            </div>
+        </div>
+    </section>
+
     <!-- HOW IT WORKS -->
     <section class="section">
         <h2 class="section-heading">How It Works</h2>
@@ -720,7 +706,7 @@
             <div class="step">
                 <div class="step-number">4</div>
                 <h3>Notify</h3>
-                <p>Data is sent via Wi-Fi to your phone — with alerts for feed refill, water top-up, or unusual conditions.</p>
+                <p>Data is sent via Wi-Fi to your phone — with Bangla alerts for feed refill, water top-up, or unusual conditions.</p>
             </div>
         </div>
     </section>
