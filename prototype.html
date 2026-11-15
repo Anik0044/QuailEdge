@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuailEdge | Prototype</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #050505;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(76, 175, 80, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(76, 175, 80, 0.04) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: radial-gradient(circle at center, transparent 0%, #050505 85%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            background: rgba(5, 5, 5, 0.85);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            white-space: nowrap;
+        }
+
+        .logo span { color: #4caf50; text-shadow: 0 0 20px rgba(76, 175, 80, 0.8); }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .nav-links a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover, .nav-links a.active { color: #4caf50; }
+
+        .page-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.8rem;
+            text-align: center;
+            margin: 70px auto 15px;
+            background: linear-gradient(135deg, #ffffff 0%, #4caf50 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            padding: 0 20px;
+        }
+
+        .page-subtitle {
+            text-align: center;
+            color: #888;
+            max-width: 750px;
+            margin: 0 auto 60px;
+            padding: 0 20px;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .section {
+            flex: 1;
+            padding: 0 60px 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .feature-pills {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 50px;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            background: rgba(76, 175, 80, 0.08);
+            border: 1px solid rgba(76, 175, 80, 0.25);
+            border-radius: 30px;
+            color: #4caf50;
+            font-size: 0.82rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .pill:hover {
+            background: rgba(76, 175, 80, 0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.2);
+        }
+
+        .main-image-wrapper {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 60px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main-image-wrapper:hover {
+            border-color: rgba(76, 175, 80, 0.4);
+            box-shadow: 0 20px 60px rgba(76, 175, 80, 0.15);
+        }
+
+        .main-image-wrapper img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 12px;
+        }
+
+        .section-heading {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.6rem;
+            color: #fff;
+            margin: 50px 0 25px;
+            padding-left: 18px;
+            border-left: 4px solid #4caf50;
+        }
+
+        .section-heading span {
+            color: #4caf50;
+            margin-right: 10px;
+        }
+
+        .view-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .view-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 28px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .view-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 3px;
+            background: linear-gradient(90deg, #4caf50, #00bcd4);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .view-card:hover::before { transform: scaleX(1); }
+
+        .view-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(76, 175, 80, 0.4);
+            box-shadow: 0 20px 50px rgba(76, 175, 80, 0.12);
+        }
+
+        .view-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: rgba(76, 175, 80, 0.12);
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #4caf50;
+            margin-bottom: 15px;
+        }
+
+        .view-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.15rem;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .view-card p {
+            font-size: 0.88rem;
+            color: #999;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+
+        .spec-list {
+            list-style: none;
+            margin-top: 12px;
+        }
+
+        .spec-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 6px 0;
+            font-size: 0.85rem;
+            color: #aaa;
+            line-height: 1.5;
+        }
+
+        .spec-list li::before {
+            content: '▸';
+            color: #4caf50;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .spec-list strong {
+            color: #ddd;
+            font-weight: 600;
+        }
+
+        .tech-stack {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.08), rgba(0, 188, 212, 0.05));
+            border: 1px solid rgba(76, 175, 80, 0.2);
+            border-radius: 18px;
+            padding: 35px;
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .tech-stack h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.3rem;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .tech-badges {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .tech-badge {
+            display: inline-block;
+            padding: 10px 22px;
+            background: rgba(5, 5, 5, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            color: #ccc;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .tech-badge:hover {
+            border-color: #4caf50;
+            color: #4caf50;
+            background: rgba(76, 175, 80, 0.08);
+            transform: translateY(-3px);
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.6);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        footer span { color: #4caf50; font-weight: 600; }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                padding: 15px;
+                gap: 12px;
+            }
+            .nav-links { gap: 12px; justify-content: center; }
+            .nav-links a { font-size: 0.78rem; }
+            .page-title { font-size: 1.9rem; margin-top: 40px; }
+            .section { padding: 0 20px 60px; }
+            .section-heading { font-size: 1.25rem; }
+            .main-image-wrapper { padding: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Quail<span>Edge</span> 🌿</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="weekly_update.html">Weekly</a></li>
+            <li><a href="hardware.html">Hardware</a></li>
+            <li><a href="software.html">Software</a></li>
+            <li><a href="prototype.html" class="active">Prototype</a></li>
+            <li><a href="component_cost.html">Cost</a></li>
+            <li><a href="team.html">Team</a></li>
+        </ul>
+    </nav>
+
+    <h1 class="page-title">Prototype Design</h1>
+    <p class="page-subtitle">A complete engineering breakdown of the QuailEdge closed-loop ecosystem — from exploded layer views to top-down zone layouts.</p>
+
+    <section class="section">
+
+        <div class="feature-pills">
+            <span class="pill">🌿 Natural Environment</span>
+            <span class="pill">🌡️ Smart Climate Control</span>
+            <span class="pill">💧 Humidity Regulation</span>
+            <span class="pill">⚙️ Automatic Cleaning</span>
+            <span class="pill">🥚 Easy Egg Collection</span>
+        </div>
+
+        <div class="main-image-wrapper">
+            <img src="image/prototype.jpg" alt="QuailEdge Prototype Engineering Diagram">
+        </div>
+
+        <h2 class="section-heading"><span>01</span> Bottom Section — Exploded View</h2>
+        <div class="view-grid">
+
+            <div class="view-card">
+                <div class="view-number">1</div>
+                <h3>Natural Activity Area</h3>
+                <p>The top layer where quails live, play, and rest. Designed to mimic their natural habitat.</p>
+                <ul class="spec-list">
+                    <li><strong>Soil/Sand Bedding</strong> for dust bathing</li>
+                    <li><strong>Plants & Logs</strong> for hiding and pecking</li>
+                    <li><strong>Rocks & Branches</strong> for natural enrichment</li>
+                </ul>
+            </div>
+
+            <div class="view-card">
+                <div class="view-number">2</div>
+                <h3>Sloped Mesh Floor</h3>
+                <p>A slanted wire mesh layer that separates birds from waste and rolls eggs forward.</p>
+                <ul class="spec-list">
+                    <li><strong>5-7° Angle</strong> for gravity-based egg roll</li>
+                    <li><strong>7mm Mesh Openings</strong> safe for quail feet</li>
+                    <li><strong>Welded Steel</strong> for durability & easy cleaning</li>
+                </ul>
+            </div>
+
+            <div class="view-card">
+                <div class="view-number">3</div>
+                <h3>Egg Collection Channel</h3>
+                <p>A smooth, rounded gutter that guides eggs from the mesh floor to the front drawer.</p>
+                <ul class="spec-list">
+                    <li><strong>Roll-out Design</strong> minimizes egg breakage</li>
+                    <li><strong>Front Access Drawer</strong> for easy collection</li>
+                    <li><strong>Smooth Surface</strong> prevents cracking</li>
+                </ul>
+            </div>
+
+            <div class="view-card">
+                <div class="view-number">4</div>
+                <h3>Waste Collection Tray</h3>
+                <p>The bottom layer that captures droppings and channels them to a sealed compost-ready tray.</p>
+                <ul class="spec-list">
+                    <li><strong>Waterproof PP/HDPE</strong> material</li>
+                    <li><strong>Automatic Scraper</strong> + Water Rinse Line</li>
+                    <li><strong>Sloped to Drain</strong> for complete cleaning</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <h2 class="section-heading"><span>02</span> Cross Section — Side View</h2>
+        <div class="view-grid">
+
+            <div class="view-card">
+                <div class="view-number">A</div>
+                <h3>Airflow Dynamics</h3>
+                <p>Fresh air enters from the left mesh panel, circulates inside, and exits through the top exhaust fan with carbon filter.</p>
+                <ul class="spec-list">
+                    <li><strong>Free Air Intake</strong> with fine insect mesh</li>
+                    <li><strong>Exhaust Fan</strong> with carbon filter for odor control</li>
+                    <li><strong>Continuous Air Exchange</strong> prevents ammonia buildup</li>
+                </ul>
+            </div>
+
+            <div class="view-card">
+                <div class="view-number">B</div>
+                <h3>Climate Control System</h3>
+                <p>DHT22 and MQ-135 sensors monitor conditions and trigger automated responses via ESP32.</p>
+                <ul class="spec-list">
+                    <li><strong>DHT22</strong> for temperature & humidity</li>
+                    <li><strong>MQ-135</strong> for air quality (NH3, CO2)</li>
+                    <li><strong>Mist Nozzle</strong> for humidity regulation</li>
+                </ul>
+            </div>
+
+            <div class="view-card">
+                <div class="view-number">C</div>
+                <h3>Feeding & Watering</h3>
+                <p>Gravity-fed water tank and servo-controlled automatic feeder ensure continuous supply.</p>
+                <ul class="spec-list">
+                    <li><strong>Gravity-Fed Water Tank</strong> with nipple drinkers</li>
+                    <li><strong>Servo Gate Feeder</strong> with load cell monitoring</li>
+                    <li><strong>Low Maintenance</strong> — refill once every few days</li>
+                </ul>
+            </div>
+
+            <div class="view-card">
+                <div class="view-number">D</div>
+                <h3>LED Grow Lighting</h3>
+                <p>Full-spectrum LED mimics natural sunlight to support bird health and plant growth inside the habitat.</p>
+                <ul class="spec-list">
+                    <li><strong>15H Light / 9H Dark</strong> circadian cycle</li>
+                    <li><strong>Sun-Like Spectrum</strong> for quail wellbeing</li>
+                    <li><strong>Energy Efficient</strong> 12V cool-white LED chain</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <h2 class="section-heading"><span>03</span> Top View Layout — Zone Design</h2>
+        <div class="view-grid">
+
+            <div class="view-card">
+                <div class="view-number">①</div>
+                <h3>Green Zone (Plants + Shade)</h3>
+                <p>A dedicated area with plants, logs, and leafy cover that mimics a quail's natural hiding environment.</p>
+                <ul class="spec-list">
+                    <li><strong>Hiding Area</strong> with logs and plants</li>
+                    <li><strong>Natural Shade</strong> reduces bird stress</li>
+                    <li><strong>Polycarbonate Roof</strong> with natural sunlight</li>
+                </ul>
+            </div>
+
+            <div class="view-card">
+                <div class="view-number">②</div>
+                <h3>Feeding Zone</h3>
+                <p>Central activity area with the automatic feeder and enough space for 3-5 quails to feed together.</p>
+                <ul class="spec-list">
+                    <li><strong>Main Activity Area</strong> for 3-5 birds</li>
+                    <li><strong>Automatic Feeder</strong> (Servo + Load Cell)</li>
+                    <li><strong>Water Nipple Drinkers</strong> nearby</li>
+                </ul>
+            </div>
+
+            <div class="view-card">
+                <div class="view-number">③</div>
+                <h3>Water Zone</h3>
+                <p>The right side houses the water reservoir, sensors, and the mist/humidity control system.</p>
+                <ul class="spec-list">
+                    <li><strong>Water Tank</strong> (gravity-fed, ~2-3L)</li>
+                    <li><strong>Water Level Sensor</strong> for refill alerts</li>
+                    <li><strong>Mist Nozzle</strong> for humidity control</li>
+                </ul>
+            </div>
+
+            <div class="view-card">
+                <div class="view-number">④</div>
+                <h3>Egg Roll-out Zone</h3>
+                <p>The front section where eggs collect in a protective drawer, easy to access without disturbing the birds.</p>
+                <ul class="spec-list">
+                    <li><strong>Front Egg Collection Drawer</strong></li>
+                    <li><strong>No-Break Design</strong> for safe transport</li>
+                    <li><strong>Quick Access</strong> for daily collection</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="tech-stack">
+            <h3>⚡ Integrated Technology Stack</h3>
+            <div class="tech-badges">
+                <span class="tech-badge">ESP32 WROOM32</span>
+                <span class="tech-badge">DHT22 Sensor</span>
+                <span class="tech-badge">MQ-135 Sensor</span>
+                <span class="tech-badge">HX711 + Load Cell</span>
+                <span class="tech-badge">SG90 Servo</span>
+                <span class="tech-badge">12V Water Pump</span>
+                <span class="tech-badge">Water Flow Sensor</span>
+                <span class="tech-badge">DS3231 RTC</span>
+                <span class="tech-badge">Edge-AI Logic</span>
+            </div>
+        </div>
+
+    </section>
+
+    <footer>
+        <p>&copy; 2026 <span>QuailEdge</span>. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

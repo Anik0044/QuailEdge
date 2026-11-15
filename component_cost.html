@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuailEdge | Component Cost</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #050505;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(76, 175, 80, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(76, 175, 80, 0.04) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: radial-gradient(circle at center, transparent 0%, #050505 85%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* ================= NAVBAR ================= */
+        nav {
+            position: sticky;
+            top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            background: rgba(5, 5, 5, 0.85);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            white-space: nowrap;
+        }
+
+        .logo span { color: #4caf50; text-shadow: 0 0 20px rgba(76, 175, 80, 0.8); }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .nav-links a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover, .nav-links a.active { color: #4caf50; }
+
+        /* ================= PAGE TITLE ================= */
+        .page-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.8rem;
+            text-align: center;
+            margin: 70px auto 15px;
+            background: linear-gradient(135deg, #ffffff 0%, #4caf50 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            padding: 0 20px;
+        }
+
+        .page-subtitle {
+            text-align: center;
+            color: #888;
+            max-width: 700px;
+            margin: 0 auto 50px;
+            padding: 0 20px;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* ================= SECTION ================= */
+        .section {
+            flex: 1;
+            padding: 0 60px 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* ================= TABLE ================= */
+        .table-wrap {
+            overflow-x: auto;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.02);
+            margin-bottom: 30px;
+        }
+
+        .bom-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 550px;
+        }
+
+        .bom-table th, .bom-table td {
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+
+        .bom-table th {
+            background: rgba(76, 175, 80, 0.1);
+            color: #4caf50;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+        }
+
+        .bom-table tr:hover td {
+            background: rgba(76, 175, 80, 0.03);
+        }
+
+        .bom-table tr:last-child td { border-bottom: none; }
+
+        .bom-table .subtotal-row td {
+            background: rgba(0, 188, 212, 0.05);
+            color: #00bcd4;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .bom-table .grand-total td {
+            background: rgba(76, 175, 80, 0.12);
+            color: #4caf50;
+            font-weight: 700;
+            font-size: 1.1rem;
+            font-family: 'Space Grotesk', sans-serif;
+            padding: 22px 20px;
+        }
+
+        .section-heading {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.3rem;
+            color: #fff;
+            margin: 40px 0 20px;
+            padding-left: 15px;
+            border-left: 4px solid #4caf50;
+        }
+
+        /* ================= FOOTER ================= */
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.6);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        footer span { color: #4caf50; font-weight: 600; }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                padding: 15px;
+                gap: 12px;
+            }
+            .nav-links { gap: 12px; justify-content: center; }
+            .nav-links a { font-size: 0.78rem; }
+            .page-title { font-size: 1.9rem; margin-top: 40px; }
+            .section { padding: 0 15px 60px; }
+            .bom-table th, .bom-table td { padding: 12px 12px; font-size: 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="logo">Quail<span>Edge</span> 🌿</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="weekly_update.html">Weekly</a></li>
+            <li><a href="hardware.html">Hardware</a></li>
+            <li><a href="software.html">Software</a></li>
+            <li><a href="prototype.html">Prototype</a></li>
+            <li><a href="component_cost.html" class="active">Cost</a></li>
+            <li><a href="team.html">Team</a></li>
+        </ul>
+    </nav>
+
+    <!-- PAGE TITLE -->
+    <h1 class="page-title">Component Cost</h1>
+    <p class="page-subtitle">Complete Bill of Materials (BOM) for the QuailEdge prototype — sourced from RoboticsBD and local markets in Bangladesh.</p>
+
+    <!-- SECTION 1: SENSORS -->
+    <section class="section">
+        <h2 class="section-heading">1. Sensors & Basic Components</h2>
+        <div class="table-wrap">
+            <table class="bom-table">
+                <thead>
+                    <tr>
+                        <th>Component</th>
+                        <th>Qty</th>
+                        <th>Unit Price (BDT)</th>
+                        <th>Total (BDT)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>DHT22 Temperature / Humidity Sensor</td><td>2</td><td>৳ 260</td><td>৳ 520</td></tr>
+                    <tr><td>MQ-135 Gas Sensor</td><td>1</td><td>৳ 150</td><td>৳ 150</td></tr>
+                    <tr><td>80×80×25mm 12V Cooling Fan</td><td>4</td><td>৳ 110</td><td>৳ 440</td></tr>
+                    <tr><td>IRLZ34N MOSFET</td><td>4</td><td>৳ 90</td><td>৳ 360</td></tr>
+                    <tr class="subtotal-row"><td colspan="3">Subtotal</td><td>৳ 1,470</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- SECTION 2: POWER -->
+        <h2 class="section-heading">2. Power & Control System</h2>
+        <div class="table-wrap">
+            <table class="bom-table">
+                <thead>
+                    <tr>
+                        <th>Component</th>
+                        <th>Qty</th>
+                        <th>Unit Price (BDT)</th>
+                        <th>Total (BDT)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>ESP32 WROOM32 Development Board</td><td>1</td><td>৳ 519</td><td>৳ 519</td></tr>
+                    <tr><td>DS3231 Real-Time Clock Module</td><td>1</td><td>৳ 360</td><td>৳ 360</td></tr>
+                    <tr><td>12V 5A Power Adapter</td><td>1</td><td>৳ 450</td><td>৳ 450</td></tr>
+                    <tr><td>LM2596 DC-DC Buck Converter</td><td>1</td><td>৳ 85</td><td>৳ 85</td></tr>
+                    <tr><td>Water-Level Sensor Module</td><td>1</td><td>৳ 49</td><td>৳ 49</td></tr>
+                    <tr><td>12V Cool-White LED Chain</td><td>1</td><td>৳ 255</td><td>৳ 255</td></tr>
+                    <tr class="subtotal-row"><td colspan="3">Subtotal</td><td>৳ 1,718</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- SECTION 3: FEEDING -->
+        <h2 class="section-heading">3. Automatic Feeding System</h2>
+        <div class="table-wrap">
+            <table class="bom-table">
+                <thead>
+                    <tr>
+                        <th>Component</th>
+                        <th>Qty</th>
+                        <th>Unit Price (BDT)</th>
+                        <th>Total (BDT)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>HX711 Load-Cell Amplifier</td><td>1</td><td>৳ 130</td><td>৳ 130</td></tr>
+                    <tr><td>5 kg Load Cell</td><td>1</td><td>৳ 380</td><td>৳ 380</td></tr>
+                    <tr><td>SG90 Servo Motor</td><td>1</td><td>৳ 129</td><td>৳ 129</td></tr>
+                    <tr class="subtotal-row"><td colspan="3">Subtotal</td><td>৳ 639</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- SECTION 4: PROTOTYPING -->
+        <h2 class="section-heading">4. Prototyping & Wiring</h2>
+        <div class="table-wrap">
+            <table class="bom-table">
+                <thead>
+                    <tr>
+                        <th>Component</th>
+                        <th>Qty</th>
+                        <th>Unit Price (BDT)</th>
+                        <th>Total (BDT)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>40-piece Jumper-Wire Set</td><td>1</td><td>৳ 100</td><td>৳ 100</td></tr>
+                    <tr><td>Full-Size Breadboard</td><td>1</td><td>৳ 160</td><td>৳ 160</td></tr>
+                    <tr><td>Fuse Holder</td><td>1</td><td>৳ 30</td><td>৳ 30</td></tr>
+                    <tr><td>ON/OFF Rocker Switch</td><td>1</td><td>৳ 70</td><td>৳ 70</td></tr>
+                    <tr class="subtotal-row"><td colspan="3">Subtotal</td><td>৳ 360</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- SECTION 5: WATER SYSTEM -->
+        <h2 class="section-heading">5. Water & Cleaning System</h2>
+        <div class="table-wrap">
+            <table class="bom-table">
+                <thead>
+                    <tr>
+                        <th>Component</th>
+                        <th>Qty</th>
+                        <th>Approx. Amount (BDT)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>12V Submersible Water Pump (700 L/h)</td><td>1</td><td>৳ 330</td></tr>
+                    <tr><td>Float Switch (Wastewater-Jar Full Warning)</td><td>1</td><td>৳ 131</td></tr>
+                    <tr><td>Clean-Water Reservoir (2-3 L)</td><td>1</td><td>৳ 100 - 200</td></tr>
+                    <tr><td>Wastewater Jar (3-5 L, Screw Lid)</td><td>1</td><td>৳ 150 - 250</td></tr>
+                    <tr><td>Flexible Hose and Fittings</td><td>As needed</td><td>৳ 150 - 250</td></tr>
+                    <tr><td>Perforated Spray Bar + Drain Fitting + Strainer</td><td>1 set</td><td>৳ 150 - 300</td></tr>
+                    <tr class="subtotal-row"><td colspan="2">Approx. Subtotal</td><td>৳ 1,011 - 1,461</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- GRAND TOTAL -->
+        <h2 class="section-heading">Grand Total</h2>
+        <div class="table-wrap">
+            <table class="bom-table">
+                <tbody>
+                    <tr class="grand-total">
+                        <td>Total Project Cost (Approx.)</td>
+                        <td>৳ 5,198 - 5,648</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 <span>QuailEdge</span>. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

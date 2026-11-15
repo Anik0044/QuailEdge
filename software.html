@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuailEdge | Software & App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #050505;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(76, 175, 80, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(76, 175, 80, 0.04) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: radial-gradient(circle at center, transparent 0%, #050505 85%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* ================= NAVBAR ================= */
+        nav {
+            position: sticky;
+            top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            background: rgba(5, 5, 5, 0.85);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            white-space: nowrap;
+        }
+
+        .logo span { color: #4caf50; text-shadow: 0 0 20px rgba(76, 175, 80, 0.8); }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .nav-links a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover, .nav-links a.active { color: #4caf50; }
+
+        /* ================= PAGE TITLE ================= */
+        .page-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.8rem;
+            text-align: center;
+            margin: 70px auto 15px;
+            background: linear-gradient(135deg, #ffffff 0%, #4caf50 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            padding: 0 20px;
+        }
+
+        .page-subtitle {
+            text-align: center;
+            color: #888;
+            max-width: 750px;
+            margin: 0 auto 60px;
+            padding: 0 20px;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .section {
+            flex: 1;
+            padding: 0 60px 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* ================= APP SHOWCASE SECTION ================= */
+        .app-showcase {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 60px;
+            margin-bottom: 80px;
+        }
+
+        .app-text h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .app-text h2 span { color: #4caf50; }
+
+        .app-text p {
+            color: #aaa;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 18px;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .feature-list li:hover {
+            background: rgba(76, 175, 80, 0.05);
+            border-color: rgba(76, 175, 80, 0.3);
+        }
+
+        .feature-icon {
+            font-size: 1.4rem;
+            background: rgba(76, 175, 80, 0.1);
+            padding: 10px;
+            border-radius: 10px;
+            color: #4caf50;
+        }
+
+        .feature-info h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            color: #fff;
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+
+        .feature-info p {
+            color: #888;
+            font-size: 0.82rem;
+            margin-bottom: 0;
+            line-height: 1.5;
+        }
+
+        .app-image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .app-image-container::before {
+            content: '';
+            position: absolute;
+            width: 80%;
+            height: 80%;
+            background: radial-gradient(circle, rgba(76, 175, 80, 0.15) 0%, transparent 70%);
+            filter: blur(40px);
+            z-index: -1;
+        }
+
+        .app-image-container img {
+            width: 100%;
+            max-width: 320px;
+            border-radius: 35px;
+            border: 4px solid #222;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(76, 175, 80, 0.2);
+            transition: transform 0.4s ease;
+        }
+
+        .app-image-container img:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.9), 0 0 40px rgba(76, 175, 80, 0.4);
+        }
+
+        /* ================= BANGLA VOICE ASSISTANT ================= */
+        .voice-assistant-box {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.08), rgba(0, 188, 212, 0.03));
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            border-radius: 20px;
+            padding: 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 80px;
+        }
+
+        .voice-assistant-box::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(76, 175, 80, 0.05), transparent 30%);
+            animation: rotate 10s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+
+        .voice-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+        
+        .voice-title span { color: #4caf50; }
+
+        .voice-desc {
+            color: #bbb;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .chat-bubble {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 15px 25px;
+            border-radius: 20px 20px 20px 5px;
+            max-width: 500px;
+            margin: 0 auto 20px;
+            text-align: left;
+            color: #fff;
+            font-size: 1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .chat-bubble.reply {
+            background: rgba(76, 175, 80, 0.15);
+            border-color: rgba(76, 175, 80, 0.3);
+            border-radius: 20px 20px 5px 20px;
+            margin-left: auto;
+            margin-right: 0;
+            text-align: right;
+            color: #4caf50;
+            font-weight: 500;
+        }
+
+        .chat-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ================= SYSTEM FLOW ================= */
+        .flow-section {
+            margin-top: 40px;
+        }
+
+        .flow-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            text-align: center;
+            color: #fff;
+            margin-bottom: 40px;
+        }
+
+        .flow-title span { color: #4caf50; }
+
+        .flow-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .flow-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 25px 20px;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .flow-card:hover {
+            background: rgba(76, 175, 80, 0.05);
+            border-color: rgba(76, 175, 80, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .flow-step {
+            width: 40px;
+            height: 40px;
+            background: rgba(76, 175, 80, 0.15);
+            color: #4caf50;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            border: 2px solid rgba(76, 175, 80, 0.4);
+        }
+
+        .flow-card h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            color: #fff;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .flow-card p {
+            color: #888;
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 992px) {
+            .app-showcase {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 40px;
+            }
+            .app-text { text-align: left; }
+            .app-image-container img { max-width: 250px; }
+            .feature-list li { text-align: left; }
+        }
+
+        @media (max-width: 768px) {
+            nav { flex-direction: column; padding: 15px; gap: 12px; }
+            .nav-links { gap: 12px; justify-content: center; }
+            .nav-links a { font-size: 0.78rem; }
+            .page-title { font-size: 1.9rem; margin-top: 40px; }
+            .section { padding: 0 20px 60px; }
+            .voice-assistant-box { padding: 30px 20px; }
+            .app-text h2 { font-size: 1.5rem; }
+            .flow-title { font-size: 1.5rem; }
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.6);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        footer span { color: #4caf50; font-weight: 600; }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="logo">Quail<span>Edge</span> 🌿</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="weekly_update.html">Weekly</a></li>
+            <li><a href="hardware.html">Hardware</a></li>
+            <li><a href="software.html" class="active">Software</a></li>
+            <li><a href="prototype.html">Prototype</a></li>
+            <li><a href="component_cost.html">Cost</a></li>
+            <li><a href="team.html">Team</a></li>
+        </ul>
+    </nav>
+
+    <!-- PAGE TITLE -->
+    <h1 class="page-title">Software & Mobile App</h1>
+    <p class="page-subtitle">The intelligent control center for your QuailEdge ecosystem. Monitor, automate, and manage everything from a single Bangla-enabled Android App.</p>
+
+    <section class="section">
+
+        <!-- APP SHOWCASE -->
+        <div class="app-showcase">
+            <div class="app-text">
+                <h2>Complete <span>Control</span> in Your Pocket</h2>
+                <p>
+                    Our dedicated Android application connects seamlessly with the ESP32 over Wi-Fi. It gives you real-time visibility into your farm's health, even when you are away from home.
+                </p>
+                
+                <ul class="feature-list">
+                    <li>
+                        <div class="feature-icon">📊</div>
+                        <div class="feature-info">
+                            <h4>Live Dashboard</h4>
+                            <p>Track real-time temperature, humidity, food weight, and water levels instantly.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="feature-icon">⚙️</div>
+                        <div class="feature-info">
+                            <h4>Smart Automation</h4>
+                            <p>Set thresholds for automatic fan, mist, and bulb activation. Or switch to manual control anytime.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="feature-icon">🔔</div>
+                        <div class="feature-info">
+                            <h4>Instant Notifications</h4>
+                            <p>Get Bangla alerts on your phone if the temperature spikes, water runs out, or food is low.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="feature-icon">📹</div>
+                        <div class="feature-info">
+                            <h4>Live Camera Feed (Optional)</h4>
+                            <p>Watch your quails live through an integrated ESP32-CAM module right from the app.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="app-image-container">
+                <!-- Android App Screenshot -->
+                <img src="image/app-screenshot.jpg" alt="QuailEdge Android App Dashboard">
+            </div>
+        </div>
+
+        <!-- BANGLA VOICE ASSISTANT -->
+        <div class="voice-assistant-box">
+            <h2 class="voice-title">Bangla <span>Voice Assistant</span></h2>
+            <p class="voice-desc">
+                We have integrated a fully localized Bangla voice system. You no longer need to read complex data. Just ask the app a question, and it will reply in natural Bangla.
+            </p>
+
+            <div class="chat-container">
+                <div class="chat-bubble">
+                    🗣️ "খাঁচার তাপমাত্রা কেমন?"
+                </div>
+                <div class="chat-bubble reply">
+                    🤖 "তাপমাত্রা এখন ২৮ ডিগ্রি সেলসিয়াস। পাখিদের জন্য এটি উপযুক্ত।"
+                </div>
+
+                <div class="chat-bubble" style="margin-top: 15px;">
+                    🗣️ "খাবারের পরিমাণ কত?"
+                </div>
+                <div class="chat-bubble reply">
+                    🤖 "খাবারের ট্রেতে এখন ১.৫ কেজি খাবার আছে।"
+                </div>
+            </div>
+        </div>
+
+        <!-- SYSTEM FLOW -->
+        <div class="flow-section">
+            <h2 class="flow-title">How the <span>Data Flow</span> Works</h2>
+            <div class="flow-grid">
+                <div class="flow-card">
+                    <div class="flow-step">1</div>
+                    <h4>Sense</h4>
+                    <p>Sensors (DHT22, MQ-135, Load Cell) gather real-time environmental data.</p>
+                </div>
+                <div class="flow-card">
+                    <div class="flow-step">2</div>
+                    <h4>Process</h4>
+                    <p>ESP32 processes the data locally using Edge-AI logic (no cloud needed).</p>
+                </div>
+                <div class="flow-card">
+                    <div class="flow-step">3</div>
+                    <h4>Transmit</h4>
+                    <p>Data is sent via Wi-Fi to your Android app using MQTT/HTTP protocols.</p>
+                </div>
+                <div class="flow-card">
+                    <div class="flow-step">4</div>
+                    <h4>Control</h4>
+                    <p>You monitor live stats and control fans, mist, and pumps directly from the app.</p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 <span>QuailEdge</span>. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
