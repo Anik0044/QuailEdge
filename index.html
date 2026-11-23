@@ -118,7 +118,7 @@
         /* ================= HERO SECTION ================= */
         .hero {
             display: grid;
-            grid-template-columns: 1fr 1.2fr; /* Increased space for the image on the right */
+            grid-template-columns: 1fr 1.2fr;
             align-items: center;
             gap: 50px;
             padding: 160px 80px 100px;
@@ -223,7 +223,7 @@
             background: rgba(76, 175, 80, 0.05);
         }
 
-        /* ================= HUD VISUAL (Updated) ================= */
+        /* ================= HUD VISUAL ================= */
         .hero-visual {
             display: flex;
             justify-content: center;
@@ -271,10 +271,9 @@
             animation: spin 12s linear infinite;
         }
 
-        /* Updated image frame for the new picture */
         .image-frame {
-            width: 520px;      /* Slightly wider */
-            height: 380px;     /* Slightly taller */
+            width: 520px;
+            height: 380px;
             border-radius: 20px;
             overflow: hidden;
             border: 3px solid rgba(76, 175, 80, 0.6);
@@ -288,8 +287,8 @@
         .image-frame img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Image fills the frame */
-            object-position: center; /* Focuses on the center part */
+            object-fit: cover;
+            object-position: center;
             transition: transform 0.5s ease;
         }
 
@@ -311,6 +310,71 @@
         .node-2 { bottom: 0; left: 50%; margin-left: -4px; animation: floatBottom 3s ease-in-out infinite; }
         .node-3 { top: 50%; left: 0; margin-top: -4px; animation: floatLeft 3s ease-in-out infinite; }
         .node-4 { top: 50%; right: 0; margin-top: -4px; animation: floatRight 3s ease-in-out infinite; }
+
+        /* ================= WALKING BIRDS ANIMATION ================= */
+        .bird-container {
+            position: fixed;
+            bottom: 30px; 
+            left: 0;
+            width: 100%;
+            height: 150px;
+            pointer-events: none; /* Prevents blocking clicks */
+            z-index: 999;
+            overflow: hidden;
+        }
+
+        .walking-bird {
+            height: auto;
+            position: absolute;
+            bottom: 0;
+            opacity: 0.95;
+            filter: drop-shadow(0px 15px 15px rgba(0,0,0,0.8)); 
+        }
+
+        /* Bird 1 - Largest, moves fastest */
+        .bird-1 {
+            width: 160px;
+            animation: walkAcross1 20s linear infinite, bob 0.6s ease-in-out infinite;
+            bottom: 10px;
+        }
+
+        /* Bird 2 - Slightly smaller, slower, starts later */
+        .bird-2 {
+            width: 130px;
+            animation: walkAcross2 25s linear infinite 3s, bob 0.7s ease-in-out infinite;
+            bottom: 0;
+            opacity: 0.85;
+        }
+
+        /* Bird 3 - Smallest, slowest, starts much later */
+        .bird-3 {
+            width: 100px;
+            animation: walkAcross3 30s linear infinite 7s, bob 0.8s ease-in-out infinite;
+            bottom: 5px;
+            opacity: 0.75;
+        }
+
+        /* Animations for each bird to walk from right to left */
+        @keyframes walkAcross1 {
+            0% { right: -200px; transform: scaleX(-1); } 
+            100% { right: 100%; transform: scaleX(-1); } 
+        }
+
+        @keyframes walkAcross2 {
+            0% { right: -200px; transform: scaleX(-1); } 
+            100% { right: 100%; transform: scaleX(-1); } 
+        }
+
+        @keyframes walkAcross3 {
+            0% { right: -200px; transform: scaleX(-1); } 
+            100% { right: 100%; transform: scaleX(-1); } 
+        }
+
+        /* Bobbing motion */
+        @keyframes bob {
+            0%, 100% { margin-bottom: 0; }
+            50% { margin-bottom: 6px; }
+        }
 
         /* ================= FOOTER ================= */
         footer {
@@ -365,6 +429,11 @@
             .image-frame { width: 380px; height: 280px; }
             .hero-title { font-size: 2rem; }
             .cta-group { justify-content: center; }
+            
+            /* Smaller birds on mobile */
+            .bird-1 { width: 110px; }
+            .bird-2 { width: 90px; }
+            .bird-3 { width: 70px; }
         }
 
         @media (max-width: 768px) {
@@ -384,6 +453,11 @@
             .ring-2 { width: 250px; height: 250px; }
             .ring-3 { width: 350px; height: 350px; }
             .image-frame { width: 280px; height: 200px; }
+            
+            /* Even smaller birds on smaller screens */
+            .bird-1 { width: 80px; }
+            .bird-2 { width: 65px; }
+            .bird-3 { width: 50px; }
         }
     </style>
 </head>
@@ -391,7 +465,6 @@
 
     <!-- NAVBAR -->
     <nav>
-        <!-- Updated Logo Icon to a bird (🦜) -->
         <div class="logo">Quail<span>Edge</span> 🦜</div>
         <ul class="nav-links">
             <li><a href="index.html" class="active">Home</a></li>
@@ -401,7 +474,7 @@
             <li><a href="software.html">Software</a></li>
             <li><a href="prototype.html">Prototype</a></li>
             <li><a href="literature_review.html">Literature</a></li>
-            <li><a href="research.html">Research</a></li> <!-- Added Research Link -->
+            <li><a href="research.html">Research</a></li>
             <li><a href="component_cost.html">Cost</a></li>
             <li><a href="team.html">Team</a></li>
         </ul>
@@ -435,13 +508,23 @@
                 <div class="node node-3"></div>
                 <div class="node node-4"></div>
                 
-                <!-- Image inside the core (The new prototype.jpg will be placed here) -->
+                <!-- Image Frame -->
                 <div class="image-frame">
                     <img src="image/prototype.jpg" alt="QuailEdge EcoSphere">
                 </div>
             </div>
         </div>
     </header>
+
+    <!-- MULTIPLE WALKING BIRDS ANIMATION -->
+    <div class="bird-container">
+        <!-- Bird 1 (Large) -->
+        <img src="image/quail-bird.png" class="walking-bird bird-1" alt="Walking Quail 1">
+        <!-- Bird 2 (Medium) -->
+        <img src="image/quail-bird.png" class="walking-bird bird-2" alt="Walking Quail 2">
+        <!-- Bird 3 (Small) -->
+        <img src="image/quail-bird.png" class="walking-bird bird-3" alt="Walking Quail 3">
+    </div>
 
     <!-- FOOTER -->
     <footer>

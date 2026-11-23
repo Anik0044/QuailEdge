@@ -138,6 +138,7 @@
 
         .hero-about-text p strong { color: #4caf50; font-weight: 600; }
 
+        /* Updated image container for the logo */
         .hero-about-image {
             position: relative;
             border-radius: 20px;
@@ -145,6 +146,11 @@
             border: 1px solid rgba(76, 175, 80, 0.3);
             box-shadow: 0 20px 60px rgba(76, 175, 80, 0.15);
             transition: all 0.4s ease;
+            background: #fff; /* White background to match the logo */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
         }
 
         .hero-about-image:hover {
@@ -157,7 +163,8 @@
             width: 100%;
             height: auto;
             display: block;
-            border-radius: 20px;
+            border-radius: 12px;
+            object-fit: contain;
         }
 
         .section {
@@ -518,6 +525,7 @@
 </head>
 <body>
 
+    <!-- NAVBAR -->
     <nav>
         <div class="logo">Quail<span>Edge</span> 🌿</div>
         <ul class="nav-links">
@@ -527,14 +535,18 @@
             <li><a href="hardware.html">Hardware</a></li>
             <li><a href="software.html">Software</a></li>
             <li><a href="prototype.html">Prototype</a></li>
+            <li><a href="literature_review.html">Literature</a></li>
+            <li><a href="research.html">Research</a></li> <!-- Added Research -->
             <li><a href="component_cost.html">Cost</a></li>
             <li><a href="team.html">Team</a></li>
         </ul>
     </nav>
 
+    <!-- PAGE TITLE -->
     <h1 class="page-title">About QuailEdge</h1>
     <p class="page-subtitle">A Multi-Modal IoT Architecture for Autonomous Environmental Regulation and Sanitation in Quail Husbandry.</p>
 
+    <!-- HERO SECTION -->
     <section class="hero-about">
         <div class="hero-about-text">
             <h2>Reimagining <span>Urban Poultry Farming</span> with Intelligence</h2>
@@ -555,11 +567,13 @@
             </p>
         </div>
 
+        <!-- Updated to display the Logo -->
         <div class="hero-about-image">
-            <img src="image/about-quail.jpg" alt="QuailEdge Smart Ecosystem">
+            <img src="image/logo.jpg" alt="QuailEdge Smart Ecosystem Logo">
         </div>
     </section>
 
+    <!-- PROBLEM SECTION -->
     <section class="section">
         <h2 class="section-heading">The Problem We Solve</h2>
         <p class="section-sub">Urban families want fresh, organic eggs — but traditional poultry farming is impossible in dense cities. Here's why:</p>
@@ -598,6 +612,7 @@
         </div>
     </section>
 
+    <!-- SOLUTION SECTION -->
     <section class="section">
         <h2 class="section-heading">Our Solution</h2>
         <p class="section-sub">QuailEdge solves every one of these problems through intelligent automation and Edge Computing.</p>
@@ -636,6 +651,7 @@
         </div>
     </section>
 
+    <!-- NEXT-GEN TECH FEATURES -->
     <section class="section">
         <h2 class="section-heading">Next-Gen Features</h2>
         <p class="section-sub">Beyond automation — we built intelligence, localization, and future-ready upgrades into the core system.</p>
@@ -659,6 +675,7 @@
         </div>
     </section>
 
+    <!-- HOW IT WORKS -->
     <section class="section">
         <h2 class="section-heading">How It Works</h2>
         <p class="section-sub">From sensor reading to automatic action — all in less than 2 seconds.</p>
@@ -687,6 +704,7 @@
         </div>
     </section>
 
+    <!-- ANIMATED INFOGRAPHIC -->
     <section class="infographic-section">
         <h2 class="section-heading-center">The Complete Ecosystem</h2>
         <p class="section-subtitle-center">
@@ -704,6 +722,7 @@
         </div>
     </section>
 
+    <!-- IMPACT NUMBERS -->
     <section class="section">
         <h2 class="section-heading">Expected Impact</h2>
         <p class="section-sub">What our system delivers to urban households.</p>
@@ -728,6 +747,7 @@
         </div>
     </section>
 
+    <!-- MISSION & VISION -->
     <section class="section">
         <div class="mv-grid">
             <div class="mv-card">
@@ -751,6 +771,7 @@
         </div>
     </section>
 
+    <!-- FOOTER -->
     <footer>
         <p>&copy; 2026 <span>QuailEdge</span>. All rights reserved.</p>
     </footer>

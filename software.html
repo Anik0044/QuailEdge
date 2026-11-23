@@ -218,15 +218,17 @@
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.9), 0 0 40px rgba(76, 175, 80, 0.4);
         }
 
-        /* ================= APP SCREENSHOTS GALLERY ================= */
-        .app-gallery-section {
+        /* ================= APP SLIDER SECTION ================= */
+        .app-slider-section {
             margin-top: 60px;
             text-align: center;
-            padding: 40px;
+            padding: 40px 0;
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(76, 175, 80, 0.2);
             border-radius: 20px;
             margin-bottom: 60px;
+            overflow: hidden;
+            position: relative;
         }
 
         .app-gallery-title {
@@ -238,24 +240,42 @@
 
         .app-gallery-title span { color: #4caf50; }
 
-        .app-screenshot-wrapper {
-            max-width: 1000px;
-            margin: 0 auto;
+        .slider-track {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            padding: 0 40px 20px;
+            scroll-behavior: smooth;
+        }
+
+        .slider-track::-webkit-scrollbar {
+            display: none;
+        }
+
+        .slider-item {
+            flex: 0 0 auto;
+            width: 210px; /* Desktop size to fit 6 images */
+            scroll-snap-align: center;
             border-radius: 20px;
             overflow: hidden;
-            border: 3px solid rgba(76, 175, 80, 0.4);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(76, 175, 80, 0.2);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            border: 2px solid rgba(76, 175, 80, 0.2);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+            transition: all 0.4s ease;
             position: relative;
-            background: #000;
+            background: #111;
+            cursor: pointer;
         }
 
-        .app-screenshot-wrapper:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.9), 0 0 50px rgba(76, 175, 80, 0.4);
+        .slider-item:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(76, 175, 80, 0.8);
+            box-shadow: 0 20px 50px rgba(76, 175, 80, 0.3);
+            z-index: 2;
         }
 
-        .app-screenshot-wrapper img {
+        .slider-item img {
             width: 100%;
             height: auto;
             display: block;
@@ -400,6 +420,10 @@
         }
 
         /* ================= RESPONSIVE ================= */
+        @media (max-width: 1200px) {
+            .slider-item { width: 180px; }
+        }
+
         @media (max-width: 992px) {
             .app-showcase {
                 grid-template-columns: 1fr;
@@ -409,7 +433,8 @@
             .app-text { text-align: left; }
             .app-image-container img { max-width: 250px; }
             .feature-list li { text-align: left; }
-            .app-gallery-section { padding: 20px; }
+            .slider-item { width: 240px; }
+            .slider-track { justify-content: flex-start; padding: 0 20px 20px; }
         }
 
         @media (max-width: 768px) {
@@ -421,6 +446,8 @@
             .voice-assistant-box { padding: 30px 20px; }
             .app-text h2 { font-size: 1.5rem; }
             .flow-title { font-size: 1.5rem; }
+            .app-slider-section { padding: 30px 0; }
+            .app-gallery-title { font-size: 1.5rem; }
         }
 
         footer {
@@ -447,6 +474,8 @@
             <li><a href="hardware.html">Hardware</a></li>
             <li><a href="software.html" class="active">Software</a></li>
             <li><a href="prototype.html">Prototype</a></li>
+            <li><a href="literature_review.html">Literature</a></li>
+            <li><a href="research.html">Research</a></li> <!-- Added Research -->
             <li><a href="component_cost.html">Cost</a></li>
             <li><a href="team.html">Team</a></li>
         </ul>
@@ -499,17 +528,40 @@
             </div>
 
             <div class="app-image-container">
-                <!-- Android App Screenshot -->
-                <img src="image/app-screenshot.jpg" alt="QuailEdge Android App Dashboard">
+                <!-- App Home Screen Preview -->
+                <img src="image/app_home.jpg" alt="QuailEdge Android App Dashboard">
             </div>
         </div>
 
-        <!-- NEW: APP INTERFACE GALLERY -->
-        <div class="app-gallery-section">
+        <!-- APP INTERFACE GALLERY (SLIDER) -->
+        <div class="app-slider-section">
             <h2 class="app-gallery-title">App Interface <span>Showcase</span></h2>
-            <div class="app-screenshot-wrapper">
-                <!-- Combined Screenshots Image -->
-                <img src="image/app-screens.jpg" alt="QuailEdge App Interface Screenshots">
+            
+            <div class="slider-track">
+                <!-- Image 1: Home/Status -->
+                <div class="slider-item">
+                    <img src="image/app_home.jpg" alt="App Home Screen">
+                </div>
+                <!-- Image 2: Controls -->
+                <div class="slider-item">
+                    <img src="image/app_controls.jpg" alt="App Controls Screen">
+                </div>
+                <!-- Image 3: Camera -->
+                <div class="slider-item">
+                    <img src="image/app_camera.jpg" alt="App Camera Screen">
+                </div>
+                <!-- Image 4: Sensors -->
+                <div class="slider-item">
+                    <img src="image/app_sensors.jpg" alt="App Sensor Calibration">
+                </div>
+                <!-- Image 5: Voice Assistant -->
+                <div class="slider-item">
+                    <img src="image/app_voice.jpg" alt="Bangla Voice Assistant">
+                </div>
+                <!-- Image 6: Settings -->
+                <div class="slider-item">
+                    <img src="image/app_settings.jpg" alt="App Settings">
+                </div>
             </div>
         </div>
 

@@ -149,7 +149,7 @@
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 20px;
             padding: 20px;
-            margin-bottom: 60px;
+            margin-bottom: 40px;
             overflow: hidden;
             transition: all 0.4s ease;
             display: flex;
@@ -162,8 +162,10 @@
             box-shadow: 0 20px 60px rgba(76, 175, 80, 0.15);
         }
 
+        /* ছবির সাইজ ছোট করার জন্য max-width যোগ করা হয়েছে */
         .main-image-wrapper img {
-            max-width: 100%;
+            width: 100%;
+            max-width: 800px; 
             height: auto;
             display: block;
             border-radius: 12px;
@@ -356,13 +358,15 @@
             <li><a href="hardware.html">Hardware</a></li>
             <li><a href="software.html">Software</a></li>
             <li><a href="prototype.html" class="active">Prototype</a></li>
+            <li><a href="literature_review.html">Literature</a></li>
+            <li><a href="research.html">Research</a></li>
             <li><a href="component_cost.html">Cost</a></li>
             <li><a href="team.html">Team</a></li>
         </ul>
     </nav>
 
     <h1 class="page-title">Prototype Design</h1>
-    <p class="page-subtitle">A complete engineering breakdown of the QuailEdge prototype — featuring the conceptual design and our multi-tier architecture.</p>
+    <p class="page-subtitle">A complete engineering breakdown of the QuailEdge prototype — featuring the conceptual 3D design and our actual working hardware.</p>
 
     <section class="section">
 
@@ -374,9 +378,11 @@
             <span class="pill">📱 Remote Monitoring</span>
         </div>
 
-        <!-- MAIN IMAGE (CONCEPT/PROTOTYPE DIAGRAM) -->
+        <!-- 3D CONCEPT DESIGN -->
+        <h2 class="section-heading"><span>00</span> 3D Concept Design</h2>
         <div class="main-image-wrapper">
-            <img src="image/prototype.jpg" alt="QuailEdge Prototype Engineering Diagram">
+            <!-- Replace with your new 3D image -->
+            <img src="image/prototype_3d.jpg" alt="QuailEdge 3D Conceptual Prototype">
         </div>
 
         <h2 class="section-heading"><span>01</span> Physical Architecture & Enclosure</h2>
