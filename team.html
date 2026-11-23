@@ -122,12 +122,99 @@
             width: 100%;
         }
 
+        /* ================= SUPERVISOR CARD (NEW) ================= */
+        .supervisor-section {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 60px;
+        }
+
+        .supervisor-card {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(0, 188, 212, 0.05));
+            border: 2px solid rgba(76, 175, 80, 0.4);
+            border-radius: 20px;
+            padding: 35px 40px;
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .supervisor-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: radial-gradient(circle at top right, rgba(76, 175, 80, 0.15), transparent 50%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .supervisor-card:hover {
+            transform: translateY(-5px);
+            border-color: #4caf50;
+            box-shadow: 0 20px 50px rgba(76, 175, 80, 0.25);
+        }
+
+        .supervisor-card .member-avatar {
+            width: 130px;
+            height: 130px;
+            margin: 0 auto 20px;
+            border-width: 3px;
+            border-color: #4caf50;
+            box-shadow: 0 0 25px rgba(76, 175, 80, 0.4);
+        }
+
+        .supervisor-card .member-name {
+            font-size: 1.3rem;
+            color: #fff;
+            margin-bottom: 4px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .supervisor-card .member-id {
+            font-size: 0.85rem;
+            color: #00bcd4;
+            margin-bottom: 15px;
+            font-weight: 500;
+            line-height: 1.4;
+            position: relative;
+            z-index: 1;
+        }
+
+        .supervisor-card .member-role {
+            background: rgba(76, 175, 80, 0.2);
+            color: #4caf50;
+            border-color: #4caf50;
+            font-size: 0.8rem;
+            padding: 6px 18px;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .supervisor-card .member-socials a {
+            background: rgba(76, 175, 80, 0.1);
+            border-color: rgba(76, 175, 80, 0.3);
+            color: #4caf50;
+            position: relative;
+            z-index: 1;
+        }
+
+        .supervisor-card .member-socials a:hover {
+            background: #4caf50;
+            color: #fff;
+        }
+
         /* ================= TEAM GRID ================= */
         .team-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 25px;
-            margin-top: 40px;
         }
 
         .member-card {
@@ -187,7 +274,7 @@
             transform: scale(1.05);
         }
 
-        /* ছবি ফিট করার জন্য */
+        /* Image fit */
         .member-avatar img {
             width: 100%;
             height: 100%;
@@ -269,6 +356,7 @@
         .dot.li { background: #0A66C2; }
         .dot.gh { background: #888; }
         .dot.rg { background: #00CCBB; }
+        .dot.email { background: #ea4335; }
 
         /* ================= FOOTER ================= */
         footer {
@@ -294,6 +382,7 @@
             .page-title { font-size: 1.9rem; margin-top: 40px; }
             .section { padding: 0 20px 60px; }
             .team-grid { grid-template-columns: 1fr; }
+            .supervisor-card { padding: 25px 20px; }
         }
     </style>
 </head>
@@ -317,6 +406,25 @@
 
     <!-- TEAM SECTION -->
     <section class="section">
+        
+        <!-- SUPERVISOR SECTION -->
+        <div class="supervisor-section">
+            <div class="supervisor-card">
+                <div class="member-avatar">
+                    <img src="image/shidujaman.jpg" alt="Mohammad Shidujaman, PhD">
+                </div>
+                <h3 class="member-name">Mohammad Shidujaman, PhD</h3>
+                <p class="member-id">Dept. of Computer Science and Engineering<br>School of Engineering, Technology and Sciences</p>
+                <span class="member-role">Research Supervisor</span>
+                <p class="member-desc" style="margin-bottom: 20px;">Assistant Professor<br>Research Area: Explainable AI and Robotics, HCI, HRI</p>
+                <div class="member-socials">
+                    <a href="mailto:shidujaman@iub.edu.bd"><span class="dot email"></span>Email</a>
+                    <a href="https://www.linkedin.com/in/mohammad-shidujaman-phd-104a2848" target="_blank"><span class="dot li"></span>LinkedIn</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- STUDENT TEAM GRID -->
         <div class="team-grid">
 
             <!-- Member 1: Anik -->
@@ -326,11 +434,12 @@
                 </div>
                 <h3 class="member-name">Anik Hossain</h3>
                 <p class="member-id">ID: 2130378</p>
-                <span class="member-role">Team Lead</span>
-                <p class="member-desc">Leading the project with focus on Edge-AI integration and system architecture.</p>
+                <span class="member-role">Team Lead, Software & Mobile App Development</span>
+                <p class="member-desc">Leading the project, developing the Android mobile app, integrating software with hardware, and building the app logic.</p>
                 <div class="member-socials">
-                    <a href="#"><span class="dot li"></span>LinkedIn</a>
-                    <a href="#"><span class="dot gh"></span>GitHub</a>
+                    <a href="https://bd.linkedin.com/in/anik-hossain-a0b120429" target="_blank"><span class="dot li"></span>LinkedIn</a>
+                    <a href="https://github.com/Anik0044" target="_blank"><span class="dot gh"></span>GitHub</a>
+                    <a href="https://www.researchgate.net/profile/Anik-Tonmoy?ev=hdr_xprf" target="_blank"><span class="dot rg"></span>ResearchGate</a>
                 </div>
             </div>
 
@@ -341,11 +450,12 @@
                 </div>
                 <h3 class="member-name">Mariyam Binte Al Kader</h3>
                 <p class="member-id">ID: 2222447</p>
-                <span class="member-role">Software Lead</span>
-                <p class="member-desc">Developing the IoT dashboard and sensor data processing pipeline.</p>
+                <span class="member-role">Hardware & Logic Design</span>
+                <p class="member-desc">Designing the hardware architecture and developing the core logic for sensor data processing and system automation.</p>
                 <div class="member-socials">
-                    <a href="#"><span class="dot li"></span>LinkedIn</a>
-                    <a href="#"><span class="dot gh"></span>GitHub</a>
+                    <a href="https://www.linkedin.com/in/most-mariyum-binte-al-kader-072298420/" target="_blank"><span class="dot li"></span>LinkedIn</a>
+                    <a href="https://github.com/mariyum94" target="_blank"><span class="dot gh"></span>GitHub</a>
+                    <a href="https://www.researchgate.net/profile/Mariyum-Al-Kader?ev=hdr_xprf" target="_blank"><span class="dot rg"></span>ResearchGate</a>
                 </div>
             </div>
 
@@ -356,11 +466,10 @@
                 </div>
                 <h3 class="member-name">Chaity Saha</h3>
                 <p class="member-id">ID: 2010025</p>
-                <span class="member-role">Hardware Lead</span>
-                <p class="member-desc">Designing the physical enclosure and sensor mounting system.</p>
+                <span class="member-role">Website Developer</span>
+                <p class="member-desc">Designing and developing the QuailEdge project website, focusing on UI/UX and web integration.</p>
                 <div class="member-socials">
-                    <a href="#"><span class="dot li"></span>LinkedIn</a>
-                    <a href="#"><span class="dot gh"></span>GitHub</a>
+                    <a href="https://www.linkedin.com/in/chaity-saha-485874451?" target="_blank"><span class="dot li"></span>LinkedIn</a>
                 </div>
             </div>
 
@@ -371,11 +480,12 @@
                 </div>
                 <h3 class="member-name">AL-RAFI</h3>
                 <p class="member-id">ID: 2231464</p>
-                <span class="member-role">Research Lead</span>
-                <p class="member-desc">Conducting literature review and pre-survey data analysis.</p>
+                <span class="member-role">ESP32 Implementation & Pin Connections</span>
+                <p class="member-desc">Implementing the ESP32 microcontroller code, calibrating sensors, and managing all hardware pin connections.</p>
                 <div class="member-socials">
-                    <a href="#"><span class="dot li"></span>LinkedIn</a>
-                    <a href="#"><span class="dot rg"></span>ResearchGate</a>
+                    <a href="https://www.linkedin.com/in/al-rafi-13790043a/" target="_blank"><span class="dot li"></span>LinkedIn</a>
+                    <a href="https://github.com/AL-RAFI1" target="_blank"><span class="dot gh"></span>GitHub</a>
+                    <a href="https://www.researchgate.net/profile/Al-Rafi-11?ev=hdr_xprf" target="_blank"><span class="dot rg"></span>ResearchGate</a>
                 </div>
             </div>
 
@@ -386,11 +496,11 @@
                 </div>
                 <h3 class="member-name">Jerome Aninda Gomes</h3>
                 <p class="member-id">ID: 2211125</p>
-                <span class="member-role">Documentation Lead</span>
-                <p class="member-desc">Preparing the draft paper and maintaining project documentation.</p>
+                <span class="member-role">Logistics & Documentation</span>
+                <p class="member-desc">Managing project logistics, component procurement, and maintaining the overall project documentation.</p>
                 <div class="member-socials">
-                    <a href="#"><span class="dot li"></span>LinkedIn</a>
-                    <a href="#"><span class="dot gh"></span>GitHub</a>
+                    <a href="https://www.linkedin.com/in/jerome-aninda-gomes-49898838a/" target="_blank"><span class="dot li"></span>LinkedIn</a>
+                    <a href="https://github.com/jerome-27" target="_blank"><span class="dot gh"></span>GitHub</a>
                 </div>
             </div>
 

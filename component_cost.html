@@ -104,82 +104,194 @@
             text-align: center;
             color: #888;
             max-width: 700px;
-            margin: 0 auto 50px;
+            margin: 0 auto 60px;
             padding: 0 20px;
             line-height: 1.7;
             font-size: 0.95rem;
         }
 
-        /* ================= SECTION ================= */
+        /* ================= GRID & CARD DESIGN ================= */
         .section {
             flex: 1;
-            padding: 0 60px 80px;
-            max-width: 1200px;
+            padding: 0 40px 80px;
+            max-width: 1400px;
             margin: 0 auto;
             width: 100%;
         }
 
-        /* ================= TABLE ================= */
+        .cost-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .cost-card {
+            background: rgba(20, 20, 20, 0.6);
+            border: 1px solid rgba(76, 175, 80, 0.2);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        .cost-card:hover {
+            border-color: rgba(76, 175, 80, 0.6);
+            box-shadow: 0 20px 50px rgba(76, 175, 80, 0.15);
+            transform: translateY(-8px);
+        }
+
+        .card-header {
+            background: linear-gradient(90deg, rgba(76, 175, 80, 0.15), transparent);
+            padding: 20px 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px solid rgba(76, 175, 80, 0.2);
+        }
+
+        .card-icon {
+            font-size: 1.5rem;
+        }
+
+        .card-header h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.2rem;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+
         .table-wrap {
             overflow-x: auto;
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            background: rgba(255, 255, 255, 0.02);
-            margin-bottom: 30px;
         }
 
         .bom-table {
             width: 100%;
             border-collapse: collapse;
-            min-width: 550px;
         }
 
         .bom-table th, .bom-table td {
-            padding: 16px 20px;
+            padding: 15px 20px;
             text-align: left;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
             color: #ccc;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
         .bom-table th {
-            background: rgba(76, 175, 80, 0.1);
             color: #4caf50;
             font-weight: 600;
-            text-transform: uppercase;
             font-size: 0.75rem;
+            text-transform: uppercase;
             letter-spacing: 1px;
-        }
-
-        .bom-table tr:hover td {
-            background: rgba(76, 175, 80, 0.03);
+            background: rgba(0, 0, 0, 0.3);
         }
 
         .bom-table tr:last-child td { border-bottom: none; }
 
-        .bom-table .subtotal-row td {
-            background: rgba(0, 188, 212, 0.05);
+        .bom-table tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+            color: #fff;
+        }
+
+        .bom-table .price-col {
             color: #00bcd4;
             font-weight: 600;
-            font-size: 0.9rem;
+            text-align: right;
         }
 
-        .bom-table .grand-total td {
-            background: rgba(76, 175, 80, 0.12);
+        .bom-table .total-col {
             color: #4caf50;
             font-weight: 700;
-            font-size: 1.1rem;
             font-family: 'Space Grotesk', sans-serif;
-            padding: 22px 20px;
+            text-align: right;
         }
 
-        .section-heading {
+        .subtotal-row td {
+            background: rgba(76, 175, 80, 0.08);
+            color: #4caf50 !important;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-align: right;
+            border-top: 1px solid rgba(76, 175, 80, 0.3);
+        }
+
+        /* ================= HIGHLIGHT CARDS ================= */
+        .cost-highlight {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .highlight-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 35px;
+            text-align: center;
+            flex: 1;
+            min-width: 280px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .highlight-box:hover {
+            border-color: rgba(76, 175, 80, 0.5);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(76, 175, 80, 0.2);
+        }
+
+        .highlight-title {
+            color: #888;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .highlight-amount {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.3rem;
+            font-size: 2.2rem;
             color: #fff;
-            margin: 40px 0 20px;
-            padding-left: 15px;
-            border-left: 4px solid #4caf50;
+            font-weight: 700;
+        }
+
+        .highlight-box.main {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.15), rgba(0, 188, 212, 0.05));
+            border: 2px solid #4caf50;
+            flex: 1.5;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight-box.main::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(76, 175, 80, 0.15), transparent 30%);
+            animation: rotate 8s linear infinite;
+            z-index: 0;
+        }
+
+        .highlight-box.main .highlight-title, .highlight-box.main .highlight-amount {
+            position: relative;
+            z-index: 1;
+        }
+
+        .highlight-box.main .highlight-title { color: #4caf50; }
+
+        .highlight-box.main .highlight-amount {
+            color: #4caf50;
+            font-size: 3.5rem;
+            text-shadow: 0 0 30px rgba(76, 175, 80, 0.6);
+        }
+
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
         }
 
         /* ================= FOOTER ================= */
@@ -190,22 +302,25 @@
             border-top: 1px solid rgba(255, 255, 255, 0.05);
             font-size: 0.85rem;
             color: #666;
+            margin-top: auto;
         }
 
         footer span { color: #4caf50; font-weight: 600; }
 
         /* ================= RESPONSIVE ================= */
+        @media (max-width: 992px) {
+            .cost-grid { grid-template-columns: 1fr; }
+        }
+
         @media (max-width: 768px) {
-            nav {
-                flex-direction: column;
-                padding: 15px;
-                gap: 12px;
-            }
+            nav { flex-direction: column; padding: 15px; gap: 12px; }
             .nav-links { gap: 12px; justify-content: center; }
             .nav-links a { font-size: 0.78rem; }
             .page-title { font-size: 1.9rem; margin-top: 40px; }
             .section { padding: 0 15px 60px; }
-            .bom-table th, .bom-table td { padding: 12px 12px; font-size: 0.8rem; }
+            .bom-table th, .bom-table td { padding: 12px 10px; font-size: 0.75rem; }
+            .highlight-box.main .highlight-amount { font-size: 2.5rem; }
+            .bom-table { min-width: 400px; }
         }
     </style>
 </head>
@@ -227,134 +342,143 @@
     </nav>
 
     <!-- PAGE TITLE -->
-    <h1 class="page-title">Component Cost</h1>
-    <p class="page-subtitle">Complete Bill of Materials (BOM) for the QuailEdge prototype — sourced from RoboticsBD and local markets in Bangladesh.</p>
+    <h1 class="page-title">Component Cost & BOM</h1>
+    <p class="page-subtitle">A comprehensive breakdown of all hardware components sourced from RoboticsBD and local markets for the QuailEdge prototype.</p>
 
-    <!-- SECTION 1: SENSORS -->
+    <!-- SECTION -->
     <section class="section">
-        <h2 class="section-heading">1. Sensors & Basic Components</h2>
-        <div class="table-wrap">
-            <table class="bom-table">
-                <thead>
-                    <tr>
-                        <th>Component</th>
-                        <th>Qty</th>
-                        <th>Unit Price (BDT)</th>
-                        <th>Total (BDT)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>DHT22 Temperature / Humidity Sensor</td><td>2</td><td>৳ 260</td><td>৳ 520</td></tr>
-                    <tr><td>MQ-135 Gas Sensor</td><td>1</td><td>৳ 150</td><td>৳ 150</td></tr>
-                    <tr><td>80×80×25mm 12V Cooling Fan</td><td>4</td><td>৳ 110</td><td>৳ 440</td></tr>
-                    <tr><td>IRLZ34N MOSFET</td><td>4</td><td>৳ 90</td><td>৳ 360</td></tr>
-                    <tr class="subtotal-row"><td colspan="3">Subtotal</td><td>৳ 1,470</td></tr>
-                </tbody>
-            </table>
+        
+        <div class="cost-grid">
+
+            <!-- CARD 1: CONTROLLER & VISION -->
+            <div class="cost-card">
+                <div class="card-header">
+                    <span class="card-icon">🧠</span>
+                    <h2>1. Controller & Vision</h2>
+                </div>
+                <div class="table-wrap">
+                    <table class="bom-table">
+                        <thead>
+                            <tr>
+                                <th>Component</th>
+                                <th>Qty</th>
+                                <th style="text-align: right;">Total (BDT)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>ESP32 ESP-32S 30P NodeMCU Development Board (RBD-0948)</td><td>1</td><td class="total-col">৳ 480</td></tr>
+                            <tr><td>ESP32-CAM WiFi + Bluetooth Camera Module</td><td>2</td><td class="total-col">৳ 2,280</td></tr>
+                            <tr><td>ESP32-CAM-MB Type-C Download Module (RBD-3602)</td><td>2</td><td class="total-col">৳ 660</td></tr>
+                            <tr><td>Abs Material 2 Axis Pan Tilt Camera Mount w/ SG90 (RBD-0285)</td><td>2</td><td class="total-col">৳ 760</td></tr>
+                            <tr class="subtotal-row"><td colspan="2">Subtotal</td><td>৳ 4,180</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- CARD 2: SENSORS & SWITCHING -->
+            <div class="cost-card">
+                <div class="card-header">
+                    <span class="card-icon">📡</span>
+                    <h2>2. Sensors & Switching</h2>
+                </div>
+                <div class="table-wrap">
+                    <table class="bom-table">
+                        <thead>
+                            <tr>
+                                <th>Component</th>
+                                <th>Qty</th>
+                                <th style="text-align: right;">Total (BDT)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>DHT22 Digital Temperature Humidity Sensor (RBD-2338)</td><td>1</td><td class="total-col">৳ 260</td></tr>
+                            <tr><td>MQ-135 Gas Sensor (RBD-0679)</td><td>1</td><td class="total-col">৳ 150</td></tr>
+                            <tr><td>Water Level Sensor Gold Coating (RBD-1935)</td><td>1</td><td class="total-col">৳ 350</td></tr>
+                            <tr><td>TTP229 8 Channel Capacitive Touch Sensor (RBD-0416)</td><td>1</td><td class="total-col">৳ 205</td></tr>
+                            <tr><td>8 Channel 5V Relay Module (RBD-1948)</td><td>1</td><td class="total-col">৳ 710</td></tr>
+                            <tr><td>16 Channel 12 bit PWM / Servo Driver I2C (RBD-0289)</td><td>1</td><td class="total-col">৳ 449</td></tr>
+                            <tr class="subtotal-row"><td colspan="2">Subtotal</td><td>৳ 2,124</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- CARD 3: ACTUATORS & MECHANICS -->
+            <div class="cost-card">
+                <div class="card-header">
+                    <span class="card-icon">⚙️</span>
+                    <h2>3. Actuators & Mechanics</h2>
+                </div>
+                <div class="table-wrap">
+                    <table class="bom-table">
+                        <thead>
+                            <tr>
+                                <th>Component</th>
+                                <th>Qty</th>
+                                <th style="text-align: right;">Total (BDT)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>90x90x25mm DC12V 0.3A Cooling Fan (RBD-4547)</td><td>4</td><td class="total-col">৳ 520</td></tr>
+                            <tr><td>Servo Motor MG996R 270 Degree Rotation (RBD-2941)</td><td>2</td><td class="total-col">৳ 1,164</td></tr>
+                            <tr><td>USB Mini Humidifier Mist Maker DIY Kit (RBD-2426)</td><td>1</td><td class="total-col">৳ 380</td></tr>
+                            <tr><td>Submersible 3V Mini DC Water Pump (RBD-2471)</td><td>2</td><td class="total-col">৳ 300</td></tr>
+                            <tr><td>পাখির খাঁচা (Bird Cage Enclosure)</td><td>1</td><td class="total-col">৳ 600</td></tr>
+                            <tr class="subtotal-row"><td colspan="2">Subtotal</td><td>৳ 2,964</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- CARD 4: POWER & WIRING -->
+            <div class="cost-card">
+                <div class="card-header">
+                    <span class="card-icon">🔌</span>
+                    <h2>4. Power & Wiring</h2>
+                </div>
+                <div class="table-wrap">
+                    <table class="bom-table">
+                        <thead>
+                            <tr>
+                                <th>Component</th>
+                                <th>Qty</th>
+                                <th style="text-align: right;">Total (BDT)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>12V 5A Power Supply Adapter (RBD-3020)</td><td>1</td><td class="total-col">৳ 450</td></tr>
+                            <tr><td>LM2596S DC-DC 24V/12V To 5V 5A Buck Converter</td><td>1</td><td class="total-col">৳ 380</td></tr>
+                            <tr><td>DC-DC 12V to 3.3V & 5V Power Supply Module (RBD-1957)</td><td>1</td><td class="total-col">৳ 110</td></tr>
+                            <tr><td>Shielded Blue USB Type-C Cable 30cm (RBD-2425)</td><td>2</td><td class="total-col">৳ 440</td></tr>
+                            <tr><td>USB Type-C Male Power Connector w/ Open Wire (RBD-4284)</td><td>2</td><td class="total-col">৳ 190</td></tr>
+                            <tr><td>Barrel Connector Female (RBD-1587)</td><td>1</td><td class="total-col">৳ 38</td></tr>
+                            <tr class="subtotal-row"><td colspan="2">Subtotal</td><td>৳ 1,608</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
         </div>
 
-        <!-- SECTION 2: POWER -->
-        <h2 class="section-heading">2. Power & Control System</h2>
-        <div class="table-wrap">
-            <table class="bom-table">
-                <thead>
-                    <tr>
-                        <th>Component</th>
-                        <th>Qty</th>
-                        <th>Unit Price (BDT)</th>
-                        <th>Total (BDT)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>ESP32 WROOM32 Development Board</td><td>1</td><td>৳ 519</td><td>৳ 519</td></tr>
-                    <tr><td>DS3231 Real-Time Clock Module</td><td>1</td><td>৳ 360</td><td>৳ 360</td></tr>
-                    <tr><td>12V 5A Power Adapter</td><td>1</td><td>৳ 450</td><td>৳ 450</td></tr>
-                    <tr><td>LM2596 DC-DC Buck Converter</td><td>1</td><td>৳ 85</td><td>৳ 85</td></tr>
-                    <tr><td>Water-Level Sensor Module</td><td>1</td><td>৳ 49</td><td>৳ 49</td></tr>
-                    <tr><td>12V Cool-White LED Chain</td><td>1</td><td>৳ 255</td><td>৳ 255</td></tr>
-                    <tr class="subtotal-row"><td colspan="3">Subtotal</td><td>৳ 1,718</td></tr>
-                </tbody>
-            </table>
+        <!-- GRAND TOTAL HIGHLIGHTS -->
+        <div class="cost-highlight">
+            <div class="highlight-box">
+                <div class="highlight-title">Total Electronics & Parts</div>
+                <div class="highlight-amount">৳ 10,276</div>
+            </div>
+            
+            <div class="highlight-box">
+                <div class="highlight-title">Bird Cage Enclosure</div>
+                <div class="highlight-amount">৳ 600</div>
+            </div>
+
+            <div class="highlight-box main">
+                <div class="highlight-title">Grand Total Project Cost</div>
+                <div class="highlight-amount">৳ 10,876</div>
+            </div>
         </div>
 
-        <!-- SECTION 3: FEEDING -->
-        <h2 class="section-heading">3. Automatic Feeding System</h2>
-        <div class="table-wrap">
-            <table class="bom-table">
-                <thead>
-                    <tr>
-                        <th>Component</th>
-                        <th>Qty</th>
-                        <th>Unit Price (BDT)</th>
-                        <th>Total (BDT)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>HX711 Load-Cell Amplifier</td><td>1</td><td>৳ 130</td><td>৳ 130</td></tr>
-                    <tr><td>5 kg Load Cell</td><td>1</td><td>৳ 380</td><td>৳ 380</td></tr>
-                    <tr><td>SG90 Servo Motor</td><td>1</td><td>৳ 129</td><td>৳ 129</td></tr>
-                    <tr class="subtotal-row"><td colspan="3">Subtotal</td><td>৳ 639</td></tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- SECTION 4: PROTOTYPING -->
-        <h2 class="section-heading">4. Prototyping & Wiring</h2>
-        <div class="table-wrap">
-            <table class="bom-table">
-                <thead>
-                    <tr>
-                        <th>Component</th>
-                        <th>Qty</th>
-                        <th>Unit Price (BDT)</th>
-                        <th>Total (BDT)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>40-piece Jumper-Wire Set</td><td>1</td><td>৳ 100</td><td>৳ 100</td></tr>
-                    <tr><td>Full-Size Breadboard</td><td>1</td><td>৳ 160</td><td>৳ 160</td></tr>
-                    <tr><td>Fuse Holder</td><td>1</td><td>৳ 30</td><td>৳ 30</td></tr>
-                    <tr><td>ON/OFF Rocker Switch</td><td>1</td><td>৳ 70</td><td>৳ 70</td></tr>
-                    <tr class="subtotal-row"><td colspan="3">Subtotal</td><td>৳ 360</td></tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- SECTION 5: WATER SYSTEM -->
-        <h2 class="section-heading">5. Water & Cleaning System</h2>
-        <div class="table-wrap">
-            <table class="bom-table">
-                <thead>
-                    <tr>
-                        <th>Component</th>
-                        <th>Qty</th>
-                        <th>Approx. Amount (BDT)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>12V Submersible Water Pump (700 L/h)</td><td>1</td><td>৳ 330</td></tr>
-                    <tr><td>Float Switch (Wastewater-Jar Full Warning)</td><td>1</td><td>৳ 131</td></tr>
-                    <tr><td>Clean-Water Reservoir (2-3 L)</td><td>1</td><td>৳ 100 - 200</td></tr>
-                    <tr><td>Wastewater Jar (3-5 L, Screw Lid)</td><td>1</td><td>৳ 150 - 250</td></tr>
-                    <tr><td>Flexible Hose and Fittings</td><td>As needed</td><td>৳ 150 - 250</td></tr>
-                    <tr><td>Perforated Spray Bar + Drain Fitting + Strainer</td><td>1 set</td><td>৳ 150 - 300</td></tr>
-                    <tr class="subtotal-row"><td colspan="2">Approx. Subtotal</td><td>৳ 1,011 - 1,461</td></tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- GRAND TOTAL -->
-        <h2 class="section-heading">Grand Total</h2>
-        <div class="table-wrap">
-            <table class="bom-table">
-                <tbody>
-                    <tr class="grand-total">
-                        <td>Total Project Cost (Approx.)</td>
-                        <td>৳ 5,198 - 5,648</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
     </section>
 
     <!-- FOOTER -->

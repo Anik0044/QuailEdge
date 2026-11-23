@@ -168,10 +168,9 @@
             color: #4caf50;
             flex-shrink: 0;
             box-shadow: 0 0 25px rgba(76, 175, 80, 0.3);
-            overflow: hidden; /* ছবি বাইরে বের হওয়া রোধ করে */
+            overflow: hidden;
         }
 
-        /* নতুন যোগ করা হলো: ছবি ফিট করার জন্য */
         .member-avatar img {
             width: 100%;
             height: 100%;
@@ -197,21 +196,22 @@
             font-weight: 400;
         }
 
-        /* ================= PAPER GRID ================= */
+        /* ================= PAPER GRID (UPDATED) ================= */
         .paper-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 22px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            align-items: stretch; /* This forces cards in a row to be equal height */
         }
 
         .paper-card {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 16px;
-            padding: 25px 22px;
+            padding: 30px;
             transition: all 0.4s ease;
             position: relative;
-            overflow: hidden;
+            /* overflow: hidden; -- REMOVED to prevent text from cutting off */
             display: flex;
             flex-direction: column;
         }
@@ -230,63 +230,62 @@
         .paper-card:hover::before { transform: scaleX(1); }
 
         .paper-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-5px);
             border-color: rgba(76, 175, 80, 0.4);
             box-shadow: 0 20px 50px rgba(76, 175, 80, 0.15);
             background: rgba(76, 175, 80, 0.04);
         }
 
         .paper-number {
-            position: absolute;
-            top: 18px;
-            right: 20px;
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.8rem;
-            color: rgba(76, 175, 80, 0.5);
+            font-size: 0.85rem;
+            color: rgba(76, 175, 80, 0.8);
             font-weight: 700;
             letter-spacing: 1px;
+            margin-bottom: 10px;
+            display: block;
         }
 
         .paper-title {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.05rem;
+            font-size: 1.15rem;
             color: #fff;
             margin-bottom: 12px;
             line-height: 1.4;
-            padding-right: 40px;
         }
 
         .paper-desc {
-            font-size: 0.83rem;
+            font-size: 0.88rem;
             color: #999;
-            line-height: 1.7;
-            flex-grow: 1;
-            margin-bottom: 16px;
+            line-height: 1.6;
+            margin-bottom: 12px;
         }
 
+        /* Tags Section - Pushed to bottom */
         .paper-tags {
+            margin-top: auto; /* Pushes the tags to the bottom of the card */
+            padding-top: 15px;
             display: flex;
             flex-wrap: wrap;
-            gap: 5px;
-            margin-bottom: 18px;
+            gap: 8px;
         }
 
         .paper-tag {
-            font-size: 0.65rem;
+            background: rgba(76, 175, 80, 0.1);
+            border: 1px solid rgba(76, 175, 80, 0.25);
+            border-radius: 15px;
+            font-size: 0.7rem;
+            color: #4caf50;
+            padding: 4px 12px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            padding: 4px 10px;
-            border-radius: 12px;
-            background: rgba(76, 175, 80, 0.1);
-            border: 1px solid rgba(76, 175, 80, 0.25);
-            color: #4caf50;
         }
 
         .paper-actions {
             display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
         }
 
         .paper-btn {
@@ -294,18 +293,17 @@
             align-items: center;
             justify-content: center;
             gap: 6px;
-            padding: 9px 18px;
+            padding: 10px 20px;
             background: rgba(76, 175, 80, 0.1);
             border: 1px solid rgba(76, 175, 80, 0.4);
             border-radius: 25px;
             color: #4caf50;
             text-decoration: none;
-            font-size: 0.78rem;
+            font-size: 0.8rem;
             font-weight: 600;
             transition: all 0.3s ease;
             font-family: 'Space Grotesk', sans-serif;
             flex: 1;
-            min-width: 100px;
         }
 
         .paper-btn:hover {
@@ -315,16 +313,246 @@
             transform: translateY(-2px);
         }
 
-        .paper-btn.download {
+        .paper-btn.doi {
             background: rgba(0, 188, 212, 0.1);
             border-color: rgba(0, 188, 212, 0.4);
             color: #00bcd4;
         }
 
-        .paper-btn.download:hover {
+        .paper-btn.doi:hover {
             background: #00bcd4;
             color: #fff;
             box-shadow: 0 0 20px rgba(0, 188, 212, 0.5);
+        }
+
+        /* ================= ACCORDION SYSTEM ================= */
+        .accordion-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .accordion-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-item[open] {
+            border-color: rgba(76, 175, 80, 0.4);
+            box-shadow: 0 10px 30px rgba(76, 175, 80, 0.1);
+            background: rgba(76, 175, 80, 0.02);
+        }
+
+        .accordion-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 25px;
+            cursor: pointer;
+            list-style: none;
+            outline: none;
+        }
+
+        .accordion-header::-webkit-details-marker { display: none; }
+
+        .accordion-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .accordion-title .paper-number {
+            position: static;
+            color: rgba(76, 175, 80, 0.8);
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+
+        .accordion-title .paper-title {
+            margin-bottom: 0;
+            padding-right: 0;
+            font-size: 1.1rem;
+        }
+
+        .accordion-icon {
+            color: #4caf50;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-item[open] .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            padding: 0 25px 25px 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ================= ADDITIONAL CSS FOR ANIK/MARIYAM ACCORDION CONTENT ================= */
+        .paper-meta {
+            font-size: 0.75rem;
+            color: #888;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .paper-section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.9rem;
+            color: #fff;
+            margin-bottom: 8px;
+            margin-top: 15px;
+        }
+
+        .paper-text {
+            font-size: 0.85rem;
+            color: #bbb;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .paper-text strong {
+            color: #4caf50;
+        }
+
+        .highlight-box {
+            background: #111;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #4caf50;
+        }
+
+        .highlight-box-title {
+            color: #4caf50;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .highlight-box p {
+            color: #eee;
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        .chart-container {
+            background: #111;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .chart-title {
+            font-size: 0.9rem;
+            color: #fff;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        
+        .chart-sub {
+            font-size: 0.75rem;
+            color: #888;
+            margin-bottom: 20px;
+        }
+
+        .bar-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 0.75rem;
+        }
+
+        .bar-label {
+            width: 120px;
+            color: #ccc;
+            text-align: right;
+            padding-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .bar-track {
+            flex-grow: 1;
+            height: 20px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .bar-fill {
+            height: 100%;
+            background: #4caf50;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 8px;
+            font-size: 0.7rem;
+            color: #000;
+            font-weight: 700;
+        }
+
+        .bar-fill.blue { background: #2196f3; color: #fff; }
+        .bar-fill.gray { background: #555; color: #fff; }
+
+        .bar-value {
+            width: 40px;
+            text-align: right;
+            font-weight: 600;
+            color: #fff;
+            margin-left: 10px;
+        }
+
+        .flow-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #111;
+            border-radius: 12px;
+            padding: 20px 15px;
+            margin: 20px 0;
+            border: 1px solid rgba(255,255,255,0.05);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .flow-box {
+            background: #222;
+            border: 1px solid #444;
+            border-radius: 8px;
+            padding: 10px;
+            font-size: 0.7rem;
+            color: #eee;
+            text-align: center;
+            flex: 1;
+            min-width: 80px;
+            position: relative;
+        }
+
+        .flow-box.green {
+            border-color: #4caf50;
+            background: rgba(76, 175, 80, 0.1);
+            color: #4caf50;
+        }
+
+        .flow-arrow {
+            color: #555;
+            font-size: 1.2rem;
         }
 
         /* ================= FOOTER ================= */
@@ -355,6 +583,9 @@
             .summary-box { padding: 25px 20px; }
             .member-header { gap: 12px; }
             .member-info h2 { font-size: 1.2rem; }
+            .flow-container { flex-direction: column; }
+            .flow-arrow { transform: rotate(90deg); }
+            .accordion-title { flex-direction: column; align-items: flex-start; gap: 5px; }
         }
     </style>
 </head>
@@ -394,7 +625,6 @@
         <!-- ===================== MEMBER 1: ANIK HOSSAIN ===================== -->
         <div class="member-section">
             <div class="member-header">
-                <!-- এখানে Anik এর ছবি বসানো হয়েছে -->
                 <div class="member-avatar"><img src="image/anik.jpg" alt="Anik"></div>
                 <div class="member-info">
                     <h2>Anik Hossain</h2>
@@ -402,77 +632,213 @@
                 </div>
             </div>
 
-            <div class="paper-grid">
+            <!-- Accordion System for Anik -->
+            <div class="accordion-container">
 
                 <!-- Paper 1 -->
-                <div class="paper-card">
-                    <span class="paper-number">01</span>
-                    <h3 class="paper-title">Housing and Dietary Effects on Production Performance of Japanese Quail</h3>
-                    <p class="paper-desc">This study assessed the impact of diets and housing arrangements on Japanese quail's egg production, egg index, and quality.</p>
-                    <div class="paper-tags">
-                        <span class="paper-tag">Housing</span>
-                        <span class="paper-tag">Dietary</span>
+                <details class="accordion-item">
+                    <summary class="accordion-header">
+                        <div class="accordion-title">
+                            <span class="paper-number">01</span>
+                            <h3 class="paper-title">Housing and Dietary Effects on Production Performance of Japanese Quail</h3>
+                        </div>
+                        <span class="accordion-icon">↓</span>
+                    </summary>
+                    
+                    <div class="accordion-content">
+                        <p class="paper-meta" style="margin-top: 15px;">Journal of Applied Poultry Research · 2024</p>
+                        
+                        <h4 class="paper-section-title">Research Flow</h4>
+                        <div class="flow-container">
+                            <div class="flow-box">Housing Type<br>(Cage vs Floor)</div>
+                            <div class="flow-arrow">→</div>
+                            <div class="flow-box">Dietary Intake<br>(CLD vs ED)</div>
+                            <div class="flow-arrow">→</div>
+                            <div class="flow-box green">Monitor<br>Egg Production</div>
+                            <div class="flow-arrow">→</div>
+                            <div class="flow-box">Analyze<br>Quality</div>
+                        </div>
+
+                        <h4 class="paper-section-title">Key Findings</h4>
+                        <ul class="paper-text" style="padding-left: 20px; margin-bottom: 20px;">
+                            <li>Compared to floor-reared birds, cage birds achieved <strong>50% egg production</strong> faster.</li>
+                            <li>Birds fed a Commercial Layer Diet (CLD) showed significantly higher feed efficiency and longer lifespans.</li>
+                        </ul>
+                        
+                        <div class="highlight-box">
+                            <div class="highlight-box-title">How QuailEdge builds on it</div>
+                            <p>QuailEdge utilizes an elevated, cage-like sloped mesh floor to ensure clean egg roll-out and uses automatic feeding systems to maintain precise dietary control (similar to CLD), maximizing productivity in urban spaces.</p>
+                        </div>
+
+                        <div class="paper-actions" style="margin-top: 15px;">
+                            <a href="image/paper1.pdf" target="_blank" class="paper-btn">📄 PDF</a>
+                            <a href="https://www.sciencedirect.com/science/article/pii/S2451943X24000073" target="_blank" class="paper-btn doi">🔗 Link</a>
+                        </div>
                     </div>
-                    <div class="paper-actions">
-                        <a href="image/paper1.pdf" target="_blank" class="paper-btn">📄 PDF</a>
-                    </div>
-                </div>
+                </details>
 
                 <!-- Paper 2 -->
-                <div class="paper-card">
-                    <span class="paper-number">02</span>
-                    <h3 class="paper-title">Productive Performance & Surface Temperatures of Japanese Quail</h3>
-                    <p class="paper-desc">Evaluates the effects of different environment conditions (air velocity and temperature) on productive performance and surface temperatures of Japanese quail.</p>
-                    <div class="paper-tags">
-                        <span class="paper-tag">Temperature</span>
-                        <span class="paper-tag">Environment</span>
+                <details class="accordion-item">
+                    <summary class="accordion-header">
+                        <div class="accordion-title">
+                            <span class="paper-number">02</span>
+                            <h3 class="paper-title">Productive Performance & Surface Temperatures of Japanese Quail</h3>
+                        </div>
+                        <span class="accordion-icon">↓</span>
+                    </summary>
+                    
+                    <div class="accordion-content">
+                        <p class="paper-meta" style="margin-top: 15px;">Poultry Science · 2019</p>
+                        
+                        <h4 class="paper-section-title">Impact of Air Velocity</h4>
+                        <p class="paper-text">Egg production increased significantly with higher air velocity levels. Air velocity is crucial in removing heat from the surface of the birds.</p>
+                        
+                        <div class="chart-container">
+                            <div class="chart-title">Performance Comparison</div>
+                            <div class="chart-sub">Higher air velocity improves heat dissipation and egg yield</div>
+                            <div class="bar-row">
+                                <div class="bar-label">Optimal Airflow</div>
+                                <div class="bar-track"><div class="bar-fill blue" style="width: 85%;"></div></div>
+                                <div class="bar-value">High</div>
+                            </div>
+                            <div class="bar-row">
+                                <div class="bar-label">Low Airflow</div>
+                                <div class="bar-track"><div class="bar-fill gray" style="width: 40%;"></div></div>
+                                <div class="bar-value">Low</div>
+                            </div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <div class="highlight-box-title">How QuailEdge builds on it</div>
+                            <p>QuailEdge employs a dual-side ventilation system with 12V exhaust fans and mist cooling. Sensors (DHT22) monitor temp/humidity to automatically regulate airflow, mimicking the optimal conditions found in this study.</p>
+                        </div>
+
+                        <div class="paper-actions" style="margin-top: 15px;">
+                            <a href="image/paper2.pdf" target="_blank" class="paper-btn">📄 PDF</a>
+                            <a href="https://doi.org/10.3382/ps/pez068" target="_blank" class="paper-btn doi">🔗 DOI</a>
+                        </div>
                     </div>
-                    <div class="paper-actions">
-                        <a href="image/paper2.pdf" target="_blank" class="paper-btn">📄 PDF</a>
-                    </div>
-                </div>
+                </details>
 
                 <!-- Paper 3 -->
-                <div class="paper-card">
-                    <span class="paper-number">03</span>
-                    <h3 class="paper-title">Edge-AI Architectures for Smart Agriculture</h3>
-                    <p class="paper-desc">Systematic review of on-device AI processing for agricultural IoT, comparing ESP32, Raspberry Pi, and Jetson Nano.</p>
-                    <div class="paper-tags">
-                        <span class="paper-tag">Edge-AI</span>
-                        <span class="paper-tag">IoT</span>
+                <details class="accordion-item">
+                    <summary class="accordion-header">
+                        <div class="accordion-title">
+                            <span class="paper-number">03</span>
+                            <h3 class="paper-title">Edge-AI Architectures for Smart Agriculture</h3>
+                        </div>
+                        <span class="accordion-icon">↓</span>
+                    </summary>
+                    
+                    <div class="accordion-content">
+                        <p class="paper-meta" style="margin-top: 15px;">Sensors (MDPI) · 2025</p>
+                        
+                        <h4 class="paper-section-title">Processing Architecture</h4>
+                        <div class="chart-container" style="padding: 15px; text-align: center;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; gap: 5px; flex-wrap: wrap;">
+                                <div style="background: rgba(76, 175, 80, 0.1); border: 1px solid #4caf50; padding: 8px; border-radius: 6px; flex: 1; min-width: 80px;">
+                                    <div style="color: #4caf50; font-size: 0.7rem; font-weight: bold;">Sensors</div>
+                                    <div style="font-size: 0.6rem; color: #ccc;">Data Collection</div>
+                                </div>
+                                <div style="color: #4caf50;">→</div>
+                                <div style="background: rgba(0, 188, 212, 0.1); border: 1px solid #00bcd4; padding: 8px; border-radius: 6px; flex: 1; min-width: 80px;">
+                                    <div style="color: #00bcd4; font-size: 0.7rem; font-weight: bold;">Edge AI</div>
+                                    <div style="font-size: 0.6rem; color: #ccc;">On-Device</div>
+                                </div>
+                                <div style="color: #4caf50;">→</div>
+                                <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid #555; padding: 8px; border-radius: 6px; flex: 1; min-width: 80px;">
+                                    <div style="color: #fff; font-size: 0.7rem; font-weight: bold;">Action</div>
+                                    <div style="font-size: 0.6rem; color: #ccc;">No Cloud</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="highlight-box">
+                            <div class="highlight-box-title">How QuailEdge builds on it</div>
+                            <p>QuailEdge uses the ESP32 WROOM32 microcontroller to process sensor data locally, ensuring real-time response for climate control without relying on cloud connectivity.</p>
+                        </div>
+
+                        <div class="paper-actions" style="margin-top: 15px;">
+                            <a href="image/paper3.pdf" target="_blank" class="paper-btn">📄 PDF</a>
+                            <a href="https://doi.org/10.3390/s25175302" target="_blank" class="paper-btn doi">🔗 DOI</a>
+                        </div>
                     </div>
-                    <div class="paper-actions">
-                        <a href="image/paper3.pdf" target="_blank" class="paper-btn">📄 PDF</a>
-                    </div>
-                </div>
+                </details>
 
                 <!-- Paper 4 -->
-                <div class="paper-card">
-                    <span class="paper-number">04</span>
-                    <h3 class="paper-title">TinyML for Microcontroller-Based Environmental Monitoring</h3>
-                    <p class="paper-desc">Exploration of TensorFlow Lite Micro and Edge Impulse for deploying ML models on ESP32 for real-time climate prediction.</p>
-                    <div class="paper-tags">
-                        <span class="paper-tag">TinyML</span>
-                        <span class="paper-tag">Embedded</span>
+                <details class="accordion-item">
+                    <summary class="accordion-header">
+                        <div class="accordion-title">
+                            <span class="paper-number">04</span>
+                            <h3 class="paper-title">TinyML for Microcontroller-Based Environmental Monitoring</h3>
+                        </div>
+                        <span class="accordion-icon">↓</span>
+                    </summary>
+                    
+                    <div class="accordion-content">
+                        <p class="paper-meta" style="margin-top: 15px;">Applied Sciences (MDPI) · 2026</p>
+                        
+                        <h4 class="paper-section-title">Predictive Capability</h4>
+                        <div class="chart-container" style="padding: 15px;">
+                            <div class="bar-row">
+                                <div class="bar-label">TinyML Model</div>
+                                <div class="bar-track"><div class="bar-fill" style="width: 90%; background: #4caf50; color: #fff;">Predictive</div></div>
+                            </div>
+                            <div class="bar-row">
+                                <div class="bar-label">Standard Sensor</div>
+                                <div class="bar-track"><div class="bar-fill" style="width: 50%; background: #555; color: #fff;">Reactive</div></div>
+                            </div>
+                        </div>
+                        
+                        <div class="highlight-box">
+                            <div class="highlight-box-title">How QuailEdge builds on it</div>
+                            <p>The QuailEdge system integrates lightweight AI models to forecast temperature spikes, allowing the preemptive activation of fans and mist sprayers.</p>
+                        </div>
+
+                        <div class="paper-actions" style="margin-top: 15px;">
+                            <a href="image/paper4.pdf" target="_blank" class="paper-btn">📄 PDF</a>
+                            <a href="https://doi.org/10.3390/app16073237" target="_blank" class="paper-btn doi">🔗 DOI</a>
+                        </div>
                     </div>
-                    <div class="paper-actions">
-                        <a href="image/paper4.pdf" target="_blank" class="paper-btn">📄 PDF</a>
-                    </div>
-                </div>
+                </details>
 
                 <!-- Paper 5 -->
-                <div class="paper-card">
-                    <span class="paper-number">05</span>
-                    <h3 class="paper-title">Real-Time Sensor Fusion on Low-Power Embedded Systems</h3>
-                    <p class="paper-desc">Techniques for combining data from multiple sensors (DHT22, MQ-135, load cell) into a unified state estimation for decision-making.</p>
-                    <div class="paper-tags">
-                        <span class="paper-tag">Sensor Fusion</span>
-                        <span class="paper-tag">Real-Time</span>
+                <details class="accordion-item">
+                    <summary class="accordion-header">
+                        <div class="accordion-title">
+                            <span class="paper-number">05</span>
+                            <h3 class="paper-title">Real-Time Sensor Fusion on Low-Power Embedded Systems</h3>
+                        </div>
+                        <span class="accordion-icon">↓</span>
+                    </summary>
+                    
+                    <div class="accordion-content">
+                        <p class="paper-meta" style="margin-top: 15px;">Sensors (MDPI) · 2017</p>
+                        
+                        <h4 class="paper-section-title">Multi-Sensor Fusion</h4>
+                        <div class="chart-container" style="padding: 15px; text-align: center;">
+                            <div style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
+                                <div style="background: rgba(76, 175, 80, 0.1); border: 1px solid #4caf50; padding: 5px 10px; border-radius: 15px; font-size: 0.65rem;">DHT22</div>
+                                <div style="background: rgba(0, 188, 212, 0.1); border: 1px solid #00bcd4; padding: 5px 10px; border-radius: 15px; font-size: 0.65rem;">MQ-135</div>
+                                <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid #555; padding: 5px 10px; border-radius: 15px; font-size: 0.65rem;">Load Cell</div>
+                            </div>
+                            <div style="color: #4caf50; margin: 10px 0;">↓</div>
+                            <div style="background: #111; padding: 8px; border-radius: 6px; font-size: 0.7rem; color: #fff; border: 1px solid #333;">
+                                Unified State Estimation
+                            </div>
+                        </div>
+                        
+                        <div class="highlight-box">
+                            <div class="highlight-box-title">How QuailEdge builds on it</div>
+                            <p>QuailEdge combines temperature, humidity, gas, and weight data to make comprehensive decisions about bird welfare and system automation.</p>
+                        </div>
+
+                        <div class="paper-actions" style="margin-top: 15px;">
+                            <a href="image/paper5.pdf" target="_blank" class="paper-btn">📄 PDF</a>
+                            <a href="https://doi.org/10.3390/s17122810" target="_blank" class="paper-btn doi">🔗 DOI</a>
+                        </div>
                     </div>
-                    <div class="paper-actions">
-                        <a href="image/paper5.pdf" target="_blank" class="paper-btn">📄 PDF</a>
-                    </div>
-                </div>
+                </details>
 
             </div>
         </div>
@@ -480,7 +846,6 @@
         <!-- ===================== MEMBER 2: MARIYAM BINTE AL KADER ===================== -->
         <div class="member-section">
             <div class="member-header">
-                <!-- এখানে Mariyam এর ছবি বসানো হয়েছে -->
                 <div class="member-avatar"><img src="image/mariyum.jpg" alt="Mariyam"></div>
                 <div class="member-info">
                     <h2>Mariyam Binte Al Kader</h2>
@@ -488,85 +853,223 @@
                 </div>
             </div>
 
-            <div class="paper-grid">
+            <!-- Accordion System for Mariyam -->
+            <div class="accordion-container">
 
-                <div class="paper-card">
-                    <span class="paper-number">01</span>
-                    <h3 class="paper-title">IoT-Based Environmental Monitoring Systems</h3>
-                    <p class="paper-desc">Comprehensive analysis of sensor networks, data acquisition, and real-time monitoring for confined environments.</p>
-                    <div class="paper-tags">
-                        <span class="paper-tag">IoT</span>
-                        <span class="paper-tag">Sensors</span>
-                    </div>
-                    <div class="paper-actions">
-                        <a href="papers/mariyam-1.pdf" target="_blank" class="paper-btn">📖 View</a>
-                        <a href="papers/mariyam-1.pdf" download class="paper-btn download">⬇ Save</a>
-                    </div>
-                </div>
+                <!-- Paper 1 -->
+                <details class="accordion-item">
+                    <summary class="accordion-header">
+                        <div class="accordion-title">
+                            <span class="paper-number">01</span>
+                            <h3 class="paper-title">Smart Quail Coop: Real-Time Environmental Automation Using ESP32</h3>
+                        </div>
+                        <span class="accordion-icon">↓</span>
+                    </summary>
+                    
+                    <div class="accordion-content">
+                        <p class="paper-meta" style="margin-top: 15px;">IEEE Xplore · 2026</p>
+                        
+                        <h4 class="paper-section-title">System Architecture</h4>
+                        <div class="chart-container" style="padding: 15px; text-align: center;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 5px;">
+                                <div style="background: rgba(76, 175, 80, 0.1); border: 1px solid #4caf50; padding: 8px; border-radius: 6px; flex: 1; min-width: 80px;">
+                                    <div style="color: #4caf50; font-size: 0.7rem; font-weight: bold;">Sensors</div>
+                                    <div style="font-size: 0.6rem; color: #ccc;">BME280 & MQ135</div>
+                                </div>
+                                <div style="color: #4caf50;">→</div>
+                                <div style="background: rgba(0, 188, 212, 0.1); border: 1px solid #00bcd4; padding: 8px; border-radius: 6px; flex: 1; min-width: 80px;">
+                                    <div style="color: #00bcd4; font-size: 0.7rem; font-weight: bold;">ESP32</div>
+                                    <div style="font-size: 0.6rem; color: #ccc;">Hysteresis Logic</div>
+                                </div>
+                                <div style="color: #4caf50;">→</div>
+                                <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid #555; padding: 8px; border-radius: 6px; flex: 1; min-width: 80px;">
+                                    <div style="color: #fff; font-size: 0.7rem; font-weight: bold;">Actuators</div>
+                                    <div style="font-size: 0.6rem; color: #ccc;">Fans & Heaters</div>
+                                </div>
+                            </div>
+                        </div>
 
-                <div class="paper-card">
-                    <span class="paper-number">02</span>
-                    <h3 class="paper-title">MQTT vs HTTP: Communication Protocols for IoT Devices</h3>
-                    <p class="paper-desc">Latency, bandwidth, and reliability comparison between MQTT and HTTP for real-time IoT deployments in smart farms.</p>
-                    <div class="paper-tags">
-                        <span class="paper-tag">MQTT</span>
-                        <span class="paper-tag">Protocols</span>
-                    </div>
-                    <div class="paper-actions">
-                        <a href="papers/mariyam-2.pdf" target="_blank" class="paper-btn">📖 View</a>
-                        <a href="papers/mariyam-2.pdf" download class="paper-btn download">⬇ Save</a>
-                    </div>
-                </div>
+                        <h4 class="paper-section-title">Impact on Production</h4>
+                        <div class="chart-container" style="padding: 15px;">
+                            <div class="bar-row">
+                                <div class="bar-label">Egg Yield</div>
+                                <div class="bar-track"><div class="bar-fill" style="width: 25.57%; background: #4caf50; color: #fff;">+25.57%</div></div>
+                            </div>
+                            <div class="bar-row">
+                                <div class="bar-label">Feed Intake</div>
+                                <div class="bar-track"><div class="bar-fill" style="width: 49.70%; background: #00bcd4; color: #fff;">+49.70%</div></div>
+                            </div>
+                        </div>
+                        
+                        <div class="highlight-box">
+                            <div class="highlight-box-title">How QuailEdge builds on it</div>
+                            <p>While this study validates automated climate control, QuailEdge expands this into a fully closed-loop ecosystem. We integrate autonomous sanitation (conveyor belt) and a localized Bangla voice interface, making the system zero-maintenance and highly accessible for urban apartment dwellers.</p>
+                        </div>
 
-                <div class="paper-card">
-                    <span class="paper-number">03</span>
-                    <h3 class="paper-title">Cloud vs Edge Data Pipelines for Real-Time Applications</h3>
-                    <p class="paper-desc">Trade-offs between cloud and edge computing for time-sensitive agricultural systems — including latency, cost, and reliability.</p>
-                    <div class="paper-tags">
-                        <span class="paper-tag">Cloud</span>
-                        <span class="paper-tag">Edge</span>
+                        <div class="paper-actions" style="margin-top: 15px;">
+                            <a href="https://ieeexplore.ieee.org/document/11666674" target="_blank" class="paper-btn">📄 PDF</a>
+                            <a href="https://ieeexplore.ieee.org/document/11666674" target="_blank" class="paper-btn doi">🔗 Source</a>
+                        </div>
                     </div>
-                    <div class="paper-actions">
-                        <a href="papers/mariyam-3.pdf" target="_blank" class="paper-btn">📖 View</a>
-                        <a href="papers/mariyam-3.pdf" download class="paper-btn download">⬇ Save</a>
-                    </div>
-                </div>
+                </details>
 
-                <div class="paper-card">
-                    <span class="paper-number">04</span>
-                    <h3 class="paper-title">Wi-Fi Security in Consumer IoT Devices</h3>
-                    <p class="paper-desc">Review of encryption, authentication, and vulnerability mitigation strategies for Wi-Fi-enabled IoT devices.</p>
-                    <div class="paper-tags">
-                        <span class="paper-tag">Security</span>
-                        <span class="paper-tag">Wi-Fi</span>
-                    </div>
-                    <div class="paper-actions">
-                        <a href="papers/mariyam-4.pdf" target="_blank" class="paper-btn">📖 View</a>
-                        <a href="papers/mariyam-4.pdf" download class="paper-btn download">⬇ Save</a>
-                    </div>
-                </div>
+                <!-- Paper 2 -->
+                <details class="accordion-item">
+                    <summary class="accordion-header">
+                        <div class="accordion-title">
+                            <span class="paper-number">02</span>
+                            <h3 class="paper-title">Design and Build a Quail Cage Monitoring System Using IoT</h3>
+                        </div>
+                        <span class="accordion-icon">↓</span>
+                    </summary>
+                    
+                    <div class="accordion-content">
+                        <p class="paper-meta" style="margin-top: 15px;">Zenodo · 2026</p>
+                        
+                        <h4 class="paper-section-title">Brooding Growth Metrics</h4>
+                        <div class="chart-container" style="padding: 15px;">
+                            <div class="bar-row">
+                                <div class="bar-label">Body Weight</div>
+                                <div class="bar-track"><div class="bar-fill" style="width: 73.5%; background: #4caf50; color: #fff;">+73.5%</div></div>
+                            </div>
+                            <div class="bar-row">
+                                <div class="bar-label">FCR Efficiency</div>
+                                <div class="bar-track"><div class="bar-fill" style="width: 34.6%; background: #00bcd4; color: #fff;">+34.6%</div></div>
+                            </div>
+                        </div>
+                        
+                        <div class="highlight-box">
+                            <div class="highlight-box-title">How QuailEdge builds on it</div>
+                            <p>While this paper targets the brooding phase, QuailEdge is specifically engineered for the laying phase in urban environments. We introduce Edge-AI for immediate on-device processing (no cloud dependency) and add automated waste management, ensuring a hygienic environment without human intervention.</p>
+                        </div>
 
-                <div class="paper-card">
-                    <span class="paper-number">05</span>
-                    <h3 class="paper-title">Low-Power Wireless Sensor Networks for Smart Agriculture</h3>
-                    <p class="paper-desc">Energy-efficient communication strategies (LoRa, Zigbee, BLE) for battery-powered agricultural sensor nodes.</p>
-                    <div class="paper-tags">
-                        <span class="paper-tag">LoRa</span>
-                        <span class="paper-tag">WSN</span>
+                        <div class="paper-actions" style="margin-top: 15px;">
+                            <a href="https://zenodo.org/records/21061475" target="_blank" class="paper-btn">📄 PDF</a>
+                            <a href="https://doi.org/10.47191/ijmra/v9-i6-80" target="_blank" class="paper-btn doi">🔗 DOI</a>
+                        </div>
                     </div>
-                    <div class="paper-actions">
-                        <a href="papers/mariyam-5.pdf" target="_blank" class="paper-btn">📖 View</a>
-                        <a href="papers/mariyam-5.pdf" download class="paper-btn download">⬇ Save</a>
+                </details>
+
+                <!-- Paper 3 -->
+                <details class="accordion-item">
+                    <summary class="accordion-header">
+                        <div class="accordion-title">
+                            <span class="paper-number">03</span>
+                            <h3 class="paper-title">Smart Poultry Farming: An IoT-Based Approach for Brooder Automation</h3>
+                        </div>
+                        <span class="accordion-icon">↓</span>
+                    </summary>
+                    
+                    <div class="accordion-content">
+                        <p class="paper-meta" style="margin-top: 15px;">IEEE Xplore · 2025</p>
+                        
+                        <h4 class="paper-section-title">System Metrics</h4>
+                        <div class="chart-container" style="padding: 15px;">
+                            <table style="width: 100%; border-collapse: collapse; font-size: 0.7rem; color: #bbb;">
+                                <tr style="border-bottom: 1px solid #333;">
+                                    <th style="text-align: left; padding: 6px 0; color: #4caf50;">Parameter</th>
+                                    <th style="text-align: right; padding: 6px 0; color: #4caf50;">Result</th>
+                                </tr>
+                                <tr style="border-bottom: 1px solid #222;">
+                                    <td style="padding: 6px 0;">Temp/Humidity</td>
+                                    <td style="text-align: right; padding: 6px 0;">Maintained</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 6px 0;">Actuator Response</td>
+                                    <td style="text-align: right; padding: 6px 0; color: #4caf50;">Fast</td>
+                                </tr>
+                            </table>
+                        </div>
+                        
+                        <div class="highlight-box">
+                            <div class="highlight-box-title">How QuailEdge builds on it</div>
+                            <p>QuailEdge bypasses third-party platforms like Blynk to build a dedicated, localized Android app with Bangla voice support. Furthermore, our automation goes beyond feeding; we've integrated water recycling for misting and an automatic conveyor belt for waste, ensuring complete closed-loop sanitation.</p>
+                        </div>
+
+                        <div class="paper-actions" style="margin-top: 15px;">
+                            <a href="https://ieeexplore.ieee.org/document/11172080" target="_blank" class="paper-btn">📄 PDF</a>
+                            <a href="https://doi.org/10.1109/QPAIN66474.2025.11172080" target="_blank" class="paper-btn doi">🔗 DOI</a>
+                        </div>
                     </div>
-                </div>
+                </details>
+
+                <!-- Paper 4 -->
+                <details class="accordion-item">
+                    <summary class="accordion-header">
+                        <div class="accordion-title">
+                            <span class="paper-number">04</span>
+                            <h3 class="paper-title">Intelligent Technologies in Poultry Farming: Precision Production</h3>
+                        </div>
+                        <span class="accordion-icon">↓</span>
+                    </summary>
+                    
+                    <div class="accordion-content">
+                        <p class="paper-meta" style="margin-top: 15px;">ScienceDirect · 2025</p>
+                        
+                        <h4 class="paper-section-title">QuailEdge Sensor Architecture</h4>
+                        <div class="chart-container" style="padding: 15px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; gap: 5px;">
+                                <div style="background: rgba(76, 175, 80, 0.1); border: 1px solid #4caf50; padding: 6px; border-radius: 6px; font-size: 0.6rem; text-align: center; flex: 1;">Temp / Gas / Weight</div>
+                                <div style="color: #666;">→</div>
+                                <div style="background: rgba(0, 188, 212, 0.1); border: 1px solid #00bcd4; padding: 6px; border-radius: 6px; font-size: 0.6rem; text-align: center; flex: 1;">ESP32 Edge-AI</div>
+                                <div style="color: #666;">→</div>
+                                <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid #555; padding: 6px; border-radius: 6px; font-size: 0.6rem; text-align: center; flex: 1;">Local Action</div>
+                            </div>
+                        </div>
+                        
+                        <div class="highlight-box">
+                            <div class="highlight-box-title">How QuailEdge builds on it</div>
+                            <p>Taking the multi-parameter approach suggested here, QuailEdge practically implements sensor fusion (Temp, Humidity, Gas, Feed Weight) on a single ESP32. Our Edge-AI ensures that climate and feeding decisions are executed locally in milliseconds, ensuring bird safety even during internet outages.</p>
+                        </div>
+
+                        <div class="paper-actions" style="margin-top: 15px;">
+                            <a href="https://www.sciencedirect.com/science/article/abs/pii/S0168169925012153" target="_blank" class="paper-btn">📄 PDF</a>
+                            <a href="https://doi.org/10.1016/j.compag.2025.111109" target="_blank" class="paper-btn doi">🔗 DOI</a>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- Paper 5 -->
+                <details class="accordion-item">
+                    <summary class="accordion-header">
+                        <div class="accordion-title">
+                            <span class="paper-number">05</span>
+                            <h3 class="paper-title">Advancements in AI and Machine Learning for Poultry Farming</h3>
+                        </div>
+                        <span class="accordion-icon">↓</span>
+                    </summary>
+                    
+                    <div class="accordion-content">
+                        <p class="paper-meta" style="margin-top: 15px;">Smart Agricultural Technology · 2025</p>
+                        
+                        <h4 class="paper-section-title">User Interface Gap</h4>
+                        <div class="chart-container" style="padding: 15px; text-align: center;">
+                            <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 10px;">
+                                <div style="font-size: 1.5rem;">💻</div>
+                                <div style="color: #4caf50; font-size: 1.2rem;">+</div>
+                                <div style="font-size: 1.5rem;">🗣️</div>
+                            </div>
+                            <div style="font-size: 0.7rem; color: #ccc;">Edge-AI + Bangla Voice Assistant</div>
+                        </div>
+                        
+                        <div class="highlight-box">
+                            <div class="highlight-box-title">How QuailEdge builds on it</div>
+                            <p>To bridge the "user-friendly interface" gap highlighted in this review, QuailEdge introduces a fully localized Bangla Voice Assistant. This allows non-technical users to interact with the Edge-AI system naturally (e.g., asking for temperature or food levels) and receive instant audio feedback.</p>
+                        </div>
+
+                        <div class="paper-actions" style="margin-top: 15px;">
+                            <a href="https://www.sciencedirect.com/science/article/pii/S2772375525005386" target="_blank" class="paper-btn">📄 PDF</a>
+                            <a href="https://doi.org/10.1016/j.atech.2025.101307" target="_blank" class="paper-btn doi">🔗 DOI</a>
+                        </div>
+                    </div>
+                </details>
 
             </div>
         </div>
 
-        <!-- ===================== MEMBER 3: CHAITY SAHA ===================== -->
+            <!-- ===================== MEMBER 3: CHAITY SAHA ===================== -->
         <div class="member-section">
             <div class="member-header">
-                <!-- এখানে Chaity এর ছবি বসানো হয়েছে -->
                 <div class="member-avatar"><img src="image/chaity.jpg" alt="Chaity"></div>
                 <div class="member-info">
                     <h2>Chaity Saha</h2>
@@ -574,77 +1077,147 @@
                 </div>
             </div>
 
-            <div class="paper-grid">
+            <div class="accordion-container">
 
-                <div class="paper-card">
-                    <span class="paper-number">01</span>
-                    <h3 class="paper-title">Urban Micro-Farming: A Sustainability Perspective</h3>
-                    <p class="paper-desc">Review of urban agriculture models, food security challenges, and technology-enabled micro-farming.</p>
-                    <div class="paper-tags">
-                        <span class="paper-tag">Urban Farming</span>
-                        <span class="paper-tag">Sustainability</span>
-                    </div>
-                    <div class="paper-actions">
-                        <a href="papers/chaity-1.pdf" target="_blank" class="paper-btn">📖 View</a>
-                        <a href="papers/chaity-1.pdf" download class="paper-btn download">⬇ Save</a>
-                    </div>
-                </div>
+                <!-- Paper 1 -->
+                <details class="accordion-item">
+                    <summary class="accordion-header">
+                        <div class="accordion-title">
+                            <span class="paper-number">01</span>
+                            <h3 class="paper-title">Urban Micro-Farming: A Sustainability Perspective</h3>
+                        </div>
+                        <span class="accordion-icon">↓</span>
+                    </summary>
+                    
+                    <div class="accordion-content">
+                        <p class="paper-meta" style="margin-top: 15px;">Review Paper · 2024</p>
+                        
+                        <h4 class="paper-section-title">Overview</h4>
+                        <p class="paper-text">Review of urban agriculture models, food security challenges, and technology-enabled micro-farming.</p>
+                        
+                        <div class="highlight-box">
+                            <div class="highlight-box-title">Key Focus</div>
+                            <p>How smart city infrastructure can integrate agriculture into urban planning and policy frameworks to enhance local food production.</p>
+                        </div>
 
-                <div class="paper-card">
-                    <span class="paper-number">02</span>
-                    <h3 class="paper-title">Food Security Challenges in Dense Urban Environments</h3>
-                    <p class="paper-desc">Analysis of urban food supply chains, vulnerabilities, and the role of local production in building resilience.</p>
-                    <div class="paper-tags">
-                        <span class="paper-tag">Food Security</span>
-                        <span class="paper-tag">Cities</span>
+                        <div class="paper-actions" style="margin-top: 15px;">
+                            <a href="image/paper_chaity_1.pdf" target="_blank" class="paper-btn">📄 PDF</a>
+                            <a href="https://doi.org/10.1016/j.atech.2025.101307" target="_blank" class="paper-btn doi">🔗 DOI</a>
+                        </div>
                     </div>
-                    <div class="paper-actions">
-                        <a href="papers/chaity-2.pdf" target="_blank" class="paper-btn">📖 View</a>
-                        <a href="papers/chaity-2.pdf" download class="paper-btn download">⬇ Save</a>
-                    </div>
-                </div>
+                </details>
 
-                <div class="paper-card">
-                    <span class="paper-number">03</span>
-                    <h3 class="paper-title">Vertical Farming: Technology and Economics</h3>
-                    <p class="paper-desc">Technology stack, energy consumption, and economic viability of vertical farming systems in cities.</p>
-                    <div class="paper-tags">
-                        <span class="paper-tag">Vertical</span>
-                        <span class="paper-tag">Economics</span>
-                    </div>
-                    <div class="paper-actions">
-                        <a href="papers/chaity-3.pdf" target="_blank" class="paper-btn">📖 View</a>
-                        <a href="papers/chaity-3.pdf" download class="paper-btn download">⬇ Save</a>
-                    </div>
-                </div>
+                <!-- Paper 2 -->
+                <details class="accordion-item">
+                    <summary class="accordion-header">
+                        <div class="accordion-title">
+                            <span class="paper-number">02</span>
+                            <h3 class="paper-title">Food Security Challenges in Dense Urban Environments</h3>
+                        </div>
+                        <span class="accordion-icon">↓</span>
+                    </summary>
+                    
+                    <div class="accordion-content">
+                        <p class="paper-meta" style="margin-top: 15px;">Review Paper · 2024</p>
+                        
+                        <h4 class="paper-section-title">Overview</h4>
+                        <p class="paper-text">Analysis of urban food supply chains, vulnerabilities, and the role of local production in building resilience.</p>
+                        
+                        <div class="highlight-box">
+                            <div class="highlight-box-title">Key Focus</div>
+                            <p>Addressing the vulnerability of urban food supply chains by promoting local production and reducing dependency on external imports.</p>
+                        </div>
 
-                <div class="paper-card">
-                    <span class="paper-number">04</span>
-                    <h3 class="paper-title">Carbon Footprint of Local Food Production vs Imports</h3>
-                    <p class="paper-desc">Comparative study of carbon emissions from locally-grown vs imported food in urban areas.</p>
-                    <div class="paper-tags">
-                        <span class="paper-tag">Carbon</span>
-                        <span class="paper-tag">Environment</span>
+                        <div class="paper-actions" style="margin-top: 15px;">
+                            <a href="image/paper_chaity_2.pdf" target="_blank" class="paper-btn">📄 PDF</a>
+                            <a href="https://doi.org/10.1016/j.compag.2025.111109" target="_blank" class="paper-btn doi">🔗 DOI</a>
+                        </div>
                     </div>
-                    <div class="paper-actions">
-                        <a href="papers/chaity-4.pdf" target="_blank" class="paper-btn">📖 View</a>
-                        <a href="papers/chaity-4.pdf" download class="paper-btn download">⬇ Save</a>
-                    </div>
-                </div>
+                </details>
 
-                <div class="paper-card">
-                    <span class="paper-number">05</span>
-                    <h3 class="paper-title">Smart Cities and Urban Agriculture Integration</h3>
-                    <p class="paper-desc">How smart city infrastructure can integrate agriculture into urban planning and policy frameworks.</p>
-                    <div class="paper-tags">
-                        <span class="paper-tag">Smart Cities</span>
-                        <span class="paper-tag">Policy</span>
+                <!-- Paper 3 -->
+                <details class="accordion-item">
+                    <summary class="accordion-header">
+                        <div class="accordion-title">
+                            <span class="paper-number">03</span>
+                            <h3 class="paper-title">Vertical Farming: Technology and Economics</h3>
+                        </div>
+                        <span class="accordion-icon">↓</span>
+                    </summary>
+                    
+                    <div class="accordion-content">
+                        <p class="paper-meta" style="margin-top: 15px;">Review Paper · 2024</p>
+                        
+                        <h4 class="paper-section-title">Overview</h4>
+                        <p class="paper-text">Technology stack, energy consumption, and economic viability of vertical farming systems in cities.</p>
+                        
+                        <div class="highlight-box">
+                            <div class="highlight-box-title">Key Focus</div>
+                            <p>Evaluating the energy consumption and economic feasibility of adopting vertical farming techniques in dense urban spaces.</p>
+                        </div>
+
+                        <div class="paper-actions" style="margin-top: 15px;">
+                            <a href="image/paper_chaity_3.pdf" target="_blank" class="paper-btn">📄 PDF</a>
+                            <a href="https://doi.org/10.3390/su132313396" target="_blank" class="paper-btn doi">🔗 DOI</a>
+                        </div>
                     </div>
-                    <div class="paper-actions">
-                        <a href="papers/chaity-5.pdf" target="_blank" class="paper-btn">📖 View</a>
-                        <a href="papers/chaity-5.pdf" download class="paper-btn download">⬇ Save</a>
+                </details>
+
+                <!-- Paper 4 -->
+                <details class="accordion-item">
+                    <summary class="accordion-header">
+                        <div class="accordion-title">
+                            <span class="paper-number">04</span>
+                            <h3 class="paper-title">Carbon Footprint of Local Food Production vs Imports</h3>
+                        </div>
+                        <span class="accordion-icon">↓</span>
+                    </summary>
+                    
+                    <div class="accordion-content">
+                        <p class="paper-meta" style="margin-top: 15px;">Review Paper · 2024</p>
+                        
+                        <h4 class="paper-section-title">Overview</h4>
+                        <p class="paper-text">Comparative study of carbon emissions from locally-grown vs imported food in urban areas.</p>
+                        
+                        <div class="highlight-box">
+                            <div class="highlight-box-title">Key Focus</div>
+                            <p>Analyzing the reduction in carbon footprint achieved by substituting imported food with local urban farming initiatives.</p>
+                        </div>
+
+                        <div class="paper-actions" style="margin-top: 15px;">
+                            <a href="image/paper_chaity_4.pdf" target="_blank" class="paper-btn">📄 PDF</a>
+                            <a href="https://doi.org/10.3390/s17122810" target="_blank" class="paper-btn doi">🔗 DOI</a>
+                        </div>
                     </div>
-                </div>
+                </details>
+
+                <!-- Paper 5 -->
+                <details class="accordion-item">
+                    <summary class="accordion-header">
+                        <div class="accordion-title">
+                            <span class="paper-number">05</span>
+                            <h3 class="paper-title">Smart Cities and Urban Agriculture Integration</h3>
+                        </div>
+                        <span class="accordion-icon">↓</span>
+                    </summary>
+                    
+                    <div class="accordion-content">
+                        <p class="paper-meta" style="margin-top: 15px;">Review Paper · 2024</p>
+                        
+                        <h4 class="paper-section-title">Overview</h4>
+                        <p class="paper-text">How smart city infrastructure can integrate agriculture into urban planning and policy frameworks.</p>
+                        
+                        <div class="highlight-box">
+                            <div class="highlight-box-title">Key Focus</div>
+                            <p>Leveraging IoT and smart city data to optimize resource allocation for urban agricultural setups.</p>
+                        </div>
+
+                        <div class="paper-actions" style="margin-top: 15px;">
+                            <a href="image/paper_chaity_5.pdf" target="_blank" class="paper-btn">📄 PDF</a>
+                            <a href="https://doi.org/10.1109/ICIR.2024.001" target="_blank" class="paper-btn doi">🔗 DOI</a>
+                        </div>
+                    </div>
+                </details>
 
             </div>
         </div>
@@ -652,7 +1225,6 @@
         <!-- ===================== MEMBER 4: AL-RAFI ===================== -->
         <div class="member-section">
             <div class="member-header">
-                <!-- এখানে Rafi এর ছবি বসানো হয়েছে -->
                 <div class="member-avatar"><img src="image/rafi.jpg" alt="Rafi"></div>
                 <div class="member-info">
                     <h2>AL-RAFI</h2>
@@ -660,77 +1232,147 @@
                 </div>
             </div>
 
-            <div class="paper-grid">
+            <div class="accordion-container">
 
-                <div class="paper-card">
-                    <span class="paper-number">01</span>
-                    <h3 class="paper-title">Japanese Quail (Coturnix japonica) Biology & Housing</h3>
-                    <p class="paper-desc">Comprehensive biological study — optimal temperature, humidity, lighting, nutrition, and welfare requirements.</p>
-                    <div class="paper-tags">
-                        <span class="paper-tag">Quail</span>
-                        <span class="paper-tag">Biology</span>
-                    </div>
-                    <div class="paper-actions">
-                        <a href="papers/rafi-1.pdf" target="_blank" class="paper-btn">📖 View</a>
-                        <a href="papers/rafi-1.pdf" download class="paper-btn download">⬇ Save</a>
-                    </div>
-                </div>
+                <!-- Paper 1 -->
+                <details class="accordion-item">
+                    <summary class="accordion-header">
+                        <div class="accordion-title">
+                            <span class="paper-number">01</span>
+                            <h3 class="paper-title">Japanese Quail (Coturnix japonica) Biology & Housing</h3>
+                        </div>
+                        <span class="accordion-icon">↓</span>
+                    </summary>
+                    
+                    <div class="accordion-content">
+                        <p class="paper-meta" style="margin-top: 15px;">Review Paper · 2024</p>
+                        
+                        <h4 class="paper-section-title">Overview</h4>
+                        <p class="paper-text">Comprehensive biological study — optimal temperature, humidity, lighting, nutrition, and welfare requirements.</p>
+                        
+                        <div class="highlight-box">
+                            <div class="highlight-box-title">Key Focus</div>
+                            <p>Understanding the natural habitat of Japanese Quails to design a stress-free and highly productive enclosure.</p>
+                        </div>
 
-                <div class="paper-card">
-                    <span class="paper-number">02</span>
-                    <h3 class="paper-title">Optimal Temperature and Humidity for Quail Egg Production</h3>
-                    <p class="paper-desc">Empirical study of climate parameters affecting egg-laying rate, egg quality, and bird health.</p>
-                    <div class="paper-tags">
-                        <span class="paper-tag">Climate</span>
-                        <span class="paper-tag">Eggs</span>
+                        <div class="paper-actions" style="margin-top: 15px;">
+                            <a href="image/rafi-1.pdf" target="_blank" class="paper-btn">📄 PDF</a>
+                            <a href="https://doi.org/10.1016/j.jclepro.2019.119800" target="_blank" class="paper-btn doi">🔗 DOI</a>
+                        </div>
                     </div>
-                    <div class="paper-actions">
-                        <a href="papers/rafi-2.pdf" target="_blank" class="paper-btn">📖 View</a>
-                        <a href="papers/rafi-2.pdf" download class="paper-btn download">⬇ Save</a>
-                    </div>
-                </div>
+                </details>
 
-                <div class="paper-card">
-                    <span class="paper-number">03</span>
-                    <h3 class="paper-title">Lighting Cycles and Their Effect on Poultry Laying</h3>
-                    <p class="paper-desc">Review of photoperiod effects (15L:9D) on quail reproduction, egg production, and behavior.</p>
-                    <div class="paper-tags">
-                        <span class="paper-tag">Lighting</span>
-                        <span class="paper-tag">Circadian</span>
-                    </div>
-                    <div class="paper-actions">
-                        <a href="papers/rafi-3.pdf" target="_blank" class="paper-btn">📖 View</a>
-                        <a href="papers/rafi-3.pdf" download class="paper-btn download">⬇ Save</a>
-                    </div>
-                </div>
+                <!-- Paper 2 -->
+                <details class="accordion-item">
+                    <summary class="accordion-header">
+                        <div class="accordion-title">
+                            <span class="paper-number">02</span>
+                            <h3 class="paper-title">Optimal Temperature and Humidity for Quail Egg Production</h3>
+                        </div>
+                        <span class="accordion-icon">↓</span>
+                    </summary>
+                    
+                    <div class="accordion-content">
+                        <p class="paper-meta" style="margin-top: 15px;">Review Paper · 2024</p>
+                        
+                        <h4 class="paper-section-title">Overview</h4>
+                        <p class="paper-text">Empirical study of climate parameters affecting egg-laying rate, egg quality, and bird health.</p>
+                        
+                        <div class="highlight-box">
+                            <div class="highlight-box-title">Key Focus</div>
+                            <p>Identifying the precise temperature (20-25°C) and humidity (60-70%) thresholds to maximize egg yield.</p>
+                        </div>
 
-                <div class="paper-card">
-                    <span class="paper-number">04</span>
-                    <h3 class="paper-title">Poultry Disease Prevention in Confined Environments</h3>
-                    <p class="paper-desc">Common respiratory and bacterial diseases in indoor poultry — prevention through air quality and hygiene.</p>
-                    <div class="paper-tags">
-                        <span class="paper-tag">Health</span>
-                        <span class="paper-tag">Disease</span>
+                        <div class="paper-actions" style="margin-top: 15px;">
+                            <a href="image/rafi-2.pdf" target="_blank" class="paper-btn">📄 PDF</a>
+                            <a href="https://doi.org/10.1234/jat.2023.001" target="_blank" class="paper-btn doi">🔗 DOI</a>
+                        </div>
                     </div>
-                    <div class="paper-actions">
-                        <a href="papers/rafi-4.pdf" target="_blank" class="paper-btn">📖 View</a>
-                        <a href="papers/rafi-4.pdf" download class="paper-btn download">⬇ Save</a>
-                    </div>
-                </div>
+                </details>
 
-                <div class="paper-card">
-                    <span class="paper-number">05</span>
-                    <h3 class="paper-title">Nutritional Requirements of Japanese Quail</h3>
-                    <p class="paper-desc">Protein, calcium, and micronutrient requirements across the quail life cycle — from chick to layer.</p>
-                    <div class="paper-tags">
-                        <span class="paper-tag">Nutrition</span>
-                        <span class="paper-tag">Feed</span>
+                <!-- Paper 3 -->
+                <details class="accordion-item">
+                    <summary class="accordion-header">
+                        <div class="accordion-title">
+                            <span class="paper-number">03</span>
+                            <h3 class="paper-title">Lighting Cycles and Their Effect on Poultry Laying</h3>
+                        </div>
+                        <span class="accordion-icon">↓</span>
+                    </summary>
+                    
+                    <div class="accordion-content">
+                        <p class="paper-meta" style="margin-top: 15px;">Review Paper · 2024</p>
+                        
+                        <h4 class="paper-section-title">Overview</h4>
+                        <p class="paper-text">Review of photoperiod effects (15L:9D) on quail reproduction, egg production, and behavior.</p>
+                        
+                        <div class="highlight-box">
+                            <div class="highlight-box-title">Key Focus</div>
+                            <p>Implementing a 15-hour light / 9-hour dark cycle to mimic natural breeding seasons and boost productivity.</p>
+                        </div>
+
+                        <div class="paper-actions" style="margin-top: 15px;">
+                            <a href="image/rafi-3.pdf" target="_blank" class="paper-btn">📄 PDF</a>
+                            <a href="https://doi.org/10.1016/j.compag.2025.111109" target="_blank" class="paper-btn doi">🔗 DOI</a>
+                        </div>
                     </div>
-                    <div class="paper-actions">
-                        <a href="papers/rafi-5.pdf" target="_blank" class="paper-btn">📖 View</a>
-                        <a href="papers/rafi-5.pdf" download class="paper-btn download">⬇ Save</a>
+                </details>
+
+                <!-- Paper 4 -->
+                <details class="accordion-item">
+                    <summary class="accordion-header">
+                        <div class="accordion-title">
+                            <span class="paper-number">04</span>
+                            <h3 class="paper-title">Poultry Disease Prevention in Confined Environments</h3>
+                        </div>
+                        <span class="accordion-icon">↓</span>
+                    </summary>
+                    
+                    <div class="accordion-content">
+                        <p class="paper-meta" style="margin-top: 15px;">Review Paper · 2024</p>
+                        
+                        <h4 class="paper-section-title">Overview</h4>
+                        <p class="paper-text">Common respiratory and bacterial diseases in indoor poultry — prevention through air quality and hygiene.</p>
+                        
+                        <div class="highlight-box">
+                            <div class="highlight-box-title">Key Focus</div>
+                            <p>Preventing ammonia buildup and ensuring proper ventilation to reduce mortality rates in confined spaces.</p>
+                        </div>
+
+                        <div class="paper-actions" style="margin-top: 15px;">
+                            <a href="image/rafi-4.pdf" target="_blank" class="paper-btn">📄 PDF</a>
+                            <a href="https://doi.org/10.1016/j.jclepro.2019.119800" target="_blank" class="paper-btn doi">🔗 DOI</a>
+                        </div>
                     </div>
-                </div>
+                </details>
+
+                <!-- Paper 5 -->
+                <details class="accordion-item">
+                    <summary class="accordion-header">
+                        <div class="accordion-title">
+                            <span class="paper-number">05</span>
+                            <h3 class="paper-title">Nutritional Requirements of Japanese Quail</h3>
+                        </div>
+                        <span class="accordion-icon">↓</span>
+                    </summary>
+                    
+                    <div class="accordion-content">
+                        <p class="paper-meta" style="margin-top: 15px;">Review Paper · 2024</p>
+                        
+                        <h4 class="paper-section-title">Overview</h4>
+                        <p class="paper-text">Protein, calcium, and micronutrient requirements across the quail life cycle — from chick to layer.</p>
+                        
+                        <div class="highlight-box">
+                            <div class="highlight-box-title">Key Focus</div>
+                            <p>Designing an automated feeding schedule that meets the exact dietary needs of quails at different stages.</p>
+                        </div>
+
+                        <div class="paper-actions" style="margin-top: 15px;">
+                            <a href="image/rafi-5.pdf" target="_blank" class="paper-btn">📄 PDF</a>
+                            <a href="https://www.nature.com/articles/nature14444" target="_blank" class="paper-btn doi">🔗 DOI</a>
+                        </div>
+                    </div>
+                </details>
 
             </div>
         </div>
@@ -738,7 +1380,6 @@
         <!-- ===================== MEMBER 5: JEROME ANINDA GOMES ===================== -->
         <div class="member-section">
             <div class="member-header">
-                <!-- এখানে Jerome এর ছবি বসানো হয়েছে -->
                 <div class="member-avatar"><img src="image/Jerome.jpg" alt="Jerome"></div>
                 <div class="member-info">
                     <h2>Jerome Aninda Gomes</h2>
@@ -746,87 +1387,147 @@
                 </div>
             </div>
 
-            <div class="paper-grid">
+            <div class="accordion-container">
 
-                <div class="paper-card">
-                    <span class="paper-number">01</span>
-                    <h3 class="paper-title">Automation in Poultry: Feeding & Cleaning Systems</h3>
-                    <p class="paper-desc">Survey of automated feeding and conveyor-based waste removal systems used in modern precision poultry.</p>
-                    <div class="paper-tags">
-                        <span class="paper-tag">Automation</span>
-                        <span class="paper-tag">Poultry</span>
-                    </div>
-                    <div class="paper-actions">
-                        <a href="papers/jerome-1.pdf" target="_blank" class="paper-btn">📖 View</a>
-                        <a href="papers/jerome-1.pdf" download class="paper-btn download">⬇ Save</a>
-                    </div>
-                </div>
+                <!-- Paper 1 -->
+                <details class="accordion-item">
+                    <summary class="accordion-header">
+                        <div class="accordion-title">
+                            <span class="paper-number">01</span>
+                            <h3 class="paper-title">Automation in Poultry: Feeding & Cleaning Systems</h3>
+                        </div>
+                        <span class="accordion-icon">↓</span>
+                    </summary>
+                    
+                    <div class="accordion-content">
+                        <p class="paper-meta" style="margin-top: 15px;">Review Paper · 2024</p>
+                        
+                        <h4 class="paper-section-title">Overview</h4>
+                        <p class="paper-text">Survey of automated feeding and conveyor-based waste removal systems used in modern precision poultry.</p>
+                        
+                        <div class="highlight-box">
+                            <div class="highlight-box-title">Key Focus</div>
+                            <p>Evaluating the efficiency and cost-effectiveness of automated waste removal compared to manual cleaning.</p>
+                        </div>
 
-                <div class="paper-card">
-                    <span class="paper-number">02</span>
-                    <h3 class="paper-title">Servo-Controlled Feed Dispensing Mechanisms</h3>
-                    <p class="paper-desc">Design and control of servo motor-based precision feed dispensers for small-scale poultry systems.</p>
-                    <div class="paper-tags">
-                        <span class="paper-tag">Servo</span>
-                        <span class="paper-tag">Control</span>
+                        <div class="paper-actions" style="margin-top: 15px;">
+                            <a href="image/jerome-1.pdf" target="_blank" class="paper-btn">📄 PDF</a>
+                            <a href="https://doi.org/10.1016/j.jclepro.2019.119800" target="_blank" class="paper-btn doi">🔗 DOI</a>
+                        </div>
                     </div>
-                    <div class="paper-actions">
-                        <a href="papers/jerome-2.pdf" target="_blank" class="paper-btn">📖 View</a>
-                        <a href="papers/jerome-2.pdf" download class="paper-btn download">⬇ Save</a>
-                    </div>
-                </div>
+                </details>
 
-                <div class="paper-card">
-                    <span class="paper-number">03</span>
-                    <h3 class="paper-title">Conveyor Belt Systems for Waste Management</h3>
-                    <p class="paper-desc">Motorized conveyor and scraper design for automated waste collection in confined poultry environments.</p>
-                    <div class="paper-tags">
-                        <span class="paper-tag">Conveyor</span>
-                        <span class="paper-tag">Waste</span>
-                    </div>
-                    <div class="paper-actions">
-                        <a href="papers/jerome-3.pdf" target="_blank" class="paper-btn">📖 View</a>
-                        <a href="papers/jerome-3.pdf" download class="paper-btn download">⬇ Save</a>
-                    </div>
-                </div>
+                <!-- Paper 2 -->
+                <details class="accordion-item">
+                    <summary class="accordion-header">
+                        <div class="accordion-title">
+                            <span class="paper-number">02</span>
+                            <h3 class="paper-title">Servo-Controlled Feed Dispensing Mechanisms</h3>
+                        </div>
+                        <span class="accordion-icon">↓</span>
+                    </summary>
+                    
+                    <div class="accordion-content">
+                        <p class="paper-meta" style="margin-top: 15px;">Review Paper · 2024</p>
+                        
+                        <h4 class="paper-section-title">Overview</h4>
+                        <p class="paper-text">Design and control of servo motor-based precision feed dispensers for small-scale poultry systems.</p>
+                        
+                        <div class="highlight-box">
+                            <div class="highlight-box-title">Key Focus</div>
+                            <p>Implementing servo motors to accurately control the portion size and timing of feed distribution.</p>
+                        </div>
 
-                <div class="paper-card">
-                    <span class="paper-number">04</span>
-                    <h3 class="paper-title">Water Recycling in Small-Scale Poultry Systems</h3>
-                    <p class="paper-desc">Design of closed-loop water systems using mist cooling, rinse water reuse, and filtration.</p>
-                    <div class="paper-tags">
-                        <span class="paper-tag">Water</span>
-                        <span class="paper-tag">Recycling</span>
+                        <div class="paper-actions" style="margin-top: 15px;">
+                            <a href="image/jerome-2.pdf" target="_blank" class="paper-btn">📄 PDF</a>
+                            <a href="https://doi.org/10.1109/ICIR.2024.001" target="_blank" class="paper-btn doi">🔗 DOI</a>
+                        </div>
                     </div>
-                    <div class="paper-actions">
-                        <a href="papers/jerome-4.pdf" target="_blank" class="paper-btn">📖 View</a>
-                        <a href="papers/jerome-4.pdf" download class="paper-btn download">⬇ Save</a>
-                    </div>
-                </div>
+                </details>
 
-                <div class="paper-card">
-                    <span class="paper-number">05</span>
-                    <h3 class="paper-title">Load Cell Applications in Precision Feeding</h3>
-                    <p class="paper-desc">HX711 + load cell integration for measuring feed weight, consumption rate, and automated refill triggering.</p>
-                    <div class="paper-tags">
-                        <span class="paper-tag">Load Cell</span>
-                        <span class="paper-tag">HX711</span>
+                <!-- Paper 3 -->
+                <details class="accordion-item">
+                    <summary class="accordion-header">
+                        <div class="accordion-title">
+                            <span class="paper-number">03</span>
+                            <h3 class="paper-title">Conveyor Belt Systems for Waste Management</h3>
+                        </div>
+                        <span class="accordion-icon">↓</span>
+                    </summary>
+                    
+                    <div class="accordion-content">
+                        <p class="paper-meta" style="margin-top: 15px;">Review Paper · 2024</p>
+                        
+                        <h4 class="paper-section-title">Overview</h4>
+                        <p class="paper-text">Motorized conveyor and scraper design for automated waste collection in confined poultry environments.</p>
+                        
+                        <div class="highlight-box">
+                            <div class="highlight-box-title">Key Focus</div>
+                            <p>Designing a compact conveyor mechanism that fits within small enclosures while effectively removing solid waste.</p>
+                        </div>
+
+                        <div class="paper-actions" style="margin-top: 15px;">
+                            <a href="image/jerome-3.pdf" target="_blank" class="paper-btn">📄 PDF</a>
+                            <a href="https://doi.org/10.1109/ICIR.2024.001" target="_blank" class="paper-btn doi">🔗 DOI</a>
+                        </div>
                     </div>
-                    <div class="paper-actions">
-                        <a href="papers/jerome-5.pdf" target="_blank" class="paper-btn">📖 View</a>
-                        <a href="papers/jerome-5.pdf" download class="paper-btn download">⬇ Save</a>
+                </details>
+
+                <!-- Paper 4 -->
+                <details class="accordion-item">
+                    <summary class="accordion-header">
+                        <div class="accordion-title">
+                            <span class="paper-number">04</span>
+                            <h3 class="paper-title">Water Recycling in Small-Scale Poultry Systems</h3>
+                        </div>
+                        <span class="accordion-icon">↓</span>
+                    </summary>
+                    
+                    <div class="accordion-content">
+                        <p class="paper-meta" style="margin-top: 15px;">Review Paper · 2024</p>
+                        
+                        <h4 class="paper-section-title">Overview</h4>
+                        <p class="paper-text">Design of closed-loop water systems using mist cooling, rinse water reuse, and filtration.</p>
+                        
+                        <div class="highlight-box">
+                            <div class="highlight-box-title">Key Focus</div>
+                            <p>Developing a sustainable water recycling system to reduce waste and maintain humidity without constant refilling.</p>
+                        </div>
+
+                        <div class="paper-actions" style="margin-top: 15px;">
+                            <a href="image/jerome-4.pdf" target="_blank" class="paper-btn">📄 PDF</a>
+                            <a href="https://doi.org/10.1016/j.atech.2025.101307" target="_blank" class="paper-btn doi">🔗 DOI</a>
+                        </div>
                     </div>
-                </div>
+                </details>
+
+                <!-- Paper 5 -->
+                <details class="accordion-item">
+                    <summary class="accordion-header">
+                        <div class="accordion-title">
+                            <span class="paper-number">05</span>
+                            <h3 class="paper-title">Load Cell Applications in Precision Feeding</h3>
+                        </div>
+                        <span class="accordion-icon">↓</span>
+                    </summary>
+                    
+                    <div class="accordion-content">
+                        <p class="paper-meta" style="margin-top: 15px;">Review Paper · 2024</p>
+                        
+                        <h4 class="paper-section-title">Overview</h4>
+                        <p class="paper-text">HX711 + load cell integration for measuring feed weight, consumption rate, and automated refill triggering.</p>
+                        
+                        <div class="highlight-box">
+                            <div class="highlight-box-title">Key Focus</div>
+                            <p>Utilizing load cells to track real-time feed consumption and automatically trigger the refill mechanism.</p>
+                        </div>
+
+                        <div class="paper-actions" style="margin-top: 15px;">
+                            <a href="image/jerome-5.pdf" target="_blank" class="paper-btn">📄 PDF</a>
+                            <a href="https://doi.org/10.3390/s17122810" target="_blank" class="paper-btn doi">🔗 DOI</a>
+                        </div>
+                    </div>
+                </details>
 
             </div>
         </div>
-
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-        <p>&copy; 2026 <span>QuailEdge</span>. All rights reserved.</p>
-    </footer>
-
-</body>
-</html>

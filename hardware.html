@@ -157,7 +157,7 @@
 
         .component-img {
             width: 100%;
-            height: 180px;
+            height: 200px;
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 12px;
@@ -224,83 +224,6 @@
             letter-spacing: 1px;
         }
 
-        /* ================= NEW: CLIMATE CONTROL SECTION ================= */
-        .system-design-box {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(76, 175, 80, 0.2);
-            border-radius: 20px;
-            padding: 40px;
-            margin-top: 60px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .system-design-box::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: radial-gradient(circle at top right, rgba(76, 175, 80, 0.05) 0%, transparent 60%);
-            pointer-events: none;
-        }
-
-        .design-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.8rem;
-            color: #fff;
-            margin-bottom: 15px;
-        }
-
-        .design-title span { color: #4caf50; }
-
-        .design-desc {
-            color: #aaa;
-            font-size: 0.95rem;
-            line-height: 1.8;
-            margin-bottom: 30px;
-            max-width: 900px;
-        }
-
-        .feature-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .feature-item {
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 20px;
-            border-radius: 12px;
-            display: flex;
-            gap: 15px;
-            align-items: flex-start;
-            transition: all 0.3s ease;
-        }
-
-        .feature-item:hover {
-            border-color: rgba(76, 175, 80, 0.4);
-            background: rgba(76, 175, 80, 0.05);
-        }
-
-        .feature-icon {
-            font-size: 1.5rem;
-            flex-shrink: 0;
-        }
-
-        .feature-text h4 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.05rem;
-            color: #4caf50;
-            margin-bottom: 6px;
-        }
-
-        .feature-text p {
-            font-size: 0.85rem;
-            color: #999;
-            line-height: 1.6;
-        }
-
         footer {
             text-align: center;
             padding: 25px;
@@ -318,7 +241,6 @@
             .nav-links a { font-size: 0.78rem; }
             .page-title { font-size: 1.9rem; margin-top: 40px; }
             .section { padding: 0 20px 60px; }
-            .system-design-box { padding: 25px 20px; }
         }
     </style>
 </head>
@@ -354,15 +276,7 @@
 
             <div class="component-card">
                 <div class="component-img">
-                    <img src="image/esp32.jpg" alt="ESP32">
-                </div>
-                <h3 class="component-name">ESP32 WROOM32</h3>
-                <p class="component-desc">Dual-core microcontroller with Wi-Fi & Bluetooth for Edge-AI processing.</p>
-            </div>
-
-            <div class="component-card">
-                <div class="component-img">
-                    <img src="image/dht22.jpg" alt="DHT22">
+                    <img src="image/DHT22 Temperature Humidity Sensor Module.jpg" alt="DHT22">
                 </div>
                 <h3 class="component-name">DHT22 Sensor</h3>
                 <p class="component-desc">Digital temperature & humidity sensor for climate control.</p>
@@ -370,7 +284,7 @@
 
             <div class="component-card">
                 <div class="component-img">
-                    <img src="image/mq135.jpg" alt="MQ-135">
+                    <img src="image/mq135 Gas Sensor.jpg" alt="MQ-135">
                 </div>
                 <h3 class="component-name">MQ-135 Gas Sensor</h3>
                 <p class="component-desc">Air quality monitoring — detects NH3, NOx, smoke, CO2.</p>
@@ -378,26 +292,26 @@
 
             <div class="component-card">
                 <div class="component-img">
-                    <img src="image/fan.jpg" alt="Cooling Fan">
+                    <img src="image/cooling_fan.jpg" alt="Cooling Fan">
                 </div>
                 <h3 class="component-name">12V Cooling Fan</h3>
-                <p class="component-desc">80×80×25mm brushless fan for ventilation with carbon filter.</p>
+                <p class="component-desc">90×90×25mm brushless fan for ventilation with carbon filter.</p>
             </div>
 
             <div class="component-card">
                 <div class="component-img">
-                    <img src="image/loadcell.jpg" alt="Load Cell">
+                    <img src="image/ESP Camera Module.jpg" alt="ESP32-CAM">
                 </div>
-                <h3 class="component-name">5kg Load Cell + HX711</h3>
-                <p class="component-desc">Precision weight sensor for monitoring feed consumption.</p>
+                <h3 class="component-name">ESP32-CAM Module</h3>
+                <p class="component-desc">Wi-Fi + Bluetooth camera module for live video streaming.</p>
             </div>
 
             <div class="component-card">
                 <div class="component-img">
-                    <img src="image/conveyor.jpg" alt="Conveyor Belt">
+                    <img src="image/ESP 32-Type-C Module.jpg" alt="ESP32-CAM-MB">
                 </div>
-                <h3 class="component-name">12V Conveyor Belt</h3>
-                <p class="component-desc">DC 12V motorized belt (50×10cm) for automatic waste cleaning.</p>
+                <h3 class="component-name">ESP32-CAM-MB</h3>
+                <p class="component-desc">Type-C Download Module for easy programming of ESP32-CAM.</p>
             </div>
 
             <div class="component-card">
@@ -405,95 +319,113 @@
                     <img src="image/water_sensor.jpg" alt="Water Level Sensor">
                 </div>
                 <h3 class="component-name">Water Level Sensor</h3>
-                <p class="component-desc">Analog depth detection for water reservoir monitoring.</p>
+                <p class="component-desc">Gold coating analog depth detection for water reservoir monitoring.</p>
             </div>
 
             <div class="component-card">
                 <div class="component-img">
-                    <img src="image/flow_sensor.jpg" alt="Water Flow Sensor">
+                    <img src="image/3v mini DC water pump.jpg" alt="Water Pump">
                 </div>
-                <h3 class="component-name">Water Flow Sensor</h3>
-                <p class="component-desc">YFS402C G3/8 — 0.3-10L/min flow measurement for pump.</p>
+                <h3 class="component-name">3V Mini DC Water Pump</h3>
+                <p class="component-desc">Submersible pump for mist cooling and automatic cleaning system.</p>
             </div>
 
             <div class="component-card">
                 <div class="component-img">
-                    <img src="image/water_pump.jpg" alt="Water Pump">
+                    <img src="image/mist_maker.jpg" alt="Mist Maker">
                 </div>
-                <h3 class="component-name">12V Submersible Pump</h3>
-                <p class="component-desc">700 L/h flow rate for mist cooling and cleaning system.</p>
+                <h3 class="component-name">USB Mini Humidifier</h3>
+                <p class="component-desc">Mist Maker DIY kit for humidity control and cooling.</p>
+            </div>
+
+            <div class="component-card">
+                <div class="component-img">
+                    <img src="image/relay_module.jpg" alt="Relay Module">
+                </div>
+                <h3 class="component-name">8 Channel Relay Module</h3>
+                <p class="component-desc">5V Relay for controlling high-voltage actuators (Fans, Pumps).</p>
+            </div>
+
+            <div class="component-card">
+                <div class="component-img">
+                    <img src="image/Digital Switch Touch Sensor.jpg" alt="Touch Sensor">
+                </div>
+                <h3 class="component-name">TTP229 Touch Sensor</h3>
+                <p class="component-desc">8 Channel Digital Capacitive Switch for manual overrides.</p>
+            </div>
+
+            <div class="component-card">
+                <div class="component-img">
+                    <img src="image/camera_mount.jpg" alt="Camera Mount">
+                </div>
+                <h3 class="component-name">2-Axis Pan Tilt Mount</h3>
+                <p class="component-desc">With SG90 servos for directing the ESP32-CAM.</p>
+            </div>
+
+            <div class="component-card">
+                <div class="component-img">
+                    <img src="image/Servo Motor.jpg" alt="Servo Motor">
+                </div>
+                <h3 class="component-name">MG996R Servo Motor</h3>
+                <p class="component-desc">High-torque 270° rotation servo for mechanical actuation.</p>
             </div>
 
         </div>
 
-        <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.6rem; margin: 60px 0 25px; color: #fff;">🔧 Mechanical Parts</h2>
+        <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.6rem; margin: 60px 0 25px; color: #fff;">🔧 Power & Wiring</h2>
         <div class="grid-2">
 
             <div class="component-card">
                 <div class="component-img">
-                    <img src="image/eco-system.jpg" alt="Enclosure Frame">
+                    <img src="image/Power Supply Adapter.jpg" alt="12V 5A Adapter">
                 </div>
-                <h3 class="component-name">Aluminum Frame + Tempered Glass</h3>
-                <p class="component-desc">5mm polished tempered glass front panel with sealed aluminum angle frame.</p>
+                <h3 class="component-name">12V 5A Power Adapter</h3>
+                <p class="component-desc">Main power supply for the entire system.</p>
             </div>
 
             <div class="component-card">
                 <div class="component-img">
-                    <img src="image/prototype.jpg" alt="Sloped Mesh Floor">
+                    <img src="image/power Supply Module.jpg" alt="DC-DC Module">
                 </div>
-                <h3 class="component-name">Sloped Mesh Floor</h3>
-                <p class="component-desc">Smooth welded mesh with 7-8mm openings at 5-7° angle for egg roll-out.</p>
+                <h3 class="component-name">DC-DC 12V to 3.3V & 5V</h3>
+                <p class="component-desc">Dual output power module for sensors and ESP32.</p>
+            </div>
+
+            <div class="component-card">
+                <div class="component-img">
+                    <img src="image/usb Type-cCable.jpg" alt="Type-C Cable">
+                </div>
+                <h3 class="component-name">USB Type-C Cable</h3>
+                <p class="component-desc">Shielded cable for programming and power.</p>
+            </div>
+
+            <div class="component-card">
+                <div class="component-img">
+                    <img src="image/USB Type-C Male Power Connector.jpg" alt="Type-C Power Connector">
+                </div>
+                <h3 class="component-name">Type-C Male Power Leads</h3>
+                <p class="component-desc">Open wire leads for custom power connections.</p>
+            </div>
+
+            <div class="component-card">
+                <div class="component-img">
+                    <img src="image/Barrel Connector Female.jpg" alt="Barrel Connector">
+                </div>
+                <h3 class="component-name">Barrel Connector Female</h3>
+                <p class="component-desc">DC power jack for the adapter connection.</p>
             </div>
 
         </div>
 
-        <!-- ================= NEW: SMART CLIMATE CONTROL SECTION ================= -->
-        <div class="system-design-box">
-            <h2 class="design-title">Smart <span>Climate Control</span> & Architecture</h2>
-            <p class="design-desc">
-                Our enclosure is designed with a dual-side ventilation system to ensure optimal temperature and air quality. 
-                The system maintains a stress-free environment for the birds while automatically managing heat, humidity, and air circulation.
-            </p>
-            
-            <div class="feature-list">
-                <!-- Feature 1 -->
-                <div class="feature-item">
-                    <div class="feature-icon">🌬️</div>
-                    <div class="feature-text">
-                        <h4>Dual-Side Ventilation</h4>
-                        <p>2 sides open for intake, 2 sides closed. Exhaust fans pull hot air out, while fresh air naturally enters from the opposite side.</p>
-                    </div>
-                </div>
-
-                <!-- Feature 2 -->
-                <div class="feature-item">
-                    <div class="feature-icon">💡</div>
-                    <div class="feature-text">
-                        <h4>Incubator Bulb Heating</h4>
-                        <p>For slight temperature drops, incubator bulbs automatically provide gentle heat to keep the chicks warm.</p>
-                    </div>
-                </div>
-
-                <!-- Feature 3 -->
-                <div class="feature-item">
-                    <div class="feature-icon">💧</div>
-                    <div class="feature-text">
-                        <h4>Mist Cooling System</h4>
-                        <p>If the temperature rises too high, the water pump activates a fine mist spray to cool the environment and maintain stability.</p>
-                    </div>
-                </div>
-
-                <!-- Feature 4 -->
-                <div class="feature-item">
-                    <div class="feature-icon">🕊️</div>
-                    <div class="feature-text">
-                        <h4>Stress-Free Bird Welfare</h4>
-                        <p>Research shows birds don't perceive electronic components as threats unless grabbed. Our natural habitat design keeps them calm and stress-free.</p>
-                    </div>
-                </div>
+        <!-- ================= CIRCUIT DIAGRAM SECTION ================= -->
+        <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.6rem; margin: 60px 0 25px; color: #fff; text-align: center;">🔌 System Circuit & Wiring Diagram</h2>
+        <p style="text-align: center; color: #888; margin-bottom: 30px; font-size: 0.95rem;">The complete hardware circuit diagram showing pin connections between the ESP32, sensors, relays, and actuators.</p>
+        
+        <div class="component-card" style="padding: 20px; max-width: 1000px; margin: 0 auto; background: rgba(255, 255, 255, 0.02);">
+            <div style="width: 100%; border-radius: 12px; overflow: hidden; display: flex; justify-content: center; align-items: center;">
+                <img src="image/circuit_diagram.jpg" alt="QuailEdge Circuit Diagram" style="width: 100%; height: auto; display: block; transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
             </div>
         </div>
-        <!-- ================= END NEW SECTION ================= -->
 
     </section>
 

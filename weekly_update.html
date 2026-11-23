@@ -120,7 +120,7 @@
         .timeline-section {
             flex: 1;
             padding: 0 60px 80px;
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
             width: 100%;
         }
@@ -142,7 +142,7 @@
         }
 
         .timeline-item {
-            padding: 10px 50px;
+            padding: 10px 40px;
             position: relative;
             width: 50%;
             animation: fadeIn 0.8s ease both;
@@ -176,6 +176,7 @@
             box-shadow: 0 0 30px rgba(76, 175, 80, 1);
         }
 
+        /* Restored the Week Badge Style */
         .week-badge {
             display: inline-block;
             padding: 6px 18px;
@@ -197,6 +198,7 @@
             border-radius: 14px;
             transition: all 0.4s ease;
             backdrop-filter: blur(10px);
+            text-align: left; 
         }
 
         .timeline-content:hover {
@@ -217,7 +219,6 @@
             color: #aaa;
             font-size: 0.9rem;
             line-height: 1.7;
-            text-align: inherit;
             margin-bottom: 8px;
         }
 
@@ -239,6 +240,49 @@
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+        }
+
+        /* ================= IMAGE & VIDEO STYLES ================= */
+        .timeline-image {
+            width: 100%;
+            margin-top: 20px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .timeline-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 35px rgba(76, 175, 80, 0.2);
+        }
+
+        .timeline-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* Square-ish Video Container */
+        .video-container {
+            width: 100%;
+            max-width: 320px; 
+            aspect-ratio: 1 / 1; 
+            margin: 15px auto 0; 
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            background: #000;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            display: block;
         }
 
         /* ================= ANIMATIONS ================= */
@@ -295,6 +339,8 @@
             <li><a href="weekly_update.html" class="active">Weekly</a></li>
             <li><a href="hardware.html">Hardware</a></li>
             <li><a href="software.html">Software</a></li>
+            <li><a href="prototype.html">Prototype</a></li>
+            <li><a href="component_cost.html">Cost</a></li>
             <li><a href="team.html">Team</a></li>
         </ul>
     </nav>
@@ -316,6 +362,10 @@
                     <p>Conducted detailed literature review on urban poultry farming challenges, Edge-AI applications, and IoT-based automation systems. Studied Coturnix japonica (Japanese Quail) biology, housing requirements, and optimal environmental conditions.</p>
                     <span class="task-tag">Literature Review</span>
                     <span class="task-tag">Problem Definition</span>
+                    
+                    <div class="timeline-image">
+                        <img src="image/week1_research.jpg" alt="">
+                    </div>
                 </div>
             </div>
 
@@ -325,9 +375,13 @@
                 <div class="timeline-content">
                     <h3>Component Selection</h3>
                     <p><strong>Goal:</strong> Choose the right hardware for Edge-AI processing and IoT connectivity.</p>
-                    <p>Selected ESP32 WROOM32 as the central microcontroller due to its dual-core processing and built-in Wi-Fi. Finalized sensors: DHT22 for temperature/humidity, MQ-135 for air quality, HX711 + 5kg load cell for feed monitoring. Prepared the complete Bill of Materials (BOM).</p>
+                    <p>Selected ESP32 as the central microcontroller. Finalized sensors: DHT22 for temp/humidity, MQ-135 for air quality, and TTP229 for manual control. Prepared the complete Bill of Materials (BOM) including water pumps and relay modules.</p>
                     <span class="task-tag">Hardware Selection</span>
                     <span class="task-tag">BOM Preparation</span>
+
+                    <div class="timeline-image">
+                        <img src="image/week2_components.jpg" alt="">
+                    </div>
                 </div>
             </div>
 
@@ -337,9 +391,20 @@
                 <div class="timeline-content">
                     <h3>Circuit Prototyping</h3>
                     <p><strong>Goal:</strong> Build and test the first electronic prototype on breadboard.</p>
-                    <p>Assembled the basic circuit connecting ESP32 with DHT22 and MQ-135 sensors. Successfully read temperature, humidity, and air quality data on the serial monitor. Tested 12V cooling fans with IRLZ34N MOSFET drivers.</p>
+                    <p>Assembled the basic circuit connecting ESP32 with DHT22, MQ-135, and Water Level sensors. Successfully read data on the serial monitor. Tested 12V cooling fans and relay modules for actuator control.</p>
                     <span class="task-tag">Breadboard Testing</span>
                     <span class="task-tag">Sensor Calibration</span>
+
+                    <div class="timeline-image">
+                        <img src="image/week3_circuit.jpg" alt="">
+                    </div>
+
+                    <div class="video-container">
+                        <video controls>
+                            <source src="image/week3_testing.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
                 </div>
             </div>
 
@@ -349,9 +414,13 @@
                 <div class="timeline-content">
                     <h3>Software Development</h3>
                     <p><strong>Goal:</strong> Write firmware for ESP32 to handle sensor data and automation logic.</p>
-                    <p>Developed the initial C++ firmware in Arduino IDE. Implemented real-time sensor reading, threshold-based fan control, and Wi-Fi connectivity for IoT data transmission. Tested data logging to a local server.</p>
+                    <p>Developed the initial C++ firmware in Arduino IDE. Implemented real-time sensor reading, threshold-based fan & pump control, and Wi-Fi connectivity for data transmission to the web dashboard.</p>
                     <span class="task-tag">ESP32 Firmware</span>
                     <span class="task-tag">Wi-Fi Setup</span>
+
+                    <div class="timeline-image">
+                        <img src="image/week4_code.jpg" alt="">
+                    </div>
                 </div>
             </div>
 
@@ -361,9 +430,13 @@
                 <div class="timeline-content">
                     <h3>Enclosure Design</h3>
                     <p><strong>Goal:</strong> Design the physical micro-poultry structure for urban environments.</p>
-                    <p>Designed the compact ecosystem with sloped mesh floor (5-7° angle) for automatic egg roll-out. Planned natural habitat elements: plants, soil bedding, and hiding areas. Selected 5mm tempered glass for viewing panels and aluminum frame for durability.</p>
-                    <span class="task-tag">CAD Design</span>
+                    <p>Designed the compact ecosystem using 3D-printed parts. Planned the physical layout, sensor mounting positions, and water-based sanitation system to replace bulky conveyor belts.</p>
+                    <span class="task-tag">3D Design</span>
                     <span class="task-tag">Material Selection</span>
+
+                    <div class="timeline-image">
+                        <img src="image/week5_design.jpg" alt="">
+                    </div>
                 </div>
             </div>
 
@@ -373,9 +446,13 @@
                 <div class="timeline-content">
                     <h3>Integration & Testing</h3>
                     <p><strong>Goal:</strong> Integrate all components into a working system.</p>
-                    <p>Combined sensors, actuators, and cleaning system into the prototype enclosure. Tested automated cleaning conveyor, water pump for mist cooling, and gravity-fed water system. Refined the Edge-AI logic for predictive climate control.</p>
+                    <p>Combined sensors, actuators, and the water-based cleaning system into the prototype enclosure. Tested the automated water pump for waste cleaning and mist cooling. Refined the logic for threshold-based decision-making.</p>
                     <span class="task-tag">System Integration</span>
-                    <span class="task-tag">Edge-AI Logic</span>
+                    <span class="task-tag">Hardware Testing</span>
+
+                    <div class="timeline-image">
+                        <img src="image/week6_integration.jpg" alt="">
+                    </div>
                 </div>
             </div>
 
@@ -384,10 +461,14 @@
                 <span class="week-badge">WEEK 7</span>
                 <div class="timeline-content">
                     <h3>Data Collection & Analysis</h3>
-                    <p><strong>Goal:</strong> Deploy the system with real quails and collect performance data.</p>
-                    <p>Placed 3-5 quails in the ecosystem for a trial run. Monitored temperature stability, humidity control, air quality, and egg production. Collected 7 days of continuous sensor data for analysis and model refinement.</p>
+                    <p><strong>Goal:</strong> Deploy the system and collect performance data for 48 hours.</p>
+                    <p>Conducted a 48-hour controlled test setup. Verified device response time (< 2 seconds) and environmental stability. Confirmed the automatic cleaning system lowered ammonia gas levels within 15 minutes.</p>
                     <span class="task-tag">Live Testing</span>
                     <span class="task-tag">Data Analysis</span>
+
+                    <div class="timeline-image">
+                        <img src="image/week7_testing.jpg" alt="">
+                    </div>
                 </div>
             </div>
 
@@ -397,9 +478,13 @@
                 <div class="timeline-content">
                     <h3>Documentation & Finalization</h3>
                     <p><strong>Goal:</strong> Complete project documentation, draft paper, and final presentation.</p>
-                    <p>Wrote the complete draft paper covering system architecture, Edge-AI algorithms, results, and future scope. Prepared the project report with detailed schematics and BOM. Finalized the website and presentation materials.</p>
+                    <p>Wrote the complete draft paper covering system architecture, results, and future work. Prepared the project report with detailed schematics, BOM, and finalized the website and Android app interfaces.</p>
                     <span class="task-tag">Draft Paper</span>
                     <span class="task-tag">Final Report</span>
+
+                    <div class="timeline-image">
+                        <img src="image/week8_documentation.jpg" alt="">
+                    </div>
                 </div>
             </div>
 

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuailEdge | Research Gap</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #050505;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(76, 175, 80, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(76, 175, 80, 0.04) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: radial-gradient(circle at center, transparent 0%, #050505 85%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* ================= NAVBAR ================= */
+        nav {
+            position: sticky;
+            top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            background: rgba(5, 5, 5, 0.85);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            white-space: nowrap;
+        }
+
+        .logo span { color: #4caf50; text-shadow: 0 0 20px rgba(76, 175, 80, 0.8); }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .nav-links a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 0.86rem;
+            font-weight: 500;
+            transition: color 0.3s;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover, .nav-links a.active { color: #4caf50; }
+
+        /* ================= PAGE TITLE ================= */
+        .page-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.8rem;
+            text-align: center;
+            margin: 70px auto 15px;
+            background: linear-gradient(135deg, #ffffff 0%, #4caf50 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            padding: 0 20px;
+        }
+
+        .page-subtitle {
+            text-align: center;
+            color: #888;
+            max-width: 850px;
+            margin: 0 auto 60px;
+            padding: 0 20px;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .section {
+            flex: 1;
+            padding: 0 60px 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* ================= RESEARCH CARDS ================= */
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
+
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 3px;
+            background: linear-gradient(90deg, #ff5252, #ff1744);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .card:hover::before { transform: scaleX(1); }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 82, 82, 0.4);
+            box-shadow: 0 20px 50px rgba(255, 82, 82, 0.12);
+            background: rgba(255, 82, 82, 0.02);
+        }
+
+        .card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.15rem;
+            color: #ff5252;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            font-size: 0.88rem;
+            color: #999;
+            line-height: 1.7;
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        /* ================= SOLUTION BOX ================= */
+        .solution-box {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.08), rgba(0, 188, 212, 0.05));
+            border: 1px solid rgba(76, 175, 80, 0.2);
+            border-radius: 18px;
+            padding: 40px;
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .solution-box h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.6rem;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        .solution-box p {
+            color: #bbb;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .solution-box p strong { color: #4caf50; }
+
+        /* ================= FOOTER ================= */
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.6);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: auto;
+        }
+
+        footer span { color: #4caf50; font-weight: 600; }
+
+        @media (max-width: 768px) {
+            nav { flex-direction: column; padding: 15px; gap: 10px; }
+            .nav-links { gap: 10px; justify-content: center; }
+            .nav-links a { font-size: 0.72rem; }
+            .page-title { font-size: 1.9rem; margin-top: 40px; }
+            .section { padding: 0 20px 60px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="logo">Quail<span>Edge</span> 🌿</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="weekly_update.html">Weekly</a></li>
+            <li><a href="hardware.html">Hardware</a></li>
+            <li><a href="software.html">Software</a></li>
+            <li><a href="prototype.html">Prototype</a></li>
+            <li><a href="literature_review.html">Literature</a></li>
+            <li><a href="research.html" class="active">Research</a></li>
+            <li><a href="component_cost.html">Cost</a></li>
+            <li><a href="team.html">Team</a></li>
+        </ul>
+    </nav>
+
+    <h1 class="page-title">The Research Gap</h1>
+    <p class="page-subtitle">After reviewing over 100+ papers, our team identified critical flaws in existing smart poultry systems. Here is exactly where the QuailEdge ecosystem bridges the gap.</p>
+
+    <section class="section">
+        <div class="grid-3">
+            
+            <!-- Gap 1: Temperature -->
+            <div class="card">
+                <span class="card-icon">🌡️</span>
+                <h3>No Autonomous Temperature Control</h3>
+                <p>Previous systems could only <strong>monitor</strong> temperature but failed to regulate it. When it got too hot, they couldn't automatically turn on exhaust fans to cool the environment down.</p>
+            </div>
+
+            <!-- Gap 2: Humidity -->
+            <div class="card">
+                <span class="card-icon">💧</span>
+                <h3>No Humidity Control</h3>
+                <p>Existing projects lacked the ability to maintain optimal humidity levels. Without automatic misting, quails become stressed and egg production drops significantly.</p>
+            </div>
+
+            <!-- Gap 3: Water -->
+            <div class="card">
+                <span class="card-icon">🚰</span>
+                <h3>No Automatic Water Measurement</h3>
+                <p>There was no way to track water levels or consumption automatically. Farmers had to manually check the tanks, risking dehydration for the birds if they forgot.</p>
+            </div>
+
+            <!-- Gap 4: Feeding -->
+            <div class="card">
+                <span class="card-icon">🌾</span>
+                <h3>No Precise Feeding Measure</h3>
+                <p>It was impossible to measure exactly how much food was dispensed or consumed. This led to either overfeeding (wasting money) or underfeeding (stunting growth).</p>
+            </div>
+
+            <!-- Gap 5: Waste Effect -->
+            <div class="card">
+                <span class="card-icon">💩</span>
+                <h3>No Waste Impact Analysis</h3>
+                <p>Previous systems never measured how much waste was accumulating or how the resulting toxic ammonia gas was actively harming the birds' respiratory health.</p>
+            </div>
+
+            <!-- Gap 6: Cleaning -->
+            <div class="card">
+                <span class="card-icon">🧹</span>
+                <h3>Improper & Manual Cleaning</h3>
+                <p>All existing systems lacked an automated sanitation mechanism. Manual cleaning was insufficient, allowing bacteria and diseases to spread rapidly inside the cage.</p>
+            </div>
+
+            <!-- Gap 7: Human Dependency -->
+            <div class="card">
+                <span class="card-icon">🙅‍♂️</span>
+                <h3>Total Human Dependency</h3>
+                <p>The biggest flaw: birds could not survive if humans were absent. Without a closed-loop system, a simple power outage or vacation could result in total flock mortality.</p>
+            </div>
+
+        </div>
+
+        <!-- Solution Box -->
+        <div class="solution-box">
+            <h3>How QuailEdge Solves This</h3>
+            <p>
+                QuailEdge is not just a monitoring tool; it is a <strong>fully autonomous micro-ecosystem</strong>. By combining Edge-AI, localized sensor fusion, and a closed-loop design, we ensure that quails receive the exact care they need—whether a human is present or not. From climate control to cleaning and feeding, it operates completely hands-free.
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 <span>QuailEdge</span>. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

@@ -44,7 +44,6 @@
             pointer-events: none;
         }
 
-        /* ================= NAVBAR ================= */
         nav {
             position: sticky;
             top: 0;
@@ -87,7 +86,6 @@
 
         .nav-links a:hover, .nav-links a.active { color: #4caf50; }
 
-        /* ================= PAGE TITLE ================= */
         .page-title {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 2.8rem;
@@ -110,7 +108,6 @@
             font-size: 0.95rem;
         }
 
-        /* ================= HERO ABOUT (Text + Image) ================= */
         .hero-about {
             display: grid;
             grid-template-columns: 1.1fr 1fr;
@@ -163,7 +160,6 @@
             border-radius: 20px;
         }
 
-        /* ================= SECTION ================= */
         .section {
             flex: 1;
             padding: 0 60px 80px;
@@ -192,10 +188,7 @@
             line-height: 1.7;
         }
 
-        /* ================= GRIDS ================= */
-        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 25px; margin-bottom: 20px; }
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
 
         .card {
             background: rgba(255, 255, 255, 0.03);
@@ -246,21 +239,17 @@
             display: block;
         }
 
-        /* Problem Card (Red) */
         .card.problem::before { background: linear-gradient(90deg, #ff5252, #ff1744); }
         .card.problem:hover { border-color: rgba(255, 82, 82, 0.4); box-shadow: 0 20px 50px rgba(255, 82, 82, 0.12); }
         .card.problem h3 { color: #ff5252; }
 
-        /* Solution Card (Green) */
         .card.solution::before { background: linear-gradient(90deg, #4caf50, #00bcd4); }
 
-        /* ================= NEW: TECH FEATURES ================= */
         .card.tech { border-color: rgba(0, 188, 212, 0.2); }
         .card.tech h3 { color: #00bcd4; }
         .card.tech::before { background: linear-gradient(90deg, #00bcd4, #4caf50); }
         .card.tech:hover { border-color: rgba(0, 188, 212, 0.5); box-shadow: 0 20px 50px rgba(0, 188, 212, 0.15); }
 
-        /* ================= HOW IT WORKS ================= */
         .steps-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -313,7 +302,6 @@
             line-height: 1.6;
         }
 
-        /* ================= ANIMATED INFOGRAPHIC ================= */
         .infographic-section {
             padding: 60px 60px 100px;
             max-width: 1400px;
@@ -412,7 +400,6 @@
 
         .infographic-container:hover .scan-line { animation: scan 2s ease-in-out infinite; }
 
-        /* ================= MISSION & VISION ================= */
         .mv-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
@@ -439,7 +426,6 @@
         .mv-card h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; color: #4caf50; margin-bottom: 15px; }
         .mv-card p { color: #aaa; font-size: 0.92rem; line-height: 1.8; }
 
-        /* ================= IMPACT NUMBERS ================= */
         .impact-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -478,7 +464,6 @@
             letter-spacing: 1px;
         }
 
-        /* ================= FOOTER ================= */
         footer {
             text-align: center;
             padding: 25px;
@@ -490,7 +475,6 @@
 
         footer span { color: #4caf50; font-weight: 600; }
 
-        /* ================= ANIMATIONS ================= */
         @keyframes float {
             0% { transform: translateY(0px) scale(1); }
             50% { transform: translateY(-30px) scale(1.1); }
@@ -514,7 +498,6 @@
             100% { top: 100%; opacity: 0; }
         }
 
-        /* ================= RESPONSIVE ================= */
         @media (max-width: 992px) {
             .hero-about { grid-template-columns: 1fr; padding: 0 30px 60px; }
             .hero-about-image { order: -1; }
@@ -535,7 +518,6 @@
 </head>
 <body>
 
-    <!-- NAVBAR -->
     <nav>
         <div class="logo">Quail<span>Edge</span> 🌿</div>
         <ul class="nav-links">
@@ -550,24 +532,22 @@
         </ul>
     </nav>
 
-    <!-- PAGE TITLE -->
     <h1 class="page-title">About QuailEdge</h1>
-    <p class="page-subtitle">An Edge-AI and IoT-Driven Closed-Loop Precision Micro-Poultry Ecosystem for Organic Japanese Quail (Coturnix japonica) Farming in Dense Urban Environments.</p>
+    <p class="page-subtitle">A Multi-Modal IoT Architecture for Autonomous Environmental Regulation and Sanitation in Quail Husbandry.</p>
 
-    <!-- HERO ABOUT (Text + Image) -->
     <section class="hero-about">
         <div class="hero-about-text">
             <h2>Reimagining <span>Urban Poultry Farming</span> with Intelligence</h2>
             <p>
-                QuailEdge is a smart, closed-loop ecosystem designed to make organic Japanese Quail 
+                QuailEdge is a smart, low-cost IoT ecosystem designed to make organic Japanese Quail 
                 <strong>(Coturnix japonica)</strong> farming possible — even inside the smallest urban apartments. 
-                By combining <strong>Edge-AI</strong> and <strong>IoT</strong> technologies, we've created a self-sustaining 
-                micro-poultry system that manages climate, feeding, cleaning, and egg collection automatically.
+                By combining <strong>Edge Computing</strong> and <strong>IoT</strong> technologies, we've created a self-sustaining 
+                micro-poultry system that manages climate, cleaning, and egg collection automatically.
             </p>
             <p>
                 Traditional poultry farming demands space, time, and constant attention. Our system eliminates 
-                all three barriers. The birds live in a natural habitat with plants, soil, and proper airflow — 
-                while sensors, actuators, and an on-board AI handle everything else.
+                all three barriers. The birds live in a protected habitat with proper airflow — 
+                while sensors, actuators, and an on-board ESP32 microcontroller handle everything else.
             </p>
             <p>
                 Whether you're a busy professional, a health-conscious family, or an urban farmer at heart — 
@@ -580,7 +560,6 @@
         </div>
     </section>
 
-    <!-- PROBLEM SECTION -->
     <section class="section">
         <h2 class="section-heading">The Problem We Solve</h2>
         <p class="section-sub">Urban families want fresh, organic eggs — but traditional poultry farming is impossible in dense cities. Here's why:</p>
@@ -593,125 +572,121 @@
             </div>
             <div class="card problem">
                 <span class="card-icon">💨</span>
-                <h3>Bad Odor</h3>
-                <p>Bird droppings produce ammonia and strong smells. In a closed apartment, this becomes unbearable within days.</p>
+                <h3>Ammonia & Bad Odor</h3>
+                <p>Bird droppings produce ammonia gas. High ammonia levels cause breathing problems for both birds and humans in closed apartments.</p>
             </div>
             <div class="card problem">
                 <span class="card-icon">⏰</span>
                 <h3>Time-Consuming</h3>
-                <p>Feeding, watering, cleaning, and egg collection require daily manual effort that busy professionals don't have.</p>
+                <p>Manual cleaning and ventilation are slow, expose workers to health risks, and require daily effort that busy professionals don't have.</p>
             </div>
             <div class="card problem">
                 <span class="card-icon">🌡️</span>
                 <h3>Climate Sensitivity</h3>
-                <p>Quails need specific temperature and humidity ranges. Without proper control, they get stressed and stop laying eggs.</p>
+                <p>Quails need specific temperature (20-25°C) and humidity (60-70%) ranges. Without proper control, they get stressed and stop laying eggs.</p>
             </div>
             <div class="card problem">
                 <span class="card-icon">🐛</span>
                 <h3>Disease Risk</h3>
-                <p>Poor air quality and dirty environments cause respiratory diseases, reducing flock health and productivity.</p>
+                <p>Poor air quality and dirty environments cause respiratory diseases, reducing flock health and increasing mortality rates.</p>
             </div>
             <div class="card problem">
-                <span class="card-icon">🥚</span>
-                <h3>Egg Loss</h3>
-                <p>Eggs laid on bedding get dirty, cracked, or lost. Searching through soil for eggs is frustrating and unhygienic.</p>
+                <span class="card-icon">💰</span>
+                <h3>High Cost of Solutions</h3>
+                <p>Good climate controllers are available in the market, but their high price stops rural and small-scale farmers from buying them.</p>
             </div>
         </div>
     </section>
 
-    <!-- SOLUTION SECTION -->
     <section class="section">
         <h2 class="section-heading">Our Solution</h2>
-        <p class="section-sub">QuailEdge solves every one of these problems through intelligent automation and Edge-AI.</p>
+        <p class="section-sub">QuailEdge solves every one of these problems through intelligent automation and Edge Computing.</p>
 
         <div class="grid-3">
             <div class="card solution">
                 <span class="card-icon">🏠</span>
-                <h3>Compact Design</h3>
-                <p>A vertical, apartment-friendly enclosure that fits in a corner — just like a small piece of furniture.</p>
-            </div>
-            <div class="card solution">
-                <span class="card-icon">🌿</span>
-                <h3>Natural Habitat</h3>
-                <p>Plants, soil, logs, and natural airflow create a stress-free environment that keeps quails healthy and happy.</p>
+                <h3>Compact 3D-Printed Design</h3>
+                <p>A vertical, apartment-friendly enclosure made with 3D-printed parts (Flamment) that fits in a corner — just like a small piece of furniture.</p>
             </div>
             <div class="card solution">
                 <span class="card-icon">🌬️</span>
-                <h3>Carbon-Filtered Air</h3>
-                <p>MQ-135 sensor detects ammonia. Exhaust fan with carbon filter automatically removes odor — keeping your home fresh.</p>
+                <h3>Ammonia Mitigation</h3>
+                <p>MQ-135 sensor detects ammonia. When it goes above 20 ppm, the exhaust fan and water pumps activate automatically to clean the waste.</p>
+            </div>
+            <div class="card solution">
+                <span class="card-icon">💧</span>
+                <h3>Water-Based Sanitation</h3>
+                <p>Instead of bulky conveyor belts, we use a dual water pump system to clean waste automatically — saving space and cost for small cages.</p>
             </div>
             <div class="card solution">
                 <span class="card-icon">🤖</span>
-                <h3>Full Automation</h3>
-                <p>Feeding, watering, cleaning, and egg collection are all automated. You only interact with the system once a day.</p>
+                <h3>Multi-Way Control</h3>
+                <p>Control the system via automatic sensors, a manual TTP229 touch sensor, or remote mobile app monitoring — whichever you prefer.</p>
             </div>
             <div class="card solution">
                 <span class="card-icon">🧠</span>
-                <h3>Edge-AI Control</h3>
-                <p>ESP32 runs AI logic on-device — no cloud dependency. It makes split-second decisions based on real-time sensor data.</p>
+                <h3>Edge Computing</h3>
+                <p>ESP32 processes data locally, making split-second decisions without relying on the internet. It works even when Wi-Fi goes down.</p>
             </div>
             <div class="card solution">
                 <span class="card-icon">📱</span>
                 <h3>Remote Monitoring</h3>
-                <p>Wi-Fi connectivity lets you monitor temperature, humidity, feed level, and water status from your phone — anywhere.</p>
+                <p>Wi-Fi connectivity lets you monitor temperature, humidity, gas levels, and water status from your Android app or web dashboard.</p>
             </div>
         </div>
     </section>
 
-    <!-- NEW: NEXT-GEN TECH FEATURES (যা নতুন যোগ করা হলো) -->
     <section class="section">
         <h2 class="section-heading">Next-Gen Features</h2>
-        <p class="section-sub">Beyond automation — we built intelligence and localization into the core system.</p>
+        <p class="section-sub">Beyond automation — we built intelligence, localization, and future-ready upgrades into the core system.</p>
 
         <div class="grid-3">
             <div class="card tech">
                 <span class="card-icon">🗣️</span>
                 <h3>Bangla Voice Assistant</h3>
-                <p>A fully localized Android app that talks to you in Bangla. Ask about temperature, food, or water, and it replies instantly in natural Bangla.</p>
+                <p>A fully localized Android app (Java/XML) that talks to you in Bangla. Ask about temperature, food, or water, and it replies instantly.</p>
             </div>
             <div class="card tech">
-                <span class="card-icon">🕊️</span>
-                <h3>Stress-Free Bird Welfare</h3>
-                <p>Research proves quails don't fear electronic components. Our natural habitat design ensures they live happily without human interference.</p>
+                <span class="card-icon">🧠</span>
+                <h3>TinyML for Disease Detection</h3>
+                <p>Future upgrade: We plan to add TinyML on the ESP32-CAM to find early signs of bird disease using small Convolutional Neural Networks (CNNs).</p>
             </div>
             <div class="card tech">
-                <span class="card-icon">🔄</span>
-                <h3>Closed-Loop System</h3>
-                <p>Water used for mist cooling is recycled. Waste is collected automatically. It's a self-sustaining micro-ecosystem.</p>
+                <span class="card-icon">☀️</span>
+                <h3>Solar-Powered Independence</h3>
+                <p>Future upgrade: A Solar Photovoltaic (PV) panel with a Battery Management System (BMS) will allow the system to run completely without main power.</p>
             </div>
         </div>
     </section>
 
-    <!-- HOW IT WORKS -->
     <section class="section">
         <h2 class="section-heading">How It Works</h2>
-        <p class="section-sub">From sensor reading to automatic action — all in milliseconds.</p>
+        <p class="section-sub">From sensor reading to automatic action — all in less than 2 seconds.</p>
 
         <div class="steps-container">
             <div class="step">
                 <div class="step-number">1</div>
                 <h3>Sense</h3>
-                <p>DHT22, MQ-135, water level sensor, and load cell continuously monitor the environment.</p>
+                <p>DHT22 (temp/humidity), MQ-135 (gas), and ESP32-CAM continuously monitor the environment.</p>
             </div>
             <div class="step">
                 <div class="step-number">2</div>
                 <h3>Analyze</h3>
-                <p>ESP32's Edge-AI compares readings against optimal thresholds for quail health.</p>
+                <p>The ESP32 microcontroller reads the data and makes quick decisions using our custom threshold-based logic.</p>
             </div>
             <div class="step">
                 <div class="step-number">3</div>
                 <h3>Act</h3>
-                <p>Fans, pumps, servos, and conveyor belts activate automatically to maintain ideal conditions.</p>
+                <p>Exhaust fans, mist humidifiers, and water pumps activate automatically to maintain ideal conditions and clean waste.</p>
             </div>
             <div class="step">
                 <div class="step-number">4</div>
                 <h3>Notify</h3>
-                <p>Data is sent via Wi-Fi to your phone — with Bangla alerts for feed refill, water top-up, or unusual conditions.</p>
+                <p>Data is sent via Wi-Fi to the Android app and Vercel web dashboard for live monitoring and remote control.</p>
             </div>
         </div>
     </section>
 
-    <!-- ANIMATED INFOGRAPHIC -->
     <section class="infographic-section">
         <h2 class="section-heading-center">The Complete Ecosystem</h2>
         <p class="section-subtitle-center">
@@ -729,27 +704,22 @@
         </div>
     </section>
 
-    <!-- IMPACT NUMBERS -->
     <section class="section">
         <h2 class="section-heading">Expected Impact</h2>
         <p class="section-sub">What our system delivers to urban households.</p>
 
         <div class="impact-grid">
             <div class="impact-item">
-                <span class="impact-number">3-5</span>
-                <span class="impact-label">Quails per Unit</span>
+                <span class="impact-number">&lt;2s</span>
+                <span class="impact-label">Response Time</span>
             </div>
             <div class="impact-item">
-                <span class="impact-number">~250</span>
-                <span class="impact-label">Eggs per Year</span>
+                <span class="impact-number">15 min</span>
+                <span class="impact-label">Ammonia Reduction</span>
             </div>
             <div class="impact-item">
                 <span class="impact-number">95%</span>
                 <span class="impact-label">Less Manual Work</span>
-            </div>
-            <div class="impact-item">
-                <span class="impact-number">100%</span>
-                <span class="impact-label">Odor-Free</span>
             </div>
             <div class="impact-item">
                 <span class="impact-number">24/7</span>
@@ -758,7 +728,6 @@
         </div>
     </section>
 
-    <!-- MISSION & VISION -->
     <section class="section">
         <div class="mv-grid">
             <div class="mv-card">
@@ -782,7 +751,6 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer>
         <p>&copy; 2026 <span>QuailEdge</span>. All rights reserved.</p>
     </footer>

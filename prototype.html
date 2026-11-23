@@ -362,164 +362,154 @@
     </nav>
 
     <h1 class="page-title">Prototype Design</h1>
-    <p class="page-subtitle">A complete engineering breakdown of the QuailEdge closed-loop ecosystem — from exploded layer views to top-down zone layouts.</p>
+    <p class="page-subtitle">A complete engineering breakdown of the QuailEdge prototype — featuring the conceptual design and our multi-tier architecture.</p>
 
     <section class="section">
 
         <div class="feature-pills">
-            <span class="pill">🌿 Natural Environment</span>
             <span class="pill">🌡️ Smart Climate Control</span>
-            <span class="pill">💧 Humidity Regulation</span>
-            <span class="pill">⚙️ Automatic Cleaning</span>
-            <span class="pill">🥚 Easy Egg Collection</span>
+            <span class="pill">💨 Ammonia Mitigation</span>
+            <span class="pill">💧 Water-Based Sanitation</span>
+            <span class="pill">🤖 Multi-Way Control</span>
+            <span class="pill">📱 Remote Monitoring</span>
         </div>
 
+        <!-- MAIN IMAGE (CONCEPT/PROTOTYPE DIAGRAM) -->
         <div class="main-image-wrapper">
             <img src="image/prototype.jpg" alt="QuailEdge Prototype Engineering Diagram">
         </div>
 
-        <h2 class="section-heading"><span>01</span> Bottom Section — Exploded View</h2>
+        <h2 class="section-heading"><span>01</span> Physical Architecture & Enclosure</h2>
         <div class="view-grid">
 
             <div class="view-card">
                 <div class="view-number">1</div>
-                <h3>Natural Activity Area</h3>
-                <p>The top layer where quails live, play, and rest. Designed to mimic their natural habitat.</p>
+                <h3>3D-Printed Enclosure</h3>
+                <p>A custom-designed, apartment-friendly enclosure built using 3D-printed parts (Flamment) and assembled locally.</p>
                 <ul class="spec-list">
-                    <li><strong>Soil/Sand Bedding</strong> for dust bathing</li>
-                    <li><strong>Plants & Logs</strong> for hiding and pecking</li>
-                    <li><strong>Rocks & Branches</strong> for natural enrichment</li>
+                    <li><strong>Flamment Material</strong> for durability</li>
+                    <li><strong>Compact Vertical Design</strong> fits small spaces</li>
+                    <li><strong>Open Mesh Sides</strong> for natural ventilation</li>
                 </ul>
             </div>
 
             <div class="view-card">
                 <div class="view-number">2</div>
-                <h3>Sloped Mesh Floor</h3>
-                <p>A slanted wire mesh layer that separates birds from waste and rolls eggs forward.</p>
+                <h3>Sensor Mounting</h3>
+                <p>Sensors are strategically placed inside and outside the cage to accurately measure environmental conditions.</p>
                 <ul class="spec-list">
-                    <li><strong>5-7° Angle</strong> for gravity-based egg roll</li>
-                    <li><strong>7mm Mesh Openings</strong> safe for quail feet</li>
-                    <li><strong>Welded Steel</strong> for durability & easy cleaning</li>
+                    <li><strong>DHT22</strong> (Temp/Humidity) inside the living area</li>
+                    <li><strong>MQ-135</strong> (Gas) near the waste zone</li>
+                    <li><strong>ESP32-CAM</strong> mounted for live monitoring</li>
                 </ul>
             </div>
 
             <div class="view-card">
                 <div class="view-number">3</div>
-                <h3>Egg Collection Channel</h3>
-                <p>A smooth, rounded gutter that guides eggs from the mesh floor to the front drawer.</p>
+                <h3>Actuator Placement</h3>
+                <p>Mechanical parts are positioned to perform cleaning and climate control without disturbing the birds.</p>
                 <ul class="spec-list">
-                    <li><strong>Roll-out Design</strong> minimizes egg breakage</li>
-                    <li><strong>Front Access Drawer</strong> for easy collection</li>
-                    <li><strong>Smooth Surface</strong> prevents cracking</li>
+                    <li><strong>Water Pumps</strong> for automated waste washing</li>
+                    <li><strong>Exhaust Fan</strong> for air circulation</li>
+                    <li><strong>Mist Humidifier</strong> for humidity control</li>
                 </ul>
             </div>
 
             <div class="view-card">
                 <div class="view-number">4</div>
-                <h3>Waste Collection Tray</h3>
-                <p>The bottom layer that captures droppings and channels them to a sealed compost-ready tray.</p>
+                <h3>Safety & Protection</h3>
+                <p>Electrical components are kept away from the birds, and protective meshes are used where necessary.</p>
                 <ul class="spec-list">
-                    <li><strong>Waterproof PP/HDPE</strong> material</li>
-                    <li><strong>Automatic Scraper</strong> + Water Rinse Line</li>
-                    <li><strong>Sloped to Drain</strong> for complete cleaning</li>
+                    <li><strong>Protective Mesh</strong> around bulbs and heat sources</li>
+                    <li><strong>Sealed Wiring</strong> to prevent pecking</li>
+                    <li><strong>External Power Supply</strong> for safety</li>
                 </ul>
             </div>
 
         </div>
 
-        <h2 class="section-heading"><span>02</span> Cross Section — Side View</h2>
+        <h2 class="section-heading"><span>02</span> Multi-Tier System Architecture</h2>
         <div class="view-grid">
 
             <div class="view-card">
                 <div class="view-number">A</div>
-                <h3>Airflow Dynamics</h3>
-                <p>Fresh air enters from the left mesh panel, circulates inside, and exits through the top exhaust fan with carbon filter.</p>
+                <h3>Edge Level (Sensing)</h3>
+                <p>The physical layer where sensors collect real-time environmental data from the cage.</p>
                 <ul class="spec-list">
-                    <li><strong>Free Air Intake</strong> with fine insect mesh</li>
-                    <li><strong>Exhaust Fan</strong> with carbon filter for odor control</li>
-                    <li><strong>Continuous Air Exchange</strong> prevents ammonia buildup</li>
+                    <li><strong>DHT22</strong> monitors temperature & humidity</li>
+                    <li><strong>MQ-135</strong> detects toxic ammonia gas</li>
+                    <li><strong>TTP229</strong> allows manual touch control</li>
                 </ul>
             </div>
 
             <div class="view-card">
                 <div class="view-number">B</div>
-                <h3>Climate Control System</h3>
-                <p>DHT22 and MQ-135 sensors monitor conditions and trigger automated responses via ESP32.</p>
+                <h3>Processing Level (Brain)</h3>
+                <p>The ESP32 microcontroller acts as the brain, processing data locally using edge computing.</p>
                 <ul class="spec-list">
-                    <li><strong>DHT22</strong> for temperature & humidity</li>
-                    <li><strong>MQ-135</strong> for air quality (NH3, CO2)</li>
-                    <li><strong>Mist Nozzle</strong> for humidity regulation</li>
+                    <li><strong>ESP32 WROOM32</strong> for fast local decisions</li>
+                    <li><strong>Threshold-Based Logic</strong> (Temp > 26°C, Gas > 20ppm)</li>
+                    <li><strong>Works Offline</strong> without internet dependency</li>
                 </ul>
             </div>
 
             <div class="view-card">
                 <div class="view-number">C</div>
-                <h3>Feeding & Watering</h3>
-                <p>Gravity-fed water tank and servo-controlled automatic feeder ensure continuous supply.</p>
+                <h3>Application Level (User)</h3>
+                <p>The user interface allowing farmers to monitor and control the system remotely.</p>
                 <ul class="spec-list">
-                    <li><strong>Gravity-Fed Water Tank</strong> with nipple drinkers</li>
-                    <li><strong>Servo Gate Feeder</strong> with load cell monitoring</li>
-                    <li><strong>Low Maintenance</strong> — refill once every few days</li>
-                </ul>
-            </div>
-
-            <div class="view-card">
-                <div class="view-number">D</div>
-                <h3>LED Grow Lighting</h3>
-                <p>Full-spectrum LED mimics natural sunlight to support bird health and plant growth inside the habitat.</p>
-                <ul class="spec-list">
-                    <li><strong>15H Light / 9H Dark</strong> circadian cycle</li>
-                    <li><strong>Sun-Like Spectrum</strong> for quail wellbeing</li>
-                    <li><strong>Energy Efficient</strong> 12V cool-white LED chain</li>
+                    <li><strong>Android App</strong> (Java/XML) with Bangla Voice Assistant</li>
+                    <li><strong>Web Dashboard</strong> hosted on Vercel</li>
+                    <li><strong>Live Camera Feed</strong> via ESP32-CAM</li>
                 </ul>
             </div>
 
         </div>
 
-        <h2 class="section-heading"><span>03</span> Top View Layout — Zone Design</h2>
+        <h2 class="section-heading"><span>03</span> Core Functionality Workflow</h2>
         <div class="view-grid">
 
             <div class="view-card">
                 <div class="view-number">①</div>
-                <h3>Green Zone (Plants + Shade)</h3>
-                <p>A dedicated area with plants, logs, and leafy cover that mimics a quail's natural hiding environment.</p>
+                <h3>Environmental Regulation</h3>
+                <p>The system continuously checks if the environment is safe for the quails.</p>
                 <ul class="spec-list">
-                    <li><strong>Hiding Area</strong> with logs and plants</li>
-                    <li><strong>Natural Shade</strong> reduces bird stress</li>
-                    <li><strong>Polycarbonate Roof</strong> with natural sunlight</li>
+                    <li>If <strong>Temp > 26°C</strong>, Exhaust Fan turns ON</li>
+                    <li>If <strong>Humidity < 60%</strong>, Mist Humidifier turns ON</li>
+                    <li>Ensures optimal growth and egg production</li>
                 </ul>
             </div>
 
             <div class="view-card">
                 <div class="view-number">②</div>
-                <h3>Feeding Zone</h3>
-                <p>Central activity area with the automatic feeder and enough space for 3-5 quails to feed together.</p>
+                <h3>Automated Sanitation</h3>
+                <p>A unique water-based cleaning system replaces bulky conveyor belts.</p>
                 <ul class="spec-list">
-                    <li><strong>Main Activity Area</strong> for 3-5 birds</li>
-                    <li><strong>Automatic Feeder</strong> (Servo + Load Cell)</li>
-                    <li><strong>Water Nipple Drinkers</strong> nearby</li>
+                    <li>Triggers when <strong>Ammonia > 20 ppm</strong></li>
+                    <li>Water pump & pressure pump activate sequentially</li>
+                    <li>Reduces gas levels within 15 minutes</li>
                 </ul>
             </div>
 
             <div class="view-card">
                 <div class="view-number">③</div>
-                <h3>Water Zone</h3>
-                <p>The right side houses the water reservoir, sensors, and the mist/humidity control system.</p>
+                <h3>Manual Override</h3>
+                <p>Farmers can intervene at any time using the onboard touch sensor.</p>
                 <ul class="spec-list">
-                    <li><strong>Water Tank</strong> (gravity-fed, ~2-3L)</li>
-                    <li><strong>Water Level Sensor</strong> for refill alerts</li>
-                    <li><strong>Mist Nozzle</strong> for humidity control</li>
+                    <li><strong>TTP229 Touch Sensor</strong> provides instant control</li>
+                    <li>Turn fans, pumps, or lights ON/OFF manually</li>
+                    <li>Useful for emergencies or maintenance</li>
                 </ul>
             </div>
 
             <div class="view-card">
                 <div class="view-number">④</div>
-                <h3>Egg Roll-out Zone</h3>
-                <p>The front section where eggs collect in a protective drawer, easy to access without disturbing the birds.</p>
+                <h3>Data Telemetry</h3>
+                <p>All sensor data is sent to the cloud for remote monitoring and analysis.</p>
                 <ul class="spec-list">
-                    <li><strong>Front Egg Collection Drawer</strong></li>
-                    <li><strong>No-Break Design</strong> for safe transport</li>
-                    <li><strong>Quick Access</strong> for daily collection</li>
+                    <li>Live sync to <strong>Android App & Web</strong></li>
+                    <li>Latency is under <strong>2 seconds</strong></li>
+                    <li>Alerts for unusual conditions</li>
                 </ul>
             </div>
 
@@ -531,12 +521,14 @@
                 <span class="tech-badge">ESP32 WROOM32</span>
                 <span class="tech-badge">DHT22 Sensor</span>
                 <span class="tech-badge">MQ-135 Sensor</span>
-                <span class="tech-badge">HX711 + Load Cell</span>
-                <span class="tech-badge">SG90 Servo</span>
-                <span class="tech-badge">12V Water Pump</span>
-                <span class="tech-badge">Water Flow Sensor</span>
-                <span class="tech-badge">DS3231 RTC</span>
-                <span class="tech-badge">Edge-AI Logic</span>
+                <span class="tech-badge">ESP32-CAM</span>
+                <span class="tech-badge">TTP229 Touch Sensor</span>
+                <span class="tech-badge">12V 5A Power Adapter</span>
+                <span class="tech-badge">Water Pumps</span>
+                <span class="tech-badge">Exhaust Fan</span>
+                <span class="tech-badge">Mist Humidifier</span>
+                <span class="tech-badge">Android (Java/XML)</span>
+                <span class="tech-badge">Vercel Web Dashboard</span>
             </div>
         </div>
 
